@@ -13,6 +13,8 @@
 - [Local Storage](./Javascript/localStorage.md)
 - [Scopes](./Javascript/scopes.md)
 - [fetch, Promises & Async](./Javascript/fetch.md)
+- [class](./Javascript/class.md)
+- [canvas](./Javascript/canvas.md)
 
 ### Git
 
