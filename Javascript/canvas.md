@@ -117,6 +117,67 @@ class World {
 
 ---
 
+### Arbeiten mit Bild-Animationen und Bild-Cache
+
+#### Bild-Cache mit `loadImages` füllen
+
+Um Animationen flüssig darzustellen, werden alle benötigten Bilder vorab geladen und im sogenannten Bild-Cache (`imageCache`) gespeichert. Dies geschieht in der Klasse `MovableObject` mit der Methode `loadImages`:
+
+```javascript
+class MovableObject {
+  imageCache = {};
+
+  loadImages(array) {
+    array.forEach((path) => {
+      let img = new Image();
+      img.src = path;
+      this.imageCache[path] = img;
+    });
+  }
+}
+```
+
+**Erklärung:**
+
+- Die Methode erhält ein Array mit Bildpfaden.
+- Für jeden Pfad wird ein neues `Image`-Objekt erstellt und geladen.
+- Das geladene Bild wird im `imageCache` unter seinem Pfad gespeichert.
+- So sind alle Bilder schnell verfügbar und müssen nicht bei jedem Frame neu geladen werden.
+
+---
+
+#### Animation durch Bildwechsel mit `animate`
+
+Die Animation entsteht, indem die Bilder aus dem Cache nacheinander angezeigt werden. In der Klasse `Character` wird dies mit der Methode `animate` umgesetzt:
+
+```javascript
+class Character extends MovableObject {
+  IMAGES_WALKING = [
+    /* ...Bildpfade... */
+  ];
+  currentImage = 0;
+
+  animate() {
+    setInterval(() => {
+      let i = this.currentImage % this.IMAGES_WALKING.length;
+      let path = this.IMAGES_WALKING[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, Character.speed);
+  }
+}
+```
+
+**Erklärung:**
+
+- Die Methode wird zyklisch mit `setInterval` aufgerufen.
+- Der Index `i` bestimmt, welches Bild aus dem Array angezeigt wird.
+- Das entsprechende Bild wird aus dem `imageCache` geladen und als aktuelles Bild (`this.img`) gesetzt.
+- Der Index wird erhöht, sodass beim nächsten Aufruf das nächste Bild angezeigt wird.
+- Dadurch entsteht eine flüssige Animation, indem die Bilder schnell hintereinander gewechselt werden.
+
+---
+
 ## Zusammenfassung
 
 - Canvas bietet eine flexible Zeichenfläche für Grafiken und Animationen.
