@@ -400,3 +400,144 @@ wird das Bild des Charakters nur dann gespiegelt, wenn er nach links läuft. All
 anderen Objekte werden wie gewohnt gezeichnet.
 
 ---
+
+## Level-Management und Auslagerung der Leveldetails
+
+Um die Verwaltung der Level zu vereinfachen und die Übersichtlichkeit zu
+erhöhen, wurden alle Leveldetails aus der `World`-Klasse ausgelagert und in eine
+eigene Klasse `Level` überführt. Die Leveldaten werden in separaten Dateien wie
+`level1.js` definiert.
+
+### Level-Klasse
+
+Die Klasse `Level` kapselt alle relevanten Informationen eines Levels, wie
+Gegner, Lichtstrahlen, Hintergrundobjekte und die Level-Länge. Die Variablen
+werden oberhalb des Konstruktors deklariert:
+
+```javascript
+class Level {
+  enemies; // Array mit Gegner-Objekten
+  lightBeams; // Array mit Lichtstrahl-Objekten
+  backgroundObjects; // Array mit Hintergrund-Objekten
+  levelLength; // Länge des Levels in px
+
+  constructor(enemies, lightBeams, backgroundObjects, levelLength) {
+    this.enemies = enemies;
+    this.lightBeams = lightBeams;
+    this.backgroundObjects = backgroundObjects;
+    this.levelLength = levelLength;
+  }
+}
+```
+
+### Definition eines Levels in level1.js
+
+Die Leveldetails werden in einer eigenen Datei (z.B. `level1.js`) angelegt. Dort
+werden die Gegner, Lichtstrahlen und Hintergrundobjekte für das jeweilige Level
+erstellt und dem Level-Objekt übergeben. Die Level-Länge wird nach dem Rendern
+des Hintergrunds gesetzt:
+
+```javascript
+let level1 = new Level(
+  [new Fish(), new Fish(), new Fish()],
+  [new LightBeam()],
+  [],
+  0 // levelLength initial 0
+);
+
+let backgroundImagesLevel = [
+  "src/img/3. Background/Layers/5. Water/D1.png",
+  "src/img/3. Background/Layers/4.Fondo 2/D1.png",
+  "src/img/3. Background/Layers/3.Fondo 1/D1.png",
+  "src/img/3. Background/Layers/2. Floor/D1.png",
+  "src/img/3. Background/Layers/5. Water/D2.png",
+  "src/img/3. Background/Layers/4.Fondo 2/D2.png",
+  "src/img/3. Background/Layers/3.Fondo 1/D2.png",
+  "src/img/3. Background/Layers/2. Floor/D2.png",
+];
+
+renderBackground(level1, 5, backgroundImagesLevel);
+
+function renderBackground(level, backgroundRepeats, backgroundImages) {
+  let repeats = backgroundRepeats;
+  let insertPosition = 0;
+
+  for (let i = 0; i < repeats; i++) {
+    level.backgroundObjects.push(
+      new BackgroundObject(backgroundImages[0], insertPosition + 0),
+      new BackgroundObject(backgroundImages[1], insertPosition + 0),
+      new BackgroundObject(backgroundImages[2], insertPosition + 0),
+      new BackgroundObject(backgroundImages[3], insertPosition + 0),
+      new BackgroundObject(backgroundImages[4], insertPosition + 720),
+      new BackgroundObject(backgroundImages[5], insertPosition + 720),
+      new BackgroundObject(backgroundImages[6], insertPosition + 720),
+      new BackgroundObject(backgroundImages[7], insertPosition + 720)
+    );
+    insertPosition += 1440;
+  }
+  level.levelLength = insertPosition; // Level-Länge setzen
+  console.log("Länge des Levels = " + insertPosition + "px");
+}
+```
+
+Jetzt kann die Level-Länge überall im Code über `level1.levelLength` verwendet
+werden.
+
+### Verwendung in der World-Klasse
+
+Die World-Klasse erhält nun ein Level-Objekt und verwendet dessen Daten für die
+Darstellung und Logik der Spielwelt. Dadurch wird die World-Klasse deutlich
+übersichtlicher und die Level können flexibel ausgetauscht oder erweitert
+werden.
+
+**Vorteile:**
+
+- Trennung von Leveldaten und Spiellogik
+- Einfaches Hinzufügen neuer Level durch separate Dateien
+- Bessere Wartbarkeit und Übersichtlichkeit des Codes
+
+### Verwendung eines Level-Objekts in der World-Klasse
+
+Das Level-Objekt wird beim Erstellen der Spielwelt an die World-Klasse
+übergeben. Die World-Klasse nutzt dann die darin enthaltenen Arrays für Gegner,
+Lichtstrahlen und Hintergrundobjekte.  
+Die Variablen werden direkt aus dem Level-Objekt übernommen:
+
+```javascript
+class World {
+  enemies = level1.enemies;
+  lightBeams = level1.lightBeams;
+  backgroundObjects = level1.backgroundObjects;
+  // ...weitere Variablen...
+
+  constructor(canvas, keyboard) {
+    // ...existing code...
+  }
+  // ...existing code...
+}
+```
+
+Alternativ kann dies auch im Konstruktor erfolgen, wenn das Level als Parameter
+übergeben wird:
+
+```javascript
+class World {
+  enemies;
+  lightBeams;
+  backgroundObjects;
+  // ...weitere Variablen...
+
+  constructor(canvas, keyboard, level) {
+    this.enemies = level.enemies;
+    this.lightBeams = level.lightBeams;
+    this.backgroundObjects = level.backgroundObjects;
+    // ...existing code...
+  }
+  // ...existing code...
+}
+```
+
+Dadurch ist klar ersichtlich, wie die Leveldaten in die World-Klasse eingebettet
+werden.
+
+---
