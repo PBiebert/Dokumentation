@@ -549,3 +549,135 @@ Dadurch ist die World-Klasse flexibel und kann einfach mit verschiedenen
 Level-Objekten arbeiten.
 
 ---
+
+## Kameraverschiebung und Begrenzung des Charakters
+
+### Wie verschiebe ich den sichtbaren Bereich des Canvas?
+
+Um den sichtbaren Bereich des Canvas zu verschieben und so eine Kamerabewegung
+zu simulieren, wird in der `World`-Klasse die Variable `camera_x` verwendet. In
+der `draw()`-Methode wird der Canvas-Kontext vor dem Zeichnen aller Objekte mit
+`ctx.translate(this.camera_x, 0)` verschoben. Der zweite Parameter (`0`) steht
+für die Verschiebung auf der y-Achse – hier wird nur horizontal verschoben.
+
+Nach dem Rendern aller Objekte muss der Viewport wieder zurückgesetzt werden,
+damit die nächste Zeichenoperation wieder am ursprünglichen Ursprung startet.
+Dies geschieht mit `this.ctx.translate(-this.camera_x, 0);` direkt nach dem
+Zeichnen:
+
+```javascript
+class World {
+  camera_x = 0;
+  // ...existing code...
+
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.translate(this.camera_x, 0);
+
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.lightBeams);
+    this.addObjectsToMap(this.level.enemies);
+    this.addToMap(this.character);
+
+    this.ctx.translate(-this.camera_x, 0);
+
+    // ...existing code...
+  }
+}
+```
+
+### Wie steuere ich die Kameraverschiebung in der Character-Klasse?
+
+Die Position der Kamera wird in der Bewegungslogik des Charakters angepasst. Die
+Kamera folgt dem Charakter, solange er sich nicht ganz am linken oder rechten
+Rand des Levels befindet. Die Logik dazu:
+
+```javascript
+class Character extends MovableObject {
+  // ...existing code...
+  animate() {
+    setInterval(() => {
+      // ...Bewegungslogik...
+      if (this.x <= 100) {
+        // Charakter ganz links, Kamera bleibt stehen
+        this.world.camera_x = 0;
+      } else if (this.x < this.world.level.levelLength - 720) {
+        // Kamera folgt Charakter
+        this.world.camera_x = -this.x + 100;
+      } else {
+        // Charakter ganz rechts, Kamera bleibt am rechten Rand stehen
+        this.world.camera_x = -(this.world.level.levelLength - 720) + 100;
+      }
+    }, 1000 / 60);
+    // ...existing code...
+  }
+}
+```
+
+**Erklärung der Logik und warum `this.x` negativ gesetzt wird:**
+
+- **Links:** Wenn sich der Charakter ganz links befindet (`this.x <= 100`),
+  bleibt die Kamera stehen. Das bedeutet, der sichtbare Bereich des Canvas wird
+  nicht verschoben und der Charakter bleibt am linken Rand sichtbar.
+- **Mitte:** Befindet sich der Charakter im mittleren Bereich des Levels, wird
+  die Kamera so verschoben, dass der Charakter immer bei x=100 im Canvas bleibt.
+  Das wird erreicht, indem `camera_x` auf `-this.x + 100` gesetzt wird. Das
+  Minus sorgt dafür, dass die Welt nach links verschoben wird, wenn der
+  Charakter nach rechts schwimmt. So bleibt der Charakter optisch an der
+  gleichen Stelle im Canvas und die Umgebung bewegt sich.
+- **Rechts:** Ist der Charakter ganz rechts, bleibt die Kamera am rechten Rand
+  stehen. Der Wert `-(this.world.level.levelLength - 720) + 100` sorgt dafür,
+  dass die Kamera nicht weiter nach rechts verschoben wird als das Level lang
+  ist. Die Zahl `720` ist die Breite des Canvas.
+
+**Warum negativ?**  
+Das Canvas wird mit `ctx.translate(camera_x, 0)` verschoben. Ein negativer Wert
+für `camera_x` verschiebt die gesamte Welt nach links, sodass der Charakter
+optisch nach rechts schwimmt, aber im Canvas an der gleichen Stelle bleibt. Das
+ist das Prinzip einer "Side-Scrolling"-Kamera: Der Charakter bleibt im Fokus,
+während die Welt scrollt.
+
+### Wie verhindere ich, dass der Charakter die Welt verlässt?
+
+Die Bewegung des Charakters wird durch Bedingungen begrenzt, sodass er nicht aus
+dem sichtbaren Bereich schwimmen kann:
+
+```javascript
+if (
+  this.world.keyboard.RIGHT &&
+  this.x < this.world.level.levelLength - 65 - this.width
+) {
+  this.x += this.speed;
+  // ...existing code...
+}
+if (this.world.keyboard.LEFT && this.x > 0 - 40) {
+  this.x -= this.speed;
+  // ...existing code...
+}
+```
+
+**Zusammengefasst:**
+
+- Die Kamera wird mit `camera_x` verschoben, um den sichtbaren Bereich zu
+  steuern.
+- Die Begrenzungen sorgen dafür, dass der Charakter immer im sichtbaren Bereich
+  bleibt und die Welt nicht verlassen kann.
+- Die Logik für die Kameraverschiebung und Begrenzung befindet sich in der
+  `draw()`-Methode der `World`-Klasse und in der Bewegungslogik der
+  `Character`-Klasse.
+
+  **Hinweis:**  
+  Die Werte **65** und **40** berücksichtigen die transparenten Bereiche im Bild
+  vom Charakter.
+
+- **65** steht für den rechten transparenten Bereich des Bildes, damit Sharkie
+  nicht mit unsichtbaren Bildteilen über den rechten Rand hinaus schwimmt
+  (`this.world.level.levelLength - 65 - this.width`).
+- **40** steht für den linken transparenten Bereich des Bildes, damit Sharkie
+  nicht mit unsichtbaren Bildteilen über den linken Rand hinaus schwimmt
+  (`0 - 40`).
+
+Dadurch bleibt der sichtbare Teil des Charakters immer innerhalb des Spielfelds
+und es entstehen keine unsichtbaren Überstände am Rand.
+
+---
