@@ -289,7 +289,7 @@ class Character extends MovableObject {
 
 ---
 
-## Charakter-Steuerung und Bild-Spiegelung
+## Charakter-Steuerung und Bild- Spiegelung
 
 ### Bewegung des Charakters
 
@@ -303,18 +303,23 @@ class Character extends MovableObject {
   // ...existing code...
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.RIGHT) {
+      if (
+        this.world.keyboard.RIGHT &&
+        this.x < this.world.level.levelLength - 720
+      ) {
         this.x += this.speed;
         this.otherDirection = false;
       }
-      if (this.world.keyboard.LEFT) {
+      if (this.world.keyboard.LEFT && this.x > 100) {
         this.x -= this.speed;
         this.otherDirection = true;
       }
-      if (this.world.keyboard.UP) {
+      if (this.world.keyboard.UP && this.y > 0 - this.height / 2 + 10) {
+        // canvas start - halbe characterHöhe + Transparenzen
         this.y -= this.speed;
       }
-      if (this.world.keyboard.DOWN) {
+      if (this.world.keyboard.DOWN && this.y < 480 - this.height + 55) {
+        // canvas end - characterHöhe + Transparenzen
         this.y += this.speed;
       }
       if (this.world.keyboard.SPACE) {
@@ -331,7 +336,23 @@ class Character extends MovableObject {
 **Hinweis:**  
 Die Eigenschaft `otherDirection` ist beim Character standardmäßig `false`. Sie
 wird auf `true` gesetzt, wenn der Character nach links läuft, damit das Bild
-beim Rendern gespiegelt wird.
+beim Rendern gespiegelt wird.  
+Zusätzlich sorgt die Bedingung `&& this.x > 100` dafür, dass der Charakter nicht
+weiter nach links als bis zur x-Position 100 laufen kann. So bleibt er immer
+sichtbar und verlässt das Spielfeld nicht nach links.  
+Für die Begrenzung am rechten Rand des Levels wird geprüft, ob
+`this.x < this.world.level.levelLength - 720` gilt. Die Zahl `720` entspricht
+der Breite des Canvas. Dadurch kann der Charakter nicht weiter nach rechts
+laufen, als das Level lang ist, und bleibt immer im sichtbaren Bereich des
+Spielfelds.  
+Die vertikalen Begrenzungen verhindern, dass der Charakter über den oberen oder
+unteren Rand des Canvas hinaus bewegt werden kann. Für die obere Begrenzung wird
+geprüft, ob `this.y > 0 - this.height / 2 + 10` gilt. Dadurch bleibt der
+Charakter immer sichtbar und berücksichtigt auch eventuelle Transparenzen am
+Bildrand. Für die untere Begrenzung wird geprüft, ob
+`this.y < 480 - this.height + 55` gilt. Die Zahl `480` entspricht der Höhe des
+Canvas, und der Wert `+ 55` sorgt dafür, dass der Charakter nicht zu weit nach
+unten verschwindet und ebenfalls eventuelle Transparenzen berücksichtigt werden.
 
 ### Spiegeln des Charakters beim Rendern
 
@@ -498,46 +519,33 @@ werden.
 
 ### Verwendung eines Level-Objekts in der World-Klasse
 
-Das Level-Objekt wird beim Erstellen der Spielwelt an die World-Klasse
-übergeben. Die World-Klasse nutzt dann die darin enthaltenen Arrays für Gegner,
-Lichtstrahlen und Hintergrundobjekte.  
-Die Variablen werden direkt aus dem Level-Objekt übernommen:
+Das Level-Objekt wird beim Erstellen der Spielwelt als Eigenschaft in der
+World-Klasse gespeichert. Die World-Klasse nutzt dann die darin enthaltenen
+Arrays für Gegner, Lichtstrahlen und Hintergrundobjekte über `this.level`:
 
 ```javascript
 class World {
-  enemies = level1.enemies;
-  lightBeams = level1.lightBeams;
-  backgroundObjects = level1.backgroundObjects;
   // ...weitere Variablen...
 
-  constructor(canvas, keyboard) {
-    // ...existing code...
-  }
-  // ...existing code...
-}
-```
+  level = level1;
 
-Alternativ kann dies auch im Konstruktor erfolgen, wenn das Level als Parameter
-übergeben wird:
-
-```javascript
-class World {
-  enemies;
-  lightBeams;
-  backgroundObjects;
   // ...weitere Variablen...
-
-  constructor(canvas, keyboard, level) {
-    this.enemies = level.enemies;
-    this.lightBeams = level.lightBeams;
-    this.backgroundObjects = level.backgroundObjects;
-    // ...existing code...
-  }
-  // ...existing code...
 }
+
+ draw() {
+  // ...existing code...
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.lightBeams);
+    this.addObjectsToMap(this.level.enemies);
+    this.addToMap(this.character);
+  // ...existing code...
+  }
+
 ```
 
-Dadurch ist klar ersichtlich, wie die Leveldaten in die World-Klasse eingebettet
-werden.
+Die Hintergrundobjekte, Lichtstrahlen und Gegner werden also direkt über die
+`level`-Eigenschaft angesprochen, z.B. `this.level.backgroundObjects`.  
+Dadurch ist die World-Klasse flexibel und kann einfach mit verschiedenen
+Level-Objekten arbeiten.
 
 ---
