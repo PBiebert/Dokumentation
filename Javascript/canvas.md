@@ -193,6 +193,131 @@ class Character extends MovableObject {
 
 ---
 
+## Hitboxen setzen und zeichnen
+
+Um Kollisionen zu erkennen und die Begrenzungen von Objekten sichtbar zu machen,
+kann für bestimmte Objekte eine Hitbox gezeichnet werden.  
+Dazu wird in der Klasse `MovableObject` die Methode `drawFrame(ctx)` verwendet:
+
+```javascript
+class MovableObject {
+  // ...existing code...
+  drawFrame(ctx) {
+    if (
+      this instanceof Character ||
+      this instanceof Fish ||
+      this instanceof JellyFish
+    ) {
+      ctx.beginPath();
+      ctx.lineWidth = "1";
+      ctx.strokeStyle = "black";
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    }
+  }
+}
+```
+
+**Erklärung zu `instanceof`:**  
+Mit `instanceof` wird geprüft, ob das aktuelle Objekt eine Instanz einer
+bestimmten Klasse ist (z.B. `Character`, `Fish` oder `JellyFish`).  
+Dadurch wird die Hitbox nur für diese Objekte gezeichnet und nicht für alle
+anderen, wie z.B. Hintergrundobjekte.
+
+Diese Methode wird nach dem Zeichnen des Bildes aufgerufen, z.B. in der
+World-Klasse:
+
+```javascript
+class World {
+  // ...existing code...
+  addToMap(object) {
+    object.draw(this.ctx); // Bild zeichnen
+    object.drawFrame(this.ctx); // Hitbox zeichnen (nur für bestimmte Klassen)
+    // ...existing code...
+  }
+}
+```
+
+**Hinweis:**  
+Die Hitbox wird als schwarzer Rahmen um das Objekt angezeigt und hilft beim
+Testen von Kollisionen sowie zur visuellen Kontrolle der Objektgrenzen.
+
+---
+
+## Kollisionsabfrage zwischen Objekten
+
+Um zu erkennen, ob sich zwei Objekte im Spiel berühren (z.B. Charakter und
+Gegner), wird eine Kollisionsabfrage implementiert. Diese prüft, ob sich die
+Rechtecke (Hitboxen) der Objekte überschneiden.
+
+### Kollisionsmethode in MovableObject
+
+In der Klasse `MovableObject` gibt es die Methode `isColliding(object)`, die
+prüft, ob das aktuelle Objekt mit einem anderen kollidiert:
+
+```javascript
+class MovableObject {
+  // ...existing code...
+  isColliding(object) {
+    return (
+      this.x + this.width > object.x &&
+      this.y + this.height > object.y &&
+      this.x < object.x &&
+      this.y < object.y + object.height
+    );
+  }
+}
+```
+
+**Erklärung:**  
+Die Methode vergleicht die Positionen und Größen der beiden Objekte. Sie gibt
+`true` zurück, wenn sich die Rechtecke überschneiden, andernfalls `false`.
+
+### Kollisionsprüfung in der World-Klasse
+
+Die Kollisionsabfrage wird regelmäßig in der `World`-Klasse durchgeführt. Dazu
+gibt es die Methode `checkCollisions()`, die im Konstruktor der World-Klasse
+aufgerufen wird:
+
+```javascript
+class World {
+  constructor(canvas, keyboard) {
+    // ...existing code...
+    this.checkCollisions();
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+          this.character.hit(); // Schaden abziehen
+        }
+      });
+    }, 200);
+  }
+}
+```
+
+**Erklärung:**  
+Alle 200 Millisekunden wird geprüft, ob der Charakter mit einem der Gegner
+kollidiert. Im Fall einer Kollision wird mit `this.character.hit();` die Energie
+des Charakters reduziert.  
+So kann einfach Schaden abgezogen werden, ohne zusätzliche Konsolenausgaben.
+
+Die Methode kann später erweitert werden, um z.B. Animationen auszulösen oder
+weitere Spiellogik zu ergänzen.
+
+**Zusammengefasst:**
+
+- Die Methode `isColliding()` prüft die Überschneidung zweier Objekte.
+- In der World-Klasse wird regelmäßig für alle Gegner geprüft, ob eine Kollision
+  mit dem Charakter vorliegt.
+- Mit `this.character.hit();` kann direkt Schaden abgezogen werden.
+- Die Kollisionsabfrage ist zentral für die Spielmechanik und kann beliebig
+  erweitert werden.
+
+---
+
 ## Steuerung mit Keyboard-Klasse
 
 Um die Spielfigur per Tastatur zu steuern, wird eine eigene Klasse `Keyboard`
@@ -679,5 +804,116 @@ if (this.world.keyboard.LEFT && this.x > 0 - 40) {
 
 Dadurch bleibt der sichtbare Teil des Charakters immer innerhalb des Spielfelds
 und es entstehen keine unsichtbaren Überstände am Rand.
+
+---
+
+## Gravitation im Spiel
+
+Mit der Einführung der Gravitation wird die Bewegung der Spielfigur
+realistischer. Die Gravitation sorgt dafür, dass der Charakter nach oben und
+unten nicht direkt per Tastendruck verschoben wird, sondern eine "Fallbewegung"
+entsteht.
+
+### Umsetzung der Gravitation
+
+Die Gravitation wird in der Klasse `MovableObject` über die Methoden
+`applyGravity()` und `isAboveGround()` gesteuert:
+
+```javascript
+applyGravity() {
+  setInterval(() => {
+    if (this.isAboveGround() || this.speedY > 0) {
+      this.y -= this.speedY;
+      this.speedY -= this.graphiteValue;
+    }
+  }, 1000 / this.graphiteSpeed);
+  console.log(this.speedY);
+}
+
+isAboveGround() {
+  return this.y < 480 - this.height + 55;
+}
+```
+
+#### Erklärung der Funktionsweise
+
+**applyGravity():**
+
+- Diese Methode simuliert die Schwerkraft für das Objekt.
+- Sie wird regelmäßig (60-mal pro Sekunde, abhängig von `graphiteSpeed`)
+  aufgerufen.
+- Solange das Objekt sich über dem Boden befindet (`isAboveGround()`) oder eine
+  positive vertikale Geschwindigkeit (`speedY > 0`) hat, wird die y-Position des
+  Objekts um `speedY` verringert (das Objekt bewegt sich nach oben).
+- Anschließend wird `speedY` um den Wert von `graphiteValue` reduziert. Dadurch
+  nimmt die Geschwindigkeit ab, bis das Objekt wieder nach unten fällt.
+- Sobald das Objekt den Boden erreicht, stoppt die Bewegung nach unten.
+
+**isAboveGround():**
+
+- Diese Methode prüft, ob das Objekt sich noch über dem Boden befindet.
+- Sie gibt `true` zurück, solange die y-Position kleiner als die berechnete
+  Bodenposition ist (`480 - this.height + 55`).
+- Erst wenn das Objekt den Boden erreicht hat, gibt die Methode `false` zurück
+  und die Gravitation stoppt.
+
+**Zusammengefasst:**  
+Die Kombination aus beiden Methoden sorgt dafür, dass das Objekt nach einem
+Sprung oder einer Bewegung nach oben wieder nach unten fällt und auf dem Boden
+zum Stehen kommt. Die Werte für `speedY`, `graphiteValue` und `graphiteSpeed`
+bestimmen dabei, wie schnell und wie stark die Gravitation wirkt.
+
+#### Abhängigkeiten und deren Wirkung
+
+- `speedY = 0;`  
+  Startwert der vertikalen Geschwindigkeit. Wird durch Tastendruck (z.B. UP)
+  erhöht.
+- `graphiteValue = 0.15;`  
+  Gibt an, wie stark die Geschwindigkeit pro Tick abnimmt ("Schwerkraft").
+- `graphiteSpeed = 60;`  
+  Bestimmt, wie oft pro Sekunde die Gravitation berechnet wird (Tickrate).
+
+**Hinweis:**  
+Je höher `graphiteValue`, desto schneller wird die Bewegung nach oben abgebremst
+und der Charakter fällt wieder nach unten.  
+`graphiteSpeed` bestimmt, wie "flüssig" die Gravitation wirkt – ein höherer Wert
+sorgt für mehr Berechnungen pro Sekunde.
+
+### Anpassung der Steuerung
+
+Um die Gravitation zu nutzen, wurde die Steuerung für die UP- und DOWN-Taste in
+der `Character`-Klasse angepasst:
+
+- **UP:** Setzt `speedY` auf einen positiven Wert, sodass der Charakter nach
+  oben "springt".
+- **DOWN:** Setzt `speedY` auf 0 und verschiebt den Charakter direkt nach unten.
+
+Dadurch entsteht eine natürliche Bewegung: Nach oben wird die Geschwindigkeit
+durch die Gravitation abgebremst, nach unten fällt der Charakter, bis er den
+Boden erreicht.
+
+**Beispiel für die Steuerungslogik:**
+
+```javascript
+if (this.world.keyboard.UP) {
+  this.speedY = this.speedDefault;
+  if (this.y <= 0 - (this.height / 2 + 10)) {
+    this.speedY = 0;
+  }
+}
+if (this.world.keyboard.DOWN && this.y < 480 - this.height + 55) {
+  this.y += this.speedX;
+  this.speedY = 0;
+}
+```
+
+**Zusammengefasst:**
+
+- Die Klasse `Keyboard` speichert den Zustand der Tasten.
+- Eventlistener setzen die Werte beim Drücken und Loslassen der Tasten.
+- Die World-Klasse gibt die Referenz auf das Keyboard-Objekt an den Charakter
+  weiter.
+- Der Charakter kann so auf Tastatur-Eingaben reagieren und gesteuert werden.
+- Die Gravitation sorgt für eine realistische Bewegung nach oben und unten.
 
 ---
