@@ -218,29 +218,75 @@ class MovableObject {
 }
 ```
 
-**Erklärung zu `instanceof`:**  
+**Hinweis zu `instanceof`:**  
 Mit `instanceof` wird geprüft, ob das aktuelle Objekt eine Instanz einer
 bestimmten Klasse ist (z.B. `Character`, `Fish` oder `JellyFish`).  
 Dadurch wird die Hitbox nur für diese Objekte gezeichnet und nicht für alle
 anderen, wie z.B. Hintergrundobjekte.
 
-Diese Methode wird nach dem Zeichnen des Bildes aufgerufen, z.B. in der
-World-Klasse:
+**Reale Hitbox-Werte mit Offset berechnen**
+
+Um die Hitbox noch genauer an das tatsächliche Bild anzupassen, werden in der
+Klasse `DrawableObject` die realen Werte für die Hitbox mit der Methode
+`getRealFrame()` berechnet.  
+Dabei werden die Offsets (`top`, `right`, `bottom`, `left`) berücksichtigt, um
+die Hitbox ggf. kleiner oder verschoben zu machen:
+
+```javascript
+class DrawableObject {
+  offset = {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  };
+  rX;
+  rY;
+  rWidth;
+  rHeight;
+
+  getRealFrame() {
+    this.rX = this.x + this.offset.left;
+    this.rY = this.y + this.offset.top;
+    this.rWidth = this.width - this.offset.left - this.offset.right;
+    this.rHeight = this.height - this.offset.top - this.offset.bottom;
+  }
+}
+```
+
+- **`rX` und `rY`**: Startpunkt der Hitbox (links oben), verschoben um den
+  Offset.
+- **`rWidth` und `rHeight`**: Größe der Hitbox, reduziert um die Offsets.
+
+**Verwendung in der World-Klasse**
+
+Vor jedem Zeichnen eines Objekts wird in der Methode `addToMap(object)` der
+World-Klasse die Methode `getRealFrame()` aufgerufen, damit die aktuellen Werte
+für die Hitbox berechnet werden:
 
 ```javascript
 class World {
   // ...existing code...
   addToMap(object) {
+    if (object.otherDirection) {
+      this.flipImage(object);
+      object.getRealFrame();
+    }
+    object.getRealFrame();
     object.draw(this.ctx); // Bild zeichnen
-    object.drawFrame(this.ctx); // Hitbox zeichnen (nur für bestimmte Klassen)
-    // ...existing code...
+    object.drawFrame(this.ctx); // Hitbox zeichnen
+
+    if (object.otherDirection) {
+      this.flipImageBack(object);
+    }
   }
 }
 ```
 
 **Hinweis:**  
-Die Hitbox wird als schwarzer Rahmen um das Objekt angezeigt und hilft beim
-Testen von Kollisionen sowie zur visuellen Kontrolle der Objektgrenzen.
+Durch die Offsets kannst du die Hitbox exakt an das sichtbare Objekt anpassen,
+z.B. um transparente Bereiche auszuschließen oder die Hitbox kleiner zu machen
+als das Bild selbst.
 
 ---
 
