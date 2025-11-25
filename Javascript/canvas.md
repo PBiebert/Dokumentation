@@ -196,8 +196,13 @@ class Character extends MovableObject {
 ## Hitboxen setzen und zeichnen
 
 Um Kollisionen zu erkennen und die Begrenzungen von Objekten sichtbar zu machen,
-kann für bestimmte Objekte eine Hitbox gezeichnet werden.  
-Dazu wird in der Klasse `MovableObject` die Methode `drawFrame(ctx)` verwendet:
+kann für bestimmte Objekte eine Hitbox gezeichnet werden.
+
+### Variante 1: instanceof (eine Möglichkeit, aber problematisch)
+
+Eine Möglichkeit ist, in der Methode `drawFrame(ctx)` mit `instanceof` zu
+prüfen, ob das aktuelle Objekt z.B. ein `Character`, `Fish` oder `JellyFish`
+ist:
 
 ```javascript
 class MovableObject {
@@ -218,75 +223,65 @@ class MovableObject {
 }
 ```
 
-**Hinweis zu `instanceof`:**  
-Mit `instanceof` wird geprüft, ob das aktuelle Objekt eine Instanz einer
-bestimmten Klasse ist (z.B. `Character`, `Fish` oder `JellyFish`).  
-Dadurch wird die Hitbox nur für diese Objekte gezeichnet und nicht für alle
-anderen, wie z.B. Hintergrundobjekte.
-
-**Reale Hitbox-Werte mit Offset berechnen**
-
-Um die Hitbox noch genauer an das tatsächliche Bild anzupassen, werden in der
-Klasse `DrawableObject` die realen Werte für die Hitbox mit der Methode
-`getRealFrame()` berechnet.  
-Dabei werden die Offsets (`top`, `right`, `bottom`, `left`) berücksichtigt, um
-die Hitbox ggf. kleiner oder verschoben zu machen:
-
-```javascript
-class DrawableObject {
-  offset = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  };
-  rX;
-  rY;
-  rWidth;
-  rHeight;
-
-  getRealFrame() {
-    this.rX = this.x + this.offset.left;
-    this.rY = this.y + this.offset.top;
-    this.rWidth = this.width - this.offset.left - this.offset.right;
-    this.rHeight = this.height - this.offset.top - this.offset.bottom;
-  }
-}
-```
-
-- **`rX` und `rY`**: Startpunkt der Hitbox (links oben), verschoben um den
-  Offset.
-- **`rWidth` und `rHeight`**: Größe der Hitbox, reduziert um die Offsets.
-
-**Verwendung in der World-Klasse**
-
-Vor jedem Zeichnen eines Objekts wird in der Methode `addToMap(object)` der
-World-Klasse die Methode `getRealFrame()` aufgerufen, damit die aktuellen Werte
-für die Hitbox berechnet werden:
-
-```javascript
-class World {
-  // ...existing code...
-  addToMap(object) {
-    if (object.otherDirection) {
-      this.flipImage(object);
-      object.getRealFrame();
-    }
-    object.getRealFrame();
-    object.draw(this.ctx); // Bild zeichnen
-    object.drawFrame(this.ctx); // Hitbox zeichnen
-
-    if (object.otherDirection) {
-      this.flipImageBack(object);
-    }
-  }
-}
-```
-
 **Hinweis:**  
-Durch die Offsets kannst du die Hitbox exakt an das sichtbare Objekt anpassen,
-z.B. um transparente Bereiche auszuschließen oder die Hitbox kleiner zu machen
-als das Bild selbst.
+Mit `instanceof` wird geprüft, ob das aktuelle Objekt eine Instanz einer
+bestimmten Klasse ist.  
+Das Problem: Diese Lösung kann zu Import-Schleifen und Fehlern bei komplexeren
+Vererbungsstrukturen führen.
+
+---
+
+### Variante 2: Steuerung über `hasHitbox` (empfohlen)
+
+Um Import-Schleifen und Typ-Probleme zu vermeiden, kann stattdessen jede Klasse,
+die eine Hitbox benötigt, eine Property `hasHitbox` setzen.
+
+- In der Basisklasse `DrawableObject` ist `hasHitbox = false` gesetzt.
+- Nur Klassen, die eine Hitbox benötigen (z.B. `Fish`, `Character`,
+  `JellyFish`), setzen explizit `hasHitbox = true`.
+- Die Methode `drawFrame(ctx)` prüft nur noch diese Property:
+
+```javascript
+class MovableObject {
+  // ...existing code...
+  hasHitbox = false;
+
+  drawFrame(ctx) {
+    if (this.hasHitbox) {
+      ctx.beginPath();
+      ctx.lineWidth = "2";
+      ctx.strokeStyle = "red";
+      ctx.rect(this.rX, this.rY, this.rWidth, this.rHeight);
+      ctx.stroke();
+    }
+  }
+}
+```
+
+**Wie funktioniert das?**
+
+- Beim Zeichnen eines Objekts ruft die World-Klasse immer
+  `object.drawFrame(ctx)` auf.
+- Nur wenn `hasHitbox` auf `true` steht, wird die Hitbox gezeichnet.
+- Alle anderen Objekte (z.B. Hintergrund, Coins, etc.) haben `hasHitbox = false`
+  und bekommen keine Hitbox angezeigt.
+
+**Warum ist das besser?**
+
+- **Keine Import-Schleifen:** Es gibt keine Abhängigkeiten zwischen den Klassen
+  durch `instanceof`, was Import-Probleme verhindert.
+- **Einfach erweiterbar:** Neue Klassen können einfach durch Setzen von
+  `hasHitbox = true` eine Hitbox bekommen, ohne die Basisklasse oder die
+  Zeichenlogik anpassen zu müssen.
+- **Klar und wartbar:** Die Entscheidung, ob ein Objekt eine Hitbox hat, ist
+  direkt in der jeweiligen Klasse sichtbar und leicht zu steuern.
+- **Performance:** Die Prüfung auf eine einfache Property ist schneller und
+  weniger fehleranfällig als komplexe Typ-Prüfungen.
+
+**Fazit:**  
+Die Verwendung der Property `hasHitbox` ist eine flexible, robuste und saubere
+Lösung, um gezielt für bestimmte Objekte Hitboxen zu zeichnen, ohne die
+Nachteile von `instanceof` und Import-Abhängigkeiten.
 
 ---
 
