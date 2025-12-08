@@ -4,7 +4,9 @@
 
 ## Objekte erstellen
 
-Objekte in JavaScript sind Sammlungen von Schlüssel-Wert-Paaren. Schlüssel sind Strings (oder Symbole), Werte können beliebige Datentypen sein, auch Funktionen (Methoden) oder weitere Objekte (verschachtelte Objekte).
+Objekte in JavaScript sind Sammlungen von Schlüssel-Wert-Paaren. Schlüssel sind
+Strings (oder Symbole), Werte können beliebige Datentypen sein, auch Funktionen
+(Methoden) oder weitere Objekte (verschachtelte Objekte).
 
 ```js
 // Erstelle ein Objekt mit Schlüssel-Wert-Paaren
@@ -36,7 +38,9 @@ console.log(myObject["name"]); // Ausgabe: Philipp
 
 ## Objekte anzeigen
 
-`console.table()` zeigt Objekte und Arrays als Tabelle in der Konsole an. Das ist praktisch für einen schnellen Überblick, aber nicht ideal für verschachtelte Objekte.
+`console.table()` zeigt Objekte und Arrays als Tabelle in der Konsole an. Das
+ist praktisch für einen schnellen Überblick, aber nicht ideal für verschachtelte
+Objekte.
 
 ```js
 console.table(myObject);
@@ -46,7 +50,8 @@ console.table(myObject);
 
 ## Methoden aufrufen
 
-Eine Funktion im Objekt nennt man Methode. Du kannst sie mit der Punkt-Notation aufrufen.
+Eine Funktion im Objekt nennt man Methode. Du kannst sie mit der Punkt-Notation
+aufrufen.
 
 ```js
 myObject.job(); // Ausgabe: Azubi
@@ -100,7 +105,8 @@ console.log(myObject["name"]); // Output: Philipp
 
 ## Displaying Objects
 
-`console.table()` displays objects and arrays as a table in the console. This is useful for a quick overview, but not ideal for nested objects.
+`console.table()` displays objects and arrays as a table in the console. This is
+useful for a quick overview, but not ideal for nested objects.
 
 ```js
 console.table(myObject);
@@ -110,7 +116,8 @@ console.table(myObject);
 
 ## Calling Methods
 
-A function inside an object is called a method. You can call it using dot notation.
+A function inside an object is called a method. You can call it using dot
+notation.
 
 ```js
 myObject.job(); // Output: Trainee
