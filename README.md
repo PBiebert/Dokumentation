@@ -15,6 +15,7 @@
 - [fetch, Promises & Async](./Javascript/fetch.md)
 - [class](./Javascript/class.md)
 - [canvas](./Javascript/canvas.md)
+- [canvas-game-mechanics](./Javascript/canvas-game-mechanics.md)
 
 ### Git
 
@@ -31,8 +32,14 @@
 
 ### TypeScript
 
-_(TypeScript documentation can be linked here later)_
+- [TypeScript Installation and Compilation](./Typescript/basics.md)
 
 ### Angular
 
-_(Angular documentation can be linked here later)_
+- [Install Angular](./Angular/install.md)
+- [Create new Project](./Angular/create_new_project.md)
+- [What are components?](./Angular/what_are_components.md)
+
+### SCSS
+
+- [SCSS Installation and Compilation](./Scss/basics.md)
