@@ -39,6 +39,9 @@
 - [Install Angular](./Angular/install.md)
 - [Create new Project](./Angular/create_new_project.md)
 - [What are components?](./Angular/what_are_components.md)
+- [Create new component](./Angular/create_new_component.md)
+- [Embedding_fonts](./Angular/embedding_fonts.md)
+- [Create new component with ng generate](./Angular/ng_generate_component.md)
 
 ### SCSS
 

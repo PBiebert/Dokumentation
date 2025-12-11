@@ -42,8 +42,8 @@ import { Component } from "@angular/core";
   selector: "app-landingPage", // Mit diesem Tag kannst du die Komponente im HTML verwenden.
   standalone: true, // Die Komponente ist eigenständig und braucht kein Angular-Modul.
   imports: [CommonModule], // Importiert Standard-Direktiven wie *ngIf, *ngFor.
-  template: "<h1>Hallo Welt</h1>", // Das HTML-Template der Komponente.
-  styles: ["h1 {color: red;}"], // CSS-Styles, die nur für diese Komponente gelten.
+  templateUrl: "./landingPage.html", // Das HTML-Template wird aus einer eigenen Datei geladen.
+  styleUrls: ["./landingpage.scss"], // Die Styles werden aus einer eigenen SCSS-Datei geladen.
 })
 export class LandingPageComponent {}
 ```
@@ -58,6 +58,11 @@ export class LandingPageComponent {}
 - `imports` bindet andere Module ein, die du im Template brauchst.
 - `template` ist das HTML, das angezeigt wird.
 - `styles` sind die spezifischen Styles für diese Komponente.
+
+> **Hinweis:**  
+> Alternativ kann man auch `template` verwenden, z.B.
+> `template: "<h1>Hallo Welt</h1>"`  
+> und `styles`, z.B. `styles: ["h1 {color: red;}"]`
 
 ---
 
