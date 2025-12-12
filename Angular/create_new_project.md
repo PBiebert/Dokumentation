@@ -34,7 +34,7 @@ Dadurch wird das Projekt kompiliert und unter `http://localhost:4200` angezeigt.
 
 # Ordnerstruktur und wichtige Dateien
 
-Nach dem Erstellen sieht die Struktur etwa so aus:
+Nach dem Erstellen sieht die Struktur etwa so aus (ab Angular v20):
 
 ```
 projektname/
@@ -42,7 +42,11 @@ projektname/
 ├── .angular/           # Angular-spezifische Daten (nicht bearbeiten)
 ├── .vscode/            # VSCode-spezifische Einstellungen (nicht bearbeiten)
 ├── node_modules/       # Installierte Pakete (automatisch verwaltet)
-├── public/             # Öffentliche Ressourcen (optional, je nach Projekt)
+├── public/             # Öffentliche Ressourcen (z.B. statische Dateien)
+│   ├── assets/         # Statische Ressourcen wie Bilder, Fonts etc.
+│   │   ├── img/
+│   │   └── fonts/
+│   └── favicon.ico     # Favicon liegt direkt in public
 ├── src/                # Quellcode des Projekts
 │   ├── app/            # Hauptanwendungsordner
 │   │   ├── app.config.ts     # Konfigurationen für die App
@@ -75,7 +79,10 @@ projektname/
 - **.angular/**: Interne Angular-Daten, nicht bearbeiten.
 - **.vscode/**: VSCode-spezifische Einstellungen, nicht bearbeiten.
 - **node_modules/**: Installierte Pakete, wird automatisch verwaltet.
-- **public/**: Öffentliche Ressourcen, z.B. für statische Dateien (optional).
+- **public/**: Öffentliche Ressourcen, z.B. für statische Dateien. Enthält jetzt
+  auch den `assets`-Ordner für Bilder, Fonts usw.
+  - **assets/**: Statische Ressourcen wie Bilder, Fonts etc.
+  - **favicon.ico**: Das Favicon liegt direkt im `public`-Ordner.
 - **.editorconfig**: Einstellungen für den Editor.
 - **.gitignore**: Legt fest, welche Dateien nicht zu Git hinzugefügt werden.
 - **angular.json**: Zentrale Konfigurationsdatei für Angular.

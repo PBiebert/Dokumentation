@@ -34,14 +34,17 @@
 
 - [TypeScript Installation and Compilation](./Typescript/basics.md)
 
-### Angular
+### Angular v20
 
-- [Install Angular](./Angular/install.md)
-- [Create new Project](./Angular/create_new_project.md)
+- [Install Angular CLI](./Angular/install.md)
+- [Create new Angular project](./Angular/create_new_project.md)
 - [What are components?](./Angular/what_are_components.md)
-- [Create new component](./Angular/create_new_component.md)
-- [Embedding_fonts](./Angular/embedding_fonts.md)
+- [Create new component manually](./Angular/create_new_component.md)
+- [Embed fonts](./Angular/embedding_fonts.md)
 - [Create new component with ng generate](./Angular/ng_generate_component.md)
+- [Routing](./Angular/routes.md)
+- [Build Angular project](./Angular/ng_build.md)
+- [Server configuration for Angular routing](./Angular/htaccess.md)
 
 ### SCSS
 
