@@ -49,6 +49,10 @@
 - [Routing](./Angular/routes.md)
 - [Build Angular project](./Angular/ng_build.md)
 - [Server configuration for Angular routing](./Angular/htaccess.md)
+- [Conditions and control structures in the Angular template](./Angular/condition.md)
+- [Dynamic styles](./Angular/ngStyle.md)
+- [Dynamic CSS classes](./Angular/ngClass.md)
+- [@Input – Passing external data to components](./Angular/input.md)
 
 ### SCSS
 
