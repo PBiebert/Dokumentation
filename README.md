@@ -33,6 +33,10 @@
 ### TypeScript
 
 - [TypeScript Installation and Compilation](./Typescript/basics.md)
+- [Primitive types](./Typescript/primitive_types.md)
+- [Object types](./Typescript/object_types.md)
+- [Types in arrays and functions](./Typescript/types_in_arrays_and_functions.md)
+- [Literals and Tuples](./Typescript/literals_and_tuples.md)
 
 ### Angular v20
 
@@ -49,3 +53,13 @@
 ### SCSS
 
 - [SCSS Installation and Compilation](./Scss/basics.md)
+- [Nesting](./Scss/nesting.md)
+- [Variablen](./Scss/variablen.md)
+- [Mixin](./Scss/mixin.md)
+
+### NPM
+
+- [NPM Install](./npm/install.md)
+- [Global modules](./npm/global_modules.md)
+- [http-server](./npm/http-server.md)
+- [Serve spa](./npm/serve_spa.md)

@@ -25,6 +25,26 @@ let mixed: (string | number)[] = ["Anna", 42, "Ben"];
 
 ---
 
+## Arrays mit ausschließlich numbers **oder** ausschließlich strings
+
+Wenn du möchtest, dass ein Array **nur** Zahlen oder **nur** Strings enthalten
+darf (aber nicht gemischt), kannst du eine Union auf Array-Ebene verwenden:
+
+```typescript
+let onlyNumbersOrOnlyStrings: number[] | string[];
+
+onlyNumbersOrOnlyStrings = [1, 2, 3]; // erlaubt
+onlyNumbersOrOnlyStrings = ["a", "b", "c"]; // erlaubt
+onlyNumbersOrOnlyStrings = [1, "b", 3]; // Fehler! Gemischt nicht erlaubt
+```
+
+**Hinweis:**  
+`number[] | string[]` bedeutet: Das Array ist entweder ein reines Zahlen-Array
+**oder** ein reines String-Array.  
+Im Gegensatz dazu erlaubt `(number | string)[]` gemischte Werte im selben Array.
+
+---
+
 ## Typen in Funktionen
 
 Du kannst für Parameter und Rückgabewerte Typen angeben:
@@ -96,6 +116,46 @@ in der Konsole aus.
 
 Solche Arrays sind nützlich, wenn du mehrere Aktionen (z.B. Event-Handler)
 gesammelt speichern und später ausführen möchtest.
+
+---
+
+## Verschachtelte Typen in Arrays
+
+Verschachtelte Typen in TypeScript bedeuten, dass du Arrays und deren Inhalte
+sehr präzise beschreiben kannst. Hier ein paar Tipps und Beispiele:
+
+1. **Ein Array mit verschiedenen Typen**  
+   Das Array kann Zahlen oder Strings enthalten:
+
+   ```typescript
+   let mixed: (number | string)[] = [1, "zwei", 3, "vier"];
+   ```
+
+2. **Ein Array, das Arrays enthalten kann**  
+   Das Array kann entweder Zahlen oder Arrays von Zahlen enthalten:
+
+   ```typescript
+   let nested: (number | number[])[] = [1, [2, 3], 4, [5, 6]];
+   ```
+
+3. **Ein Array, das bestimmte verschachtelte Strukturen erlaubt**  
+   Das Array kann enthalten:
+   - einen String
+   - ein Array mit genau `[string, boolean, number[]]`
+   - `null`
+   ```typescript
+   let complex: (string | [string, boolean, number[]] | null)[] = [
+     "Hallo",
+     ["Test", true, [1, 2, 3]],
+     null,
+     "Welt",
+   ];
+   ```
+
+**Hinweis:**  
+Mit solchen verschachtelten Typen kannst du sehr genau festlegen, welche
+Strukturen in Arrays erlaubt sind. Das erhöht die Typsicherheit und Lesbarkeit
+deines Codes.
 
 ---
 

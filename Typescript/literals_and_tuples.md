@@ -37,6 +37,25 @@ let myColor: Color = "red";
 
 ---
 
+## Arrays mit bestimmten erlaubten Werten (Literal Types)
+
+Du kannst Arrays so typisieren, dass sie nur bestimmte Werte enthalten dürfen,
+z.B. nur `"rot"`, `"grün"` oder `"blau"`:
+
+```typescript
+let colors: ("rot" | "grün" | "blau")[];
+
+colors = ["rot", "blau"]; // erlaubt
+colors = ["grün", "rot", "blau"]; // erlaubt
+colors = ["gelb"]; // Fehler! "gelb" ist nicht erlaubt
+```
+
+**Hinweis:**  
+Mit `"wert1" | "wert2" | "wert3"` als Typ kannst du die erlaubten Werte explizit
+festlegen.
+
+---
+
 ## Tupel (Tuples)
 
 Ein Tupel ist ein Array mit einer festen Anzahl und Reihenfolge von Typen. Damit
