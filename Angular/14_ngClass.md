@@ -1,6 +1,6 @@
 [Zurück zur Übersicht](../README.md)
 
-# ngClass – Dynamische CSS-Klassen
+# [ngClass] – Dynamische CSS-Klassen
 
 ---
 

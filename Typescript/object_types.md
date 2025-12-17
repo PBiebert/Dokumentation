@@ -25,6 +25,19 @@ const person: Person = { name: "Florian", age: 50 };
 - **`?` (optional)**: Die Eigenschaft ist optional, das heißt, sie muss beim
   Erstellen des Objekts nicht gesetzt werden.
 
+### Werte direkt zuweisen
+
+man kann die Struktur eines Objekts auch direkt beim Anlegen festlegen und
+sofort Werte zuweisen:
+
+```typescript
+const person2: { name: string; age: number; position?: string } = {
+  name: "Anna",
+  age: 28,
+  position: "Entwicklerin",
+};
+```
+
 ### Zugriff und Verhalten
 
 ```typescript
@@ -88,14 +101,15 @@ Ordner auszulagern. So bleibt der Code übersichtlich und wiederverwendbar.
 ```
 src/
 └── app/
-    └── interfaces/
-        └── person.interface.ts
+    └── shared/
+        └── interfaces/
+            └── person.interface.ts
 ```
 
 **Inhalt von `person.interface.ts`:**
 
 ```typescript
-// src/app/interfaces/person.interface.ts
+// src/app/shared/interfaces/person.interface.ts
 export interface Person {
   name: string;
   age: number;
@@ -106,7 +120,7 @@ export interface Person {
 **Verwendung im Code:**
 
 ```typescript
-import { Person } from "./interfaces/person.interface";
+import { Person } from "./shared/interfaces/person.interface";
 
 const person: Person = { name: "Florian", age: 50 };
 ```
@@ -128,3 +142,13 @@ const person: Person = { name: "Florian", age: 50 };
   `interface`.
 - Interfaces sollten in größeren Projekten ausgelagert und zentral abgelegt
   werden.
+
+---
+
+### Beispiel: Struktur festlegen und direkt Werte zuweisen
+
+- Hier wird der Typ inline beim Objekt angegeben, ohne vorher ein `type` oder
+  `interface` zu definieren.
+- Das Objekt `person2` muss exakt diese Struktur haben.
+
+---

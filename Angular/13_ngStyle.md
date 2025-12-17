@@ -1,6 +1,6 @@
 [Zurück zur Übersicht](../README.md)
 
-# ngStyle – Dynamische Styles
+# [ngStyle] – Dynamische Styles
 
 ---
 

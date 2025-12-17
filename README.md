@@ -40,19 +40,24 @@
 
 ### Angular v20
 
-- [Install Angular CLI](./Angular/install.md)
-- [Create new Angular project](./Angular/create_new_project.md)
-- [What are components?](./Angular/what_are_components.md)
-- [Create new component manually](./Angular/create_new_component.md)
-- [Embed fonts](./Angular/embedding_fonts.md)
-- [Create new component with ng generate](./Angular/ng_generate_component.md)
-- [Routing](./Angular/routes.md)
-- [Build Angular project](./Angular/ng_build.md)
-- [Server configuration for Angular routing](./Angular/htaccess.md)
-- [Conditions and control structures in the Angular template](./Angular/condition.md)
-- [Dynamic styles](./Angular/ngStyle.md)
-- [Dynamic CSS classes](./Angular/ngClass.md)
-- [@Input – Passing external data to components](./Angular/input.md)
+- [Install Angular CLI](./Angular/01_install.md)
+- [Create new Angular project](./Angular/02_create_new_project.md)
+- [What are components?](./Angular/03_what_are_components.md)
+- [Create new component manually](./Angular/04_create_new_component.md)
+- [Displaying TypeScript variables in HTML: The `{{}}` notation](./Angular/05_show-ts-variable-in-html.md)
+- [Embed fonts](./Angular/06_embedding_fonts.md)
+- [Create new component with ng generate](./Angular/07_ng_generate_component.md)
+- [Routing](./Angular/08_routes.md)
+- [Build Angular project](./Angular/09_ng_build.md)
+- [Server configuration for Angular routing](./Angular/10_htaccess.md)
+- [Conditions and control structures in the Angular template](./Angular/11_condition.md)
+- [@for-loop](./Angular/12_for-loop.md)
+- [Dynamic styles](./Angular/13_ngStyle.md)
+- [Dynamic CSS classes](./Angular/14_ngClass.md)
+- [@Input – Passing external data to components](./Angular/15_input.md)
+- [@Output – Send events and data from child to parent component](./Angular/16_output.md)
+- [Event Listener](./Angular/17_event-listeners.md)
+- [Data binding and event communication](./Angular/18_Data_binding_and_event_communication.md)
 
 ### SCSS
 
