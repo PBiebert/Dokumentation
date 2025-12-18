@@ -118,3 +118,103 @@ projektname/
 - **index.html**: Nur den `<head>` bearbeiten, z.B. Titel oder Meta-Tags. Der
   `<body>` wird von Angular verwaltet.
 - **Konfiguration**: Die wichtigste Datei für Einstellungen ist `angular.json`.
+
+---
+
+# Sinnvolle Struktur im `app`-Ordner (nach Angular Styleguide)
+
+Eine durchdachte Struktur im `src/app`-Ordner ist besonders bei größeren
+Projekten mit mehreren Seiten und Modulen wichtig.  
+Hier ein Vorschlag, wie du Services, Feature-Module, Shared-Elemente und
+Seitenspezifisches sinnvoll organisieren kannst:
+
+```
+src/
+└── app/
+    ├── core/     # Zentrale, einmalige Services, globale Guards, Interceptors, z.B. Auth, ErrorHandler
+    │   ├── services/
+    │   │   ├── auth.service.ts
+    │   │   └── ...
+    │   ├── guards/
+    │   ├── interceptors/
+    │   └── core.module.ts
+    ├── shared/     # Wiederverwendbare Komponenten, Pipes, Direktiven
+    │   ├── components/
+    │   │   ├── footer/
+    │   │   │   ├── footer.component.ts
+    │   │   │   ├── footer.component.html
+    │   │   │   └── footer.component.scss
+    │   │   ├── header/
+    │   │   │   ├── header.component.ts
+    │   │   │   ├── header.component.html
+    │   │   │   └── header.component.scss
+    │   │   └── ...
+    │   ├── pipes/
+    │   ├── directives/
+    │   └── shared.module.ts
+    ├── features/     # Feature-Module für größere Bereiche/Funktionen
+    │   ├── fruitlist/
+    │   │   ├── fruitlist.component.ts
+    │   │   ├── fruitlist.component.html
+    │   │   ├── fruitlist.module.ts
+    │   │   └── ...
+    │   ├── user/
+    │   │   ├── user.component.ts
+    │   │   ├── user.module.ts
+    │   │   └── ...
+    │   └── ...
+    ├── pages/     # Seiten-Module, jeweils für eine Route/Seite (z.B. Home, About, Dashboard)
+    │   ├── home/
+    │   │   ├── home.component.ts
+    │   │   ├── home.module.ts
+    │   │   └── ...
+    │   ├── about/
+    │   │   ├── about.component.ts
+    │   │   ├── about.module.ts
+    │   │   └── ...
+    │   └── ...
+    ├── services/     # Projektweite Services, die nicht nur für core relevant sind
+    │   ├── fruitlistdata.service.ts
+    │   └── ...
+    ├── app.component.ts     # Root-Komponente
+    ├── app.component.html
+    ├── app.component.scss
+    ├── app.module.ts        # Root-Modul, importiert alle anderen Module
+    └── app.routes.ts        # Routing-Konfiguration
+```
+
+**Erklärung und Tipps:**
+
+- **core/**: Alles, was global und nur einmal im Projekt gebraucht wird
+  (Singletons, zentrale Services, Guards, Interceptors).
+- **shared/**: Wiederverwendbare Komponenten (z.B. Footer, Header), Pipes und
+  Direktiven, die in mehreren Features/Seiten genutzt werden.
+- **features/**: Funktionale Bereiche, die auch als eigenständige Module geladen
+  werden können (z.B. Lazy Loading für große Features).
+- **pages/**: Jede Seite (Route) als eigenes Modul, das wiederum Feature-Module
+  oder Shared-Komponenten nutzt. Ideal für Projekte mit mehreren Seiten.
+- **services/**: Projektweite Services, die nicht nur für core relevant sind
+  (z.B. Datenservices, API-Services).
+- **app.component.\*** und **app.module.ts**: Einstiegspunkt und zentrales Modul
+  der Anwendung.
+
+**Weitere Hinweise:**
+
+- **Lazy Loading:** Feature- und Page-Module können bei Bedarf per Lazy Loading
+  geladen werden, um die Startzeit der App zu optimieren.
+- **Trennung von Features und Seiten:** Features sind wiederverwendbare
+  Funktionsbereiche, Pages sind konkrete Seiten/Routen.
+- **Services:** Services, die nur für ein Feature gebraucht werden, kommen ins
+  jeweilige Feature-Modul. Services, die global gebraucht werden, nach
+  `core/services` oder `app/services`.
+
+**Vorteile dieser Struktur:**
+
+- Klare Trennung zwischen globalen, wiederverwendbaren, feature-spezifischen und
+  seitenbezogenen Elementen.
+- Sehr gute Skalierbarkeit und Übersichtlichkeit, auch bei großen Projekten.
+- Einhaltung der Angular Styleguides und Best Practices.
+
+**Tipp:**  
+Weitere Infos und Beispiele findest du im offiziellen
+[Angular Styleguide](https://angular.io/guide/styleguide).

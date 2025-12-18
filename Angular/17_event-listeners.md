@@ -1,6 +1,6 @@
 [Zurück zur Übersicht](../README.md)
 
-# Event Listener in Angular – Benutzerinteraktionen abfangen
+# Event Listener – Benutzerinteraktionen abfangen
 
 ---
 

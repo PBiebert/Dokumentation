@@ -58,6 +58,7 @@
 - [@Output – Send events and data from child to parent component](./Angular/16_output.md)
 - [Event Listener](./Angular/17_event-listeners.md)
 - [Data binding and event communication](./Angular/18_Data_binding_and_event_communication.md)
+- [Services – Sharing common logic and data](./Angular/19_services.md)
 
 ### SCSS
 
