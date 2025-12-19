@@ -25,19 +25,19 @@ src/
 
 ```scss
 @font-face {
-  font-family: "Raleway";
-  src: url(./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf);
+  font-family: "Bricolage_Grotesque";
+  src: url(../public/assets/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont.ttf);
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Raleway_Italic";
-  src: url(./assets/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf);
-  font-style: italic;
+  font-family: "Kalam";
+  src: url(../public/assets/fonts/Kalam/Kalam-Regular.ttf);
+  font-style: normal;
 }
 
-.fontRaleway {
-  font-family: "Raleway";
+.fontBricolageGrotesquey {
+  font-family: "Bricolage_Grotesque";
 }
 ```
 
@@ -48,14 +48,14 @@ src/
 Im Template:
 
 ```html
-<h1 class="fontRaleway">SAKURA RAMEN</h1>
+<h1 class=".fontBricolageGrotesquey">SAKURA RAMEN</h1>
 ```
 
 Oder direkt im SCSS der Komponente:
 
 ```scss
 h1 {
-  font-family: "Raleway";
+  font-family: "Bricolage_Grotesque";
 }
 ```
 
