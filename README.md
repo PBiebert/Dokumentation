@@ -59,6 +59,10 @@
 - [Event Listener](./Angular/17_event-listeners.md)
 - [Data binding and event communication](./Angular/18_Data_binding_and_event_communication.md)
 - [Services – Sharing common logic and data](./Angular/19_services.md)
+- [ElementRef – Working directly with DOM elements](./Angular/20_elementRef.md)
+- [inject() – Moderne Dependency Injection](./Angular/21_inject.md)
+- [OnInit – Initialization of components and directives](./Angular/22_onInit.md)
+- [Directives – Control the behavior and appearance of components](./Angular/23_derectives.md)
 
 ### SCSS
 
