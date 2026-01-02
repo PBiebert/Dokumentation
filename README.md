@@ -1,6 +1,7 @@
 # Table of Contents – Documentation
 
-### JavaScript
+<details>
+<summary><strong>JavaScript</strong></summary>
 
 - [Basics](./Javascript/basics.md)
 - [Numbers & Strings](./Javascript/string_numbers.md)
@@ -17,7 +18,10 @@
 - [canvas](./Javascript/canvas.md)
 - [canvas-game-mechanics](./Javascript/canvas-game-mechanics.md)
 
-### Git
+</details>
+
+<details>
+<summary><strong>Git</strong></summary>
 
 - [Git Cheat Sheet – The most important Git commands at a glance](./Git/git-cheat-sheet.md)
 - [Basic Principles and First Steps](./Git/git_basic_principles_and_first_steps.md)
@@ -31,7 +35,10 @@
 - [Repository Structure: .gitignore, README, LICENSE](./Git/repo_structure.md)
 - [Personal Access Token](./Git/personal_access_token.md)
 
-### TypeScript
+</details>
+
+<details>
+<summary><strong>TypeScript</strong></summary>
 
 - [TypeScript Installation and Compilation](./Typescript/basics.md)
 - [Primitive types](./Typescript/primitive_types.md)
@@ -39,7 +46,10 @@
 - [Types in arrays and functions](./Typescript/types_in_arrays_and_functions.md)
 - [Literals and Tuples](./Typescript/literals_and_tuples.md)
 
-### Angular v20
+</details>
+
+<details>
+<summary><strong>Angular v20</strong></summary>
 
 - [Install Angular CLI](./Angular/01_install.md)
 - [Create new Angular project](./Angular/02_create_new_project.md)
@@ -65,16 +75,24 @@
 - [OnInit – Initialization of components and directives](./Angular/22_onInit.md)
 - [Directives – Control the behavior and appearance of components](./Angular/23_derectives.md)
 
-### SCSS
+</details>
+
+<details>
+<summary><strong>SCSS</strong></summary>
 
 - [SCSS Installation and Compilation](./Scss/basics.md)
 - [Nesting](./Scss/nesting.md)
 - [Variablen](./Scss/variablen.md)
 - [Mixin](./Scss/mixin.md)
 
-### NPM
+</details>
+
+<details>
+<summary><strong>NPM</strong></summary>
 
 - [NPM Install](./npm/install.md)
 - [Global modules](./npm/global_modules.md)
 - [http-server](./npm/http-server.md)
 - [Serve spa](./npm/serve_spa.md)
+
+</details>
