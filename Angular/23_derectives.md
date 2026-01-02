@@ -57,8 +57,37 @@ Globale oder anwendungsspezifische Directives können auch im `core`-Modul
 
 Wir erstellen eine Directive, die die Hintergrundfarbe eines Elements setzt.
 
+> **Best Practice:**  
+> Verwende für DOM-Manipulationen immer den `Renderer2`.  
+> Der direkte Zugriff auf das DOM mit `ElementRef` sollte nur in Ausnahmefällen
+> genutzt werden.
+
 ```typescript
-// highlight.directive.ts
+// highlight.directive.ts (empfohlen mit Renderer2)
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from "@angular/core";
+
+@Directive({
+  selector: "[appHighlight]",
+  standalone: true,
+})
+export class HighlightDirective implements OnInit {
+  @Input({ required: false }) appHighlight: string = "yellow";
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+  ngOnInit() {
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      "backgroundColor",
+      this.appHighlight
+    );
+  }
+}
+```
+
+**Alternative mit ElementRef (nicht empfohlen):**
+
+```typescript
 import { Directive, ElementRef, Input, OnInit, inject } from "@angular/core";
 
 @Directive({
@@ -90,8 +119,35 @@ export class HighlightDirective implements OnInit {
 Wir erstellen eine Directive, die den Text eines Elements automatisch in
 Großbuchstaben umwandelt.
 
+> **Best Practice:**  
+> Auch für Textmanipulationen sollte `Renderer2` verwendet werden.  
+> `ElementRef` ist nur als Fallback gedacht.
+
 ```typescript
-// uppercase.directive.ts
+// uppercase.directive.ts (empfohlen mit Renderer2)
+import { Directive, ElementRef, OnInit, Renderer2 } from "@angular/core";
+
+@Directive({
+  selector: "[appUppercase]",
+  standalone: true,
+})
+export class UppercaseDirective implements OnInit {
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+  ngOnInit() {
+    const native: HTMLElement = this.el.nativeElement;
+    this.renderer.setProperty(
+      native,
+      "textContent",
+      native.textContent?.toUpperCase() ?? ""
+    );
+  }
+}
+```
+
+**Alternative mit ElementRef (nicht empfohlen):**
+
+```typescript
 import { Directive, ElementRef, OnInit, inject } from "@angular/core";
 
 @Directive({
@@ -121,7 +177,11 @@ export class UppercaseDirective implements OnInit {
 1. **Erstelle eine neue Datei** für deine Directive, z.B.
    `highlight.directive.ts`.
 2. **Nutze den `@Directive`-Decorator** und gib einen eindeutigen Selector an.
-3. **Verwende `inject()`** um auf das DOM-Element zuzugreifen.
+3. **Best Practice:**  
+   Verwende für DOM-Manipulationen den `Renderer2` (über Konstruktor-Injektion),
+   um plattformübergreifend und sicher zu arbeiten.  
+   `ElementRef` (mit `inject()` oder Konstruktor) sollte nur in Ausnahmefällen
+   direkt genutzt werden.
 4. **Passe das Element im Code an** (z.B. Farbe, Text, Stil).
 5. **Nutze die Directive als Attribut** im Template.
 
@@ -149,7 +209,9 @@ export class UppercaseDirective implements OnInit {
 
 - **Standalone Directives:** Neue Directives sollten möglichst als
   `standalone: true` deklariert werden.
-- **Dependency Injection:** Verwende `inject()` statt Konstruktor-Injektion.
+- **Dependency Injection:** Verwende `inject()` oder Konstruktor-Injektion für
+  Abhängigkeiten.  
+  Für DOM-Manipulationen immer `Renderer2` bevorzugen.
 - **Input-Validierung:** Nutze `@Input({ required: true })` für verpflichtende
   Inputs.
 - **Imports:** Importiere Angular-APIs direkt aus ihren Paketen, z.B.
