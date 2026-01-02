@@ -19,6 +19,7 @@
 
 ### Git
 
+- [Git Cheat Sheet – The most important Git commands at a glance](./Git/git-cheat-sheet.md)
 - [Basic Principles and First Steps](./Git/git_basic_principles_and_first_steps.md)
 - [Typical Workflow](./Git/workflow.md)
 - [Working with Branches](./Git/branches.md)
