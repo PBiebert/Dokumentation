@@ -28,6 +28,19 @@ Optional kannst du den Server direkt im Browser öffnen lassen:
 ng serve --open
 ```
 
+**Tipp:**  
+Möchtest du den Entwicklungsserver für andere Geräte im selben Netzwerk (z.B.
+Smartphone, Tablet) zugänglich machen, starte ihn mit:
+
+```bash
+ng serve --host 0.0.0.0
+```
+
+Anschließend kannst du das Projekt über die IP-Adresse deines Rechners im
+Netzwerk aufrufen, z.B. `http://192.168.1.100:4200`.  
+Die genaue IP-Adresse findest du mit `ipconfig` (Windows) oder `ifconfig`
+(Mac/Linux) im Terminal.
+
 Dadurch wird das Projekt kompiliert und unter `http://localhost:4200` angezeigt.
 
 ---

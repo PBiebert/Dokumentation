@@ -72,8 +72,9 @@
 - [Services – Sharing common logic and data](./Angular/19_services.md)
 - [ElementRef – Working directly with DOM elements](./Angular/20_elementRef.md)
 - [inject() – Moderne Dependency Injection](./Angular/21_inject.md)
-- [OnInit – Initialization of components and directives](./Angular/22_onInit.md)
+- [Lifecycle hooks in Angular](./Angular/22_lifecycle-hooks.md)
 - [Directives – Control the behavior and appearance of components](./Angular/23_derectives.md)
+- [Renderer2 – Secure and cross-platform DOM manipulation in Angular](./Angular/24_Renderer2.md)
 
 </details>
 
