@@ -75,7 +75,7 @@
 - [Lifecycle hooks in Angular](./Angular/22_lifecycle-hooks.md)
 - [Directives – Control the behavior and appearance of components](./Angular/23_derectives.md)
 - [Renderer2 – Secure and cross-platform DOM manipulation in Angular](./Angular/24_Renderer2.md)
-
+- [@HostListener – Intercept events directly at the host element in Angular](./Angular/25_HostListener.md)
 </details>
 
 <details>

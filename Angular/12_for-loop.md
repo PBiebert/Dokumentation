@@ -52,15 +52,58 @@ Im Template (`fruitlist.html`) wird diese Liste mit `@for` durchlaufen:
 
 ## Erklärung der Syntax
 
-- `@for(item of fruitlist; track item.name){ ... }`: Durchläuft jedes Element
-  (`item`) in der Liste `fruitlist`.
+- `@for(item of fruitlist; track item.name){ ... }`: **Zuerst steht der Iterator
+  (`item`), dann das Array (`fruitlist`).**
 - `track item.name`: Gibt Angular einen eindeutigen Schlüssel für jedes Element,
   was die Performance bei Änderungen verbessert.
+- **Bei Zeichenketten/Wörtern:** Verwende immer `track $index`, da Buchstaben
+  mehrfach vorkommen können.
 - Verschachtelte Loops: Du kannst innerhalb eines Loops einen weiteren
   `@for`-Loop verwenden, z.B. um für jede Frucht die Bewertungen (`reviews`)
   anzuzeigen.
 - `@empty`: Wird ausgeführt, wenn die Liste leer ist. Im Beispiel erscheint dann
   „no comments“, falls keine Bewertungen vorhanden sind.
+
+## Beispiel: Zeichenketten mit `@for` durchlaufen
+
+Du kannst den `@for`-Loop auch verwenden, um über die Buchstaben eines Strings
+zu iterieren. Das ist z.B. praktisch, wenn du einzelne Buchstaben animieren oder
+speziell stylen möchtest.
+
+Angenommen, du hast im TypeScript-Code ein Array aus Buchstaben:
+
+```typescript
+// hero.ts
+export class Hero {
+  contentFirstLine = "Fullstack".split("");
+  contentSecondLine = "DEVELOPER".split("");
+}
+```
+
+Im Template kannst du mit `@for` über die Buchstaben iterieren.  
+**Wichtig:** Da Buchstaben in einem Wort mehrfach vorkommen können, solltest du
+als Tracker immer den Index (`$index`) verwenden:
+
+```html
+<!-- hero.html -->
+<h1>
+  <span class="first-line">
+    @for(char of contentFirstLine; track $index){ {{ char }} }
+  </span>
+  <span class="second-line">
+    @for(char of contentSecondLine; track $index){ {{ char }} }
+  </span>
+</h1>
+```
+
+**Wichtig:**  
+Beim `@for`-Loop steht immer zuerst der Iterator, dann das Array:  
+`@for(iterator of array; ...)`  
+**Beispiel:**  
+`@for(char of contentFirstLine; track $index){ ... }`  
+**Hinweis:**  
+Verwende beim Durchlaufen von Zeichenketten immer `track $index`, da Buchstaben
+mehrfach vorkommen können und so jeder Buchstabe eindeutig getrackt wird.
 
 ## Verschachtelte Loops
 
