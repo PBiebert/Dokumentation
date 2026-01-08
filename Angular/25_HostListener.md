@@ -51,6 +51,13 @@ export class ClickDirective {
 > **Hinweis:**  
 > Der Name der Methode (`onClick`) ist beliebig wählbar. Wichtig ist nur, dass
 > sie mit `@HostListener` dekoriert ist und zum gewünschten Event passt.
+>
+> **Wichtig:**  
+> Ein `@HostListener` bezieht sich immer nur auf die Methode, die direkt
+> darunter steht.  
+> Wenn du mehrere Events abfangen möchtest, kannst du einfach mehrere Methoden
+> mit jeweils eigenem `@HostListener` in derselben Klasse anlegen. Jeder
+> Listener ist unabhängig und reagiert nur auf das angegebene Event.
 
 ---
 
@@ -123,7 +130,8 @@ export class ResizeDirective {
 ## Hinweise
 
 - **Mehrere Events:** Du kannst beliebig viele Methoden mit `@HostListener` in
-  einer Klasse verwenden.
+  einer Klasse verwenden. Jeder `@HostListener` gilt immer nur für die Methode
+  direkt darunter.
 - **Event-Objekte:** Mit `["$event"]` erhältst du das native Event-Objekt.
 - **Globale Events:** Für Events außerhalb des Host-Elements nutze
   `"window:event"` oder `"document:event"`.
@@ -136,3 +144,37 @@ Mit `@HostListener` kannst du Events am Host-Element oder global einfach und
 sauber in Angular abfangen.  
 Das sorgt für übersichtlichen Code und eine klare Trennung zwischen Template und
 Logik.
+
+---
+
+## Beispiel: Mehrere Events in einer Directive
+
+```typescript
+// multi-event.directive.ts
+import { Directive, HostListener } from "@angular/core";
+
+@Directive({
+  selector: "[appMultiEvent]",
+  standalone: true,
+})
+export class MultiEventDirective {
+  @HostListener("click")
+  onClick() {
+    console.log("Host-Element wurde geklickt!");
+  }
+
+  @HostListener("mouseenter")
+  onMouseEnter() {
+    console.log("Maus ist über dem Host-Element!");
+  }
+
+  @HostListener("mouseleave")
+  onMouseLeave() {
+    console.log("Maus hat das Host-Element verlassen!");
+  }
+}
+```
+
+> In diesem Beispiel hat jede Methode ihren eigenen `@HostListener`.  
+> Jeder Listener reagiert nur auf das jeweilige Event und ist unabhängig von den
+> anderen.
