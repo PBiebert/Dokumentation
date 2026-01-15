@@ -123,6 +123,26 @@ der Spalten automatisch an – die Icons werden immer optimal verteilt.
 Flexbox eignet sich hervorragend, um Elemente in einer Zeile oder Spalte
 flexibel anzuordnen.
 
+**Tipp:**  
+Standardmäßig werden Flexbox-Items mit `align-items: stretch` in der Höhe
+gestreckt, sodass sie die volle Höhe des Containers einnehmen.  
+Das ist besonders sinnvoll, wenn du möchtest, dass alle Spalten oder Bereiche
+innerhalb einer `section` immer gleich hoch sind – z.B. bei
+nebeneinanderliegenden Cards oder Spalten.
+
+**Beispiel: Section mit gestreckten Flex-Items**
+
+```scss
+section {
+  @include flexbox($align-items: stretch);
+}
+```
+
+- Verwende dies, wenn du möchtest, dass alle direkten Kinder einer Section die
+  gleiche Höhe bekommen.
+- Besonders nützlich bei Layouts mit mehreren Spalten, die optisch gleichmäßig
+  wirken sollen.
+
 **Beispiel aus der `about-me`-Section:**
 
 ```scss
@@ -294,6 +314,8 @@ Layoutfluss genommen. Damit sie trotzdem responsiv bleiben:
 
 - **Flexbox** für einfache, ein-achsige Layouts – mit `flex-grow` werden
   Elemente maximal flexibel.
+- **Tipp:** Mit `align-items: stretch` im Flexbox-Container (`section { ... }`)
+  werden alle Kinder gleich hoch gestreckt – ideal für gleichmäßige Spalten.
 - **Grid** für komplexe, zwei-achsige Layouts – mit `auto-fit` und `minmax`
   werden Spalten dynamisch.
 - **Absolut positionierte Elemente** immer im Kontext eines relativ

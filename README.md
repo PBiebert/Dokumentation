@@ -66,7 +66,6 @@
 - [Dynamic styles](./Angular/13_ngStyle.md)
 - [Dynamic CSS classes](./Angular/14_ngClass.md)
 - [@Input – Passing external data to components](./Angular/15_input.md)
-- [@Output – Send events and data from child to parent component](./Angular/16_output.md)
 - [Event Listener](./Angular/17_event-listeners.md)
 - [Data binding and event communication](./Angular/18_Data_binding_and_event_communication.md)
 - [Services – Sharing common logic and data](./Angular/19_services.md)
@@ -86,6 +85,7 @@
 - [Nesting](./Scss/nesting.md)
 - [Variablen](./Scss/variablen.md)
 - [Mixin](./Scss/mixin.md)
+- [Fluid layout with Flexbox and Grid in CSS](./Scss/layout-fluid-flexbox-grid.md)
 
 </details>
 
