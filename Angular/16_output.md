@@ -1,12 +1,13 @@
-````markdown
 [Zurück zur Übersicht](../README.md)
 
 # @Output – Events und Daten von Kind- zu Eltern-Komponente senden
 
 ## Was ist @Output?
 
-Mit dem Angular Decorator `@Output` kannst du aus einer Kind-Komponente ein Event (mit oder ohne Wert) an die Eltern-Komponente senden.  
-Das ist die Standardmethode, um auf Aktionen oder Änderungen in einer Kind-Komponente in der Eltern-Komponente zu reagieren.
+Mit dem Angular Decorator `@Output` kannst du aus einer Kind-Komponente ein
+Event (mit oder ohne Wert) an die Eltern-Komponente senden.  
+Das ist die Standardmethode, um auf Aktionen oder Änderungen in einer
+Kind-Komponente in der Eltern-Komponente zu reagieren.
 
 ## Vorteile von @Output
 
@@ -17,26 +18,27 @@ Das ist die Standardmethode, um auf Aktionen oder Änderungen in einer Kind-Komp
 ## Funktionsweise
 
 - Die Kind-Komponente deklariert ein Event mit `@Output` und `EventEmitter`.
-- Die Eltern-Komponente fängt das Event im Template ab und kann darauf reagieren.
+- Die Eltern-Komponente fängt das Event im Template ab und kann darauf
+  reagieren.
 
 ## Syntax
 
 ### In der Kind-Komponente
 
 ```typescript
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-singlefruit',
+  selector: "app-singlefruit",
   // ...existing code...
 })
 export class Singlefruit {
   @Output() fruitname = new EventEmitter<string>();
-  inputData = '';
+  inputData = "";
 
   sendInputData() {
     this.fruitname.emit(this.inputData);
-    this.inputData = '';
+    this.inputData = "";
   }
 }
 ```
@@ -50,7 +52,8 @@ export class Singlefruit {
 ></app-singlefruit>
 ```
 
-- `(fruitname)="addComment($event, index)"`: Das Event wird abgefangen, `$event` enthält den Wert aus der Kind-Komponente.
+- `(fruitname)="addComment($event, index)"`: Das Event wird abgefangen, `$event`
+  enthält den Wert aus der Kind-Komponente.
 
 ### In der Eltern-Komponente (Klasse)
 
@@ -90,10 +93,10 @@ sendInputData() {
 
 ```html
 @for (singlefruit of fruitlist; track singlefruit.name; let index = $index){
-  <app-singlefruit
-    (fruitname)="addComment($event, index)"
-    [fruit]="singlefruit"
-  ></app-singlefruit>
+<app-singlefruit
+  (fruitname)="addComment($event, index)"
+  [fruit]="singlefruit"
+></app-singlefruit>
 }
 ```
 
@@ -110,5 +113,6 @@ addComment(comment: string, index: number) {
 
 ## Fazit
 
-Mit `@Output` und `EventEmitter` kannst du Events und Daten gezielt von Kind- zu Eltern-Komponenten senden. Das sorgt für einen klaren, nachvollziehbaren Datenfluss in Angular-Anwendungen.
-````
+Mit `@Output` und `EventEmitter` kannst du Events und Daten gezielt von Kind- zu
+Eltern-Komponenten senden. Das sorgt für einen klaren, nachvollziehbaren
+Datenfluss in Angular-Anwendungen.
