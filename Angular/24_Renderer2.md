@@ -43,7 +43,14 @@ Wir erstellen eine Directive, die die Hintergrundfarbe eines Elements mit
 
 ```typescript
 // highlight.directive.ts
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  inject,
+} from "@angular/core";
 
 @Directive({
   selector: "[appHighlight]",
@@ -52,13 +59,14 @@ import { Directive, ElementRef, Input, OnInit, Renderer2 } from "@angular/core";
 export class HighlightDirective implements OnInit {
   @Input({ required: false }) appHighlight: string = "yellow";
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  private element = inject(ElementRef);
+  private renderer = inject(Renderer2);
 
   ngOnInit() {
     this.renderer.setStyle(
-      this.el.nativeElement,
+      this.element.nativeElement,
       "backgroundColor",
-      this.appHighlight
+      this.appHighlight,
     );
   }
 }
@@ -70,21 +78,28 @@ export class HighlightDirective implements OnInit {
 
 ```typescript
 // uppercase.directive.ts
-import { Directive, ElementRef, OnInit, Renderer2 } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  inject,
+} from "@angular/core";
 
 @Directive({
   selector: "[appUppercase]",
   standalone: true,
 })
 export class UppercaseDirective implements OnInit {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  private element = inject(ElementRef);
+  private renderer = inject(Renderer2);
 
   ngOnInit() {
-    const native: HTMLElement = this.el.nativeElement;
+    const native: HTMLElement = this.element.nativeElement;
     this.renderer.setProperty(
       native,
       "textContent",
-      native.textContent?.toUpperCase() ?? ""
+      native.textContent?.toUpperCase() ?? "",
     );
   }
 }
