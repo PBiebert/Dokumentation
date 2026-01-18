@@ -67,6 +67,18 @@ export class Singlefruit {
 - Mit `@Input()` wird die Eigenschaft `fruit` für Daten von außen freigegeben.
 - Die Kind-Komponente erwartet, dass die Eltern-Komponente einen Wert für
   `fruit` liefert.
+- Die Property wird hier einfach als `fruit: any;` deklariert, ohne
+  Initialisierung oder Ausrufezeichen. Du kannst den Typ nach Bedarf anpassen,
+  z.B. `fruit: Fruit;` wenn du ein Interface verwendest.
+- **Hinweis:**  
+  Wenn du TypeScript mit strikter Typisierung verwendest (z.B.
+  `"strictPropertyInitialization"` in `tsconfig.json` aktiviert), kann ein
+  Fehler auftreten, weil die Property nicht direkt im Konstruktor initialisiert
+  wird.  
+  Um diesen Fehler zu vermeiden, kannst du ein Ausrufezeichen (`!`) verwenden:  
+  `@Input() fruit!: Fruit;`  
+  Das Ausrufezeichen sagt TypeScript, dass die Property später (durch Angular)
+  gesetzt wird.
 
 ### In der Eltern-Komponente
 
