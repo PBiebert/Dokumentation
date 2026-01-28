@@ -70,13 +70,27 @@
 - [Data binding and event communication](./Angular/18_Data_binding_and_event_communication.md)
 - [Services – Sharing common logic and data](./Angular/19_services.md)
 - [ElementRef – Working directly with DOM elements](./Angular/20_elementRef.md)
-- [inject() – Moderne Dependency Injection](./Angular/21_inject.md)
+- [inject() – Modern Dependency Injection](./Angular/21_inject.md)
 - [Lifecycle hooks in Angular](./Angular/22_lifecycle-hooks.md)
 - [Directives – Control the behavior and appearance of components](./Angular/23_derectives.md)
 - [Renderer2 – Secure and cross-platform DOM manipulation in Angular](./Angular/24_Renderer2.md)
 - [@HostListener – Intercept events directly at the host element in Angular](./Angular/25_HostListener.md)
 - [@HostBinding – Binding properties and classes to the host element in Angular](./Angular/26_HostBinding.md)
 - [Property Binding – Controlling the properties of DOM elements in Angular](./Angular/26_PropertyBinding.md)
+- [Forms with ngSubmit in Angular](./Angular/27_ngSubmit.md)
+- [Scroll to top on route change in Angular (from v20)](./Angular/28_DOCUMENT.md)
+- [ngx-translate – Multilingualism in Angular (from v20)](./Angular/29_ngx-translate.md)
+- [Contact form in Angular – Step by step](./Angular/99_Kontaktformular.md)
+
+</details>
+
+<details>
+<summary><strong>Firestone in Angular</strong></summary>
+
+- [Create a Firebase project and connect with Angular](./Firebase/create_new_project.md)
+- [Database access with Angular and Firebase](./Firebase/Database_access.md)
+- [Display Firestore data in Angular](./Firebase/show_data.md)
+
 </details>
 
 <details>
@@ -84,7 +98,7 @@
 
 - [SCSS Installation and Compilation](./Scss/basics.md)
 - [Nesting](./Scss/nesting.md)
-- [Variablen](./Scss/variablen.md)
+- [Variables](./Scss/variablen.md)
 - [Mixin](./Scss/mixin.md)
 - [Fluid layout with Flexbox and Grid in CSS](./Scss/layout-fluid-flexbox-grid.md)
 
