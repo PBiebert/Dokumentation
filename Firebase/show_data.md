@@ -2,49 +2,24 @@
 
 # Firestore-Datenbankzugriff und -Anzeige in Angular
 
-Diese Anleitung zeigt Schritt für Schritt, wie du mit Angular und Firebase Firestore arbeitest:
+Diese Anleitung zeigt Schritt für Schritt, wie du mit Angular und Firebase
+Firestore arbeitest:
 
 - **1. Firestore-Service anlegen**
 - **2. Referenzen auf Collections und Dokumente erstellen**
-- **3. Firestore-Daten in Angular anzeigen** (mit `collectionData()` oder `onSnapshot`)
-
----
-
-## Was ist Firestore?
-
-Firestore ist eine NoSQL-Cloud-Datenbank von Google, die speziell für die Entwicklung moderner Web- und Mobile-Apps entwickelt wurde.  
-Sie speichert Daten in **Collections** (Sammlungen) und **Documents** (Dokumenten).  
-Jedes Dokument ist ein JSON-ähnliches Objekt mit Feldern und Werten.
-
-**Vorteile:**
-- Echtzeit-Synchronisation: Änderungen werden sofort an alle Clients übertragen.
-- Skalierbarkeit: Für kleine und große Projekte geeignet.
-- Flexible Datenstruktur: Keine festen Schemata.
-
----
-
-## Was ist AngularFire?
-
-[AngularFire](https://github.com/angular/angularfire) ist die offizielle Angular-Bibliothek für Firebase.  
-Sie bietet eine einfache Integration von Firestore, Auth, Storage und weiteren Firebase-Diensten in Angular-Projekte.
-
-**Wichtige Features:**
-- RxJS-Observables für reaktive Datenströme
-- Automatisches Unsubscribe im Template mit der `async`-Pipe
-- Einfache API für CRUD-Operationen
+- **3. Firestore-Daten in Angular anzeigen** (mit `collectionData()` oder
+  `onSnapshot`)
 
 ---
 
 ## 1. Firestore-Service anlegen
 
-**Warum ein Service?**  
-In Angular werden Datenzugriffe und Logik in Services ausgelagert, um Komponenten schlank und testbar zu halten.
-
 1. Erstelle einen neuen Service für den Datenbankzugriff:
    ```bash
    ng generate service firebase-services/note-list
    ```
-2. Öffne die Datei `note-list.service.ts` und importiere die benötigten Firebase-Module:
+2. Öffne die Datei `note-list.service.ts` und importiere die benötigten
+   Firebase-Module:
    ```typescript
    import { inject, Injectable } from "@angular/core";
    import { collection, doc, Firestore } from "@angular/fire/firestore";
@@ -59,9 +34,6 @@ In Angular werden Datenzugriffe und Logik in Services ausgelagert, um Komponente
      // ...
    }
    ```
-
-> **Tipp:**  
-> Mit `providedIn: "root"` ist der Service im gesamten Projekt verfügbar (Singleton).
 
 ---
 
@@ -85,10 +57,6 @@ getTrashRef() {
 }
 ```
 
-**Hintergrund:**  
-Eine Collection ist eine Sammlung von Dokumenten.  
-Mit `collection(firestore, 'notes')` erzeugst du eine Referenz, die du für Lese- und Schreiboperationen verwenden kannst.
-
 ### 2.2 Referenz auf ein einzelnes Dokument
 
 Um auf ein einzelnes Dokument innerhalb einer Collection zuzugreifen:
@@ -99,28 +67,23 @@ getSingleDocRef(collId: string, docID: string) {
 }
 ```
 
-**Hintergrund:**  
-Jedes Dokument hat eine eindeutige ID.  
-Mit `doc(collectionRef, documentId)` kannst du gezielt ein Dokument ansprechen, z.B. für Detailansichten oder Updates.
-
 #### Erklärung: `collection()` und `doc()`
 
 - **`collection(firestore, collectionPath)`**  
   Erstellt eine Referenz auf eine Collection in Firestore.  
   Beispiel:
+
   ```typescript
   collection(this.firestore, "notes");
   ```
 
 - **`doc(collectionRef, documentId)`**  
-  Erstellt eine Referenz auf ein einzelnes Dokument innerhalb einer Collection.  
+  Erstellt eine Referenz auf ein einzelnes Dokument innerhalb einer
+  Collection.  
   Beispiel:
   ```typescript
   doc(collection(this.firestore, "notes"), "abc123");
   ```
-
-> **Best Practice:**  
-> Halte alle Referenz-Methoden im Service, damit du sie zentral verwalten und wiederverwenden kannst.
 
 ---
 
@@ -128,8 +91,10 @@ Mit `doc(collectionRef, documentId)` kannst du gezielt ein Dokument ansprechen, 
 
 In Angular kannst du Firestore-Daten auf zwei grundlegende Arten anzeigen:
 
-- Mit Observables und der `collectionData()`-Methode (empfohlen für Templates mit `async`-Pipe)
-- Mit Firestore-Listenern über `onSnapshot` und lokalen Arrays (mehr Kontrolle, z.B. für komplexe Logik)
+- Mit Observables und der `collectionData()`-Methode (empfohlen für Templates
+  mit `async`-Pipe)
+- Mit Firestore-Listenern über `onSnapshot` und lokalen Arrays (mehr Kontrolle,
+  z.B. für komplexe Logik)
 
 Im Folgenden werden beide Wege ausführlich erklärt.
 
@@ -137,15 +102,19 @@ Im Folgenden werden beide Wege ausführlich erklärt.
 
 ### Variante 1: Daten mit `collectionData()` und Observable anzeigen
 
-> **Was ist ein Observable?**  
-> Ein **Observable** ist ein Datenstrom, der Werte liefert, sobald sie verfügbar sind.  
-> In Angular werden Observables häufig für asynchrone Daten (z.B. HTTP, Firestore) verwendet.  
-> Die `async`-Pipe im Template übernimmt das Abonnieren und Abmelden automatisch.
+> **Hinweis:**  
+> Ein **Observable** ist ein zentrales Konzept in Angular zur asynchronen
+> Datenverarbeitung.  
+> Mit `collectionData()` wird ein Observable erzeugt, das automatisch neue Werte
+> liefert, wenn sich die Daten in Firestore ändern.  
+> Im Template kann das Observable mit der `async`-Pipe einfach abonniert werden.
 
 #### Was passiert hier?
 
-- Du nutzt ein **Observable**, das automatisch alle Änderungen aus Firestore empfängt.
-- Das Observable wird im Service bereitgestellt und im Template mit der `async`-Pipe abonniert.
+- Du nutzt ein **Observable**, das automatisch alle Änderungen aus Firestore
+  empfängt.
+- Das Observable wird im Service bereitgestellt und im Template mit der
+  `async`-Pipe abonniert.
 - Angular kümmert sich um das automatische Abmelden vom Datenstrom.
 
 #### Service
@@ -167,10 +136,6 @@ export class NoteListService {
   }
 }
 ```
-
-**Details:**  
-- `collectionData(ref, { idField })` gibt ein Observable zurück, das die Daten der Collection als Array liefert.
-- Mit `{ idField: "id" }` wird die Dokument-ID als Feld `id` im Objekt ergänzt.
 
 #### Komponente
 
@@ -199,28 +164,24 @@ export class NoteListComponent {
 ```
 
 **Erklärung:**
+
 - `items$` ist ein Observable, das alle Notizen enthält.
-- Mit `| async` wird das Observable im Template automatisch abonniert und aktualisiert.
+- Mit `| async` wird das Observable im Template automatisch abonniert und
+  aktualisiert.
 - Änderungen in Firestore erscheinen sofort in der Liste.
 - Kein manuelles Abmelden nötig – Angular übernimmt das.
-
-> **Tiefere Einblicke:**  
-> - Die `async`-Pipe sorgt dafür, dass das Observable korrekt abonniert und bei Bedarf wieder abgemeldet wird (z.B. beim Verlassen der Komponente).
-> - Das Pattern ist besonders für einfache Listen und Standardfälle geeignet.
 
 ---
 
 ### Variante 2: Daten mit `onSnapshot` und lokalen Arrays anzeigen
 
-> **Was ist ein Firestore-Listener?**  
-> Mit `onSnapshot` kannst du einen Listener auf eine Collection oder ein Dokument setzen.  
-> Bei jeder Änderung werden die neuen Daten sofort an deinen Callback geliefert.
-
 #### Was passiert hier?
 
-- Du nutzt Firestore-Listener (`onSnapshot`), um Datenänderungen direkt zu empfangen.
+- Du nutzt Firestore-Listener (`onSnapshot`), um Datenänderungen direkt zu
+  empfangen.
 - Die Daten werden in lokale Arrays geschrieben.
-- Du hast volle Kontrolle über das Datenhandling und kannst eigene Logik im Callback ausführen.
+- Du hast volle Kontrolle über das Datenhandling und kannst eigene Logik im
+  Callback ausführen.
 - Du musst die Listener selbst wieder entfernen, z.B. im `ngOnDestroy`.
 
 #### Service
@@ -293,10 +254,18 @@ export class NoteListService implements OnDestroy {
 }
 ```
 
-**Details:**  
-- `onSnapshot(ref, callback)` setzt einen Listener auf die Collection.
-- Der Rückgabewert ist eine Funktion, mit der du den Listener wieder entfernen kannst (unsubscriben).
-- Die Daten werden in lokale Arrays geschrieben, die du beliebig weiterverarbeiten kannst (z.B. sortieren, filtern).
+> **Hinweis:** Die Methode `subNotesList()` gibt die Rückgabefunktion von
+> `onSnapshot` zurück. Diese Rückgabefunktion dient zum **Deabonnieren**
+> (Abmelden) des Firestore-Listeners.
+>
+> Beim Aufruf von `this.unsubNotes = this.subNotesList();` wird der Listener
+> abonniert und die Rückgabefunktion in `unsubNotes` gespeichert.
+>
+> Im Lebenszyklus-Hook `ngOnDestroy()` wird dann `this.unsubNotes()` aufgerufen,
+> um den Listener wieder zu **deabonnieren**.
+>
+> Das ist wichtig, damit keine Speicherlecks entstehen und der Listener entfernt
+> wird, sobald die Komponente/der Service nicht mehr gebraucht wird.
 
 #### Komponente
 
@@ -329,14 +298,12 @@ export class NoteListComponent {
 ```
 
 **Erklärung:**
+
 - Die Daten werden in den Arrays `normalNotes` und `trashNotes` gehalten.
 - Änderungen in Firestore werden durch die Listener sofort übernommen.
 - Du kannst im Callback beliebige Logik ausführen (z.B. filtern, sortieren).
-- Die Listener müssen im `ngOnDestroy` entfernt werden, um Speicherlecks zu vermeiden.
-
-> **Tiefere Einblicke:**  
-> - Mit `onSnapshot` kannst du auch einzelne Dokumente überwachen, nicht nur Collections.
-> - Du bist für das Lifecycle-Management der Listener selbst verantwortlich.
+- Die Listener müssen im `ngOnDestroy` entfernt werden, um Speicherlecks zu
+  vermeiden.
 
 ---
 
@@ -349,23 +316,45 @@ export class NoteListComponent {
 
 **Wann solltest du was verwenden?**
 
-- Nutze `collectionData()`, wenn du einfach Daten im Template anzeigen willst und keine spezielle Logik brauchst.
-- Nutze `onSnapshot()`, wenn du mehr Kontrolle, eigene Logik oder spezielle Firestore-Features benötigst.
-
----
-
-## Best Practices und Tipps
-
-- **Service-Struktur:** Halte alle Firestore-Operationen im Service, nicht in der Komponente.
-- **Unsubscribe:** Bei Listenern (`onSnapshot`) immer im `ngOnDestroy` abmelden!
-- **Fehlerbehandlung:** Fange Fehler ab, z.B. mit `.catch()` oder Error-Handlern.
-- **Datenmodell:** Definiere Interfaces für deine Daten (z.B. `Note`), um Typsicherheit zu gewährleisten.
-- **Performance:** Für große Datenmengen nutze Paginierung oder Abfragen mit Filtern.
+- Nutze `collectionData()`, wenn du einfach Daten im Template anzeigen willst
+  und keine spezielle Logik brauchst.
+- Nutze `onSnapshot()`, wenn du mehr Kontrolle, eigene Logik oder spezielle
+  Firestore-Features benötigst.
 
 ---
 
 **Tipp:**  
-Beide Varianten können auch kombiniert werden, z.B. für einfache Listen mit `collectionData()` und für Spezialfälle mit `onSnapshot()`.
+Beide Varianten können auch kombiniert werden, z.B. für einfache Listen mit
+`collectionData()` und für Spezialfälle mit `onSnapshot()`.
 
 Weitere Infos:  
 [AngularFire Dokumentation](https://github.com/angular/angularfire)
+
+---
+
+## Service generieren
+
+Der Befehl
+
+```
+ng g s services/vocabulary-service
+```
+
+ist grundsätzlich korrekt, um einen Service zu generieren.  
+**Mögliche Fehlerquellen:**
+
+- Das Verzeichnis `services` existiert nicht (Angular legt es aber normalerweise
+  automatisch an).
+- Tippfehler im Pfad oder Namen.
+- Du bist nicht im Projektverzeichnis (dort, wo `angular.json` liegt).
+- Die Angular CLI ist nicht installiert oder nicht im Pfad (`ng`-Befehl nicht
+  gefunden).
+
+**Hinweis:**
+
+- `ng g s ...` ist die Kurzform für `ng generate service ...`
+- Der Service wird als `vocabulary-service.service.ts` angelegt.
+
+**Empfehlung:**  
+Stelle sicher, dass du im richtigen Ordner bist und die CLI installiert ist.  
+Falls du einen anderen Namen willst, nimm z.B. `ng g s services/vocabulary`.

@@ -88,7 +88,10 @@
 <summary><strong>Firestone in Angular</strong></summary>
 
 - [Create a Firebase project and connect with Angular](./Firebase/create_new_project.md)
-- [Datenbankzugriff mit Angular und Firebase](./Firebase/show_data.md)
+- [Database access with Angular and Firebase](./Firebase/show_data.md)
+- [Add documents to Firestore using `addDoc` in Angular](./Firebase/addDoc.md)
+- [Updating individual fields of a document using `updateDoc` in Firebase](./Firebase/updateDoc.md)
+- [Securely storing the Firebase API key in Angular](./Firebase/secure_api_key.md)
 
 </details>
 
