@@ -88,8 +88,7 @@
 <summary><strong>Firestone in Angular</strong></summary>
 
 - [Create a Firebase project and connect with Angular](./Firebase/create_new_project.md)
-- [Database access with Angular and Firebase](./Firebase/Database_access.md)
-- [Display Firestore data in Angular](./Firebase/show_data.md)
+- [Datenbankzugriff mit Angular und Firebase](./Firebase/show_data.md)
 
 </details>
 
