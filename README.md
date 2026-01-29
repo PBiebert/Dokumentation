@@ -92,6 +92,8 @@
 - [Add documents to Firestore using `addDoc` in Angular](./Firebase/addDoc.md)
 - [Updating individual fields of a document using `updateDoc` in Firebase](./Firebase/updateDoc.md)
 - [Securely storing the Firebase API key in Angular](./Firebase/secure_api_key.md)
+- [Delete documents with `deleteDoc` in Firebase](./Firebase/deleteDoc.md)
+- [Filtering and limiting Firestore queries with `query`, `limit` and `onSnapshot`](./Firebase/query-limit-onSnapshot.md)
 
 </details>
 
