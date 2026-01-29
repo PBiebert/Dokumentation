@@ -57,6 +57,14 @@ return onSnapshot(
 );
 ```
 
+**Achtung:**  
+Die gleichzeitige Verwendung von `where` und `orderBy` kann zu Fehlern führen,
+wenn sie nicht korrekt kombiniert werden. Firestore verlangt in vielen Fällen
+einen zusätzlichen Index oder lässt bestimmte Kombinationen gar nicht zu.  
+**Best Practice:** Nutze entweder nur `where` oder nur `orderBy` – oder prüfe in
+der Firestore-Konsole, ob für deine Kombination ein Index angelegt werden muss.
+Fehlermeldungen geben meist einen direkten Link zum Erstellen des Index.
+
 ---
 
 ## Erklärung der wichtigsten Query-Operatoren
@@ -91,6 +99,12 @@ sortierst, muss dieses Feld in beiden Operatoren genannt werden.
 Beispiel:
 
 - `where('status', '==', 'active'), orderBy('status')` ist erlaubt.
+
+**Wichtiger Hinweis:**  
+Die gleichzeitige Nutzung von `where` und `orderBy` auf unterschiedlichen
+Feldern führt oft zu Fehlern oder verlangt einen Index.  
+Wenn du keine Indexe anlegen möchtest, verwende am besten nur einen der beiden
+Operatoren in deiner Query.
 
 ### `limit`
 
@@ -138,7 +152,9 @@ Das ist wichtig, um große Datenmengen und Performance-Probleme zu vermeiden.
   erlaubt. Prüfe die
   [Firestore-Dokumentation](https://firebase.google.com/docs/firestore/query-data/queries).
   Oft ist ein zusätzlicher Index nötig, wenn du mehrere Filter und Sortierungen
-  kombinierst.
+  kombinierst.  
+  **Tipp:** Wenn du Fehler bekommst, versuche die Query nur mit `where` oder nur
+  mit `orderBy` zu verwenden.
 - **Limit zu niedrig:** Es werden weniger Einträge angezeigt als erwartet.
 - **Fehlende Indexe:** Bei komplexen Abfragen kann Firestore einen Index
   verlangen. Die Fehlermeldung enthält meist einen Link zum Erstellen des Index.
@@ -154,6 +170,8 @@ Das ist wichtig, um große Datenmengen und Performance-Probleme zu vermeiden.
   verbessern.
 - Kombiniere Filter (`where`) gezielt, um nur relevante Daten zu laden.
 - Sortiere mit `orderBy`, wenn die Reihenfolge der Ergebnisse wichtig ist.
+- Vermeide die gleichzeitige Nutzung von `where` und `orderBy`, wenn du keine
+  Indexe anlegen möchtest.
 - Behandle Fehler im Callback von `onSnapshot`, um Probleme frühzeitig zu
   erkennen.
 - Nutze `docChanges()`, um gezielt auf einzelne Änderungen zu reagieren (z.B.
