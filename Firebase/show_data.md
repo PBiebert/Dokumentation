@@ -175,99 +175,133 @@ export class NoteListComponent {
 
 ### Variante 2: Daten mit `onSnapshot` und lokalen Arrays anzeigen
 
-#### Was passiert hier?
+#### Schritt-für-Schritt-Anleitung
 
-- Du nutzt Firestore-Listener (`onSnapshot`), um Datenänderungen direkt zu
-  empfangen.
-- Die Daten werden in lokale Arrays geschrieben.
-- Du hast volle Kontrolle über das Datenhandling und kannst eigene Logik im
-  Callback ausführen.
-- Du musst die Listener selbst wieder entfernen, z.B. im `ngOnDestroy`.
+Mit dieser Methode hast du volle Kontrolle über die Daten und kannst eigene
+Logik im Callback ausführen. Du musst aber die Listener selbst entfernen.
 
-#### Service
+---
+
+**1. Service vorbereiten**
+
+Importiere die benötigten Module und lege die Arrays für die Notizen an:
 
 ```typescript
 import { inject, Injectable, OnDestroy } from "@angular/core";
 import { collection, Firestore, onSnapshot } from "@angular/fire/firestore";
 import { Note } from "../interfaces/note.interface";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable({ providedIn: "root" })
 export class NoteListService implements OnDestroy {
   normalNotes: Note[] = [];
   trashNotes: Note[] = [];
   firestore: Firestore = inject(Firestore);
-
   unsubNotes;
   unsubTrash;
-
-  constructor() {
-    // Listener für Notizen und Papierkorb setzen
-    this.unsubNotes = this.subNotesList();
-    this.unsubTrash = this.subTrashList();
-  }
-
-  // Hilfsfunktion, um ein Firestore-Objekt in ein Note-Objekt zu verwandeln
-  setNoteObject(obj: any, id: string): Note {
-    return {
-      id: id,
-      type: obj.type || "note",
-      title: obj.title || "",
-      content: obj.content || "",
-      marked: obj.marked || false,
-    };
-  }
-
-  // Listener für normale Notizen
-  subNotesList() {
-    return onSnapshot(this.getNotesRef(), (list) => {
-      this.normalNotes = [];
-      list.forEach((element) => {
-        this.normalNotes.push(this.setNoteObject(element.data(), element.id));
-      });
-    });
-  }
-
-  // Listener für Papierkorb-Notizen
-  subTrashList() {
-    return onSnapshot(this.getTrashRef(), (list) => {
-      this.trashNotes = [];
-      list.forEach((element) => {
-        this.trashNotes.push(this.setNoteObject(element.data(), element.id));
-      });
-    });
-  }
-
-  getNotesRef() {
-    return collection(this.firestore, "notes");
-  }
-  getTrashRef() {
-    return collection(this.firestore, "trash");
-  }
-
-  // Wichtig: Listener beim Zerstören der Komponente entfernen!
-  ngOnDestroy() {
-    if (this.unsubNotes) this.unsubNotes();
-    if (this.unsubTrash) this.unsubTrash();
-  }
+  // ...weitere Methoden folgen...
 }
 ```
 
-> **Hinweis:** Die Methode `subNotesList()` gibt die Rückgabefunktion von
-> `onSnapshot` zurück. Diese Rückgabefunktion dient zum **Deabonnieren**
-> (Abmelden) des Firestore-Listeners.
->
-> Beim Aufruf von `this.unsubNotes = this.subNotesList();` wird der Listener
-> abonniert und die Rückgabefunktion in `unsubNotes` gespeichert.
->
-> Im Lebenszyklus-Hook `ngOnDestroy()` wird dann `this.unsubNotes()` aufgerufen,
-> um den Listener wieder zu **deabonnieren**.
->
-> Das ist wichtig, damit keine Speicherlecks entstehen und der Listener entfernt
-> wird, sobald die Komponente/der Service nicht mehr gebraucht wird.
+---
 
-#### Komponente
+**2. Listener im Konstruktor setzen**
+
+Im Konstruktor abonnierst du die Firestore-Listener und speicherst die
+Rückgabefunktionen zum späteren Entfernen:
+
+```typescript
+constructor() {
+  this.unsubNotes = this.subNotesList();
+  this.unsubTrash = this.subTrashList();
+}
+```
+
+---
+
+**3. Hilfsfunktion zum Umwandeln der Firestore-Daten**
+
+Damit die Daten aus Firestore in dein gewünschtes Format kommen:
+
+```typescript
+setNoteObject(obj: any, id: string): Note {
+  return {
+    id: id,
+    type: obj.type || "note",
+    title: obj.title || "",
+    content: obj.content || "",
+    marked: obj.marked || false,
+  };
+}
+```
+
+---
+
+**4. Listener für die Notizen-Collection**
+
+Hier abonnierst du die Collection und schreibst die Daten ins Array:
+
+```typescript
+subNotesList() {
+  return onSnapshot(this.getNotesRef(), (list) => {
+    this.normalNotes = [];
+    list.forEach((element) => {
+      this.normalNotes.push(this.setNoteObject(element.data(), element.id));
+    });
+  });
+}
+```
+
+---
+
+**5. Listener für die Papierkorb-Collection**
+
+Analog für den Papierkorb:
+
+```typescript
+subTrashList() {
+  return onSnapshot(this.getTrashRef(), (list) => {
+    this.trashNotes = [];
+    list.forEach((element) => {
+      this.trashNotes.push(this.setNoteObject(element.data(), element.id));
+    });
+  });
+}
+```
+
+---
+
+**6. Referenzen auf die Collections**
+
+Hilfsfunktionen für die Firestore-Referenzen:
+
+```typescript
+getNotesRef() {
+  return collection(this.firestore, "notes");
+}
+getTrashRef() {
+  return collection(this.firestore, "trash");
+}
+```
+
+---
+
+**7. Listener beim Zerstören entfernen**
+
+Ganz wichtig: Die Listener müssen entfernt werden, um Speicherlecks zu
+vermeiden:
+
+```typescript
+ngOnDestroy() {
+  if (this.unsubNotes) this.unsubNotes();
+  if (this.unsubTrash) this.unsubTrash();
+}
+```
+
+---
+
+**8. Komponente anpassen**
+
+In der Komponente kannst du den Service wie folgt nutzen:
 
 ```typescript
 import { Component } from "@angular/core";
@@ -275,7 +309,7 @@ import { NoteListService } from "../firebase-services/note-list.service";
 
 @Component({
   selector: "app-note-list",
-  // ...imports, templateUrl, styleUrl...
+  // ...templateUrl, styleUrl...
 })
 export class NoteListComponent {
   constructor(public noteService: NoteListService) {}
@@ -287,7 +321,11 @@ export class NoteListComponent {
 }
 ```
 
-#### Template
+---
+
+**9. Template**
+
+Im Template kannst du das Array direkt ausgeben:
 
 ```html
 <ul>
@@ -297,7 +335,9 @@ export class NoteListComponent {
 </ul>
 ```
 
-**Erklärung:**
+---
+
+**Zusammenfassung:**
 
 - Die Daten werden in den Arrays `normalNotes` und `trashNotes` gehalten.
 - Änderungen in Firestore werden durch die Listener sofort übernommen.
