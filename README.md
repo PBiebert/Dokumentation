@@ -81,6 +81,7 @@
 - [Scroll to top on route change in Angular (from v20)](./Angular/28_DOCUMENT.md)
 - [ngx-translate – Multilingualism in Angular (from v20)](./Angular/29_ngx-translate.md)
 - [Contact form in Angular – Step by step](./Angular/99_Kontaktformular.md)
+- [State-Management mit BehaviorSubject im Service](./Angular/30_BehaviorSubject_Modal.md)
 
 </details>
 
