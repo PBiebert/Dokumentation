@@ -70,10 +70,15 @@ import { BehaviorSubject, Observable } from "rxjs"; // Importiert RxJS für reak
 
 @Injectable({ providedIn: "root" }) // Service wird global bereitgestellt
 export class ModalService {
+  // Zentrale Quelle für den Modal-Status
   // Erstellt ein BehaviorSubject mit Startwert 'false' (Modal ist geschlossen)
   private modalSubject = new BehaviorSubject<boolean>(false);
 
   // Gibt das Subject als Observable nach außen, damit Komponenten abonnieren können
+  // Das $ am Ende von 'modal$' ist eine Konvention, um zu kennzeichnen, dass es sich um ein Observable handelt.
+  // So erkennt man direkt, dass man dieses Property abonnieren kann und nicht direkt verändert.
+  // Die Methode asObservable() wandelt das BehaviorSubject in ein Observable um.
+  // Dadurch können andere Komponenten den Wert abonnieren, aber nicht direkt verändern.
   modal$: Observable<boolean> = this.modalSubject.asObservable();
 
   // Öffnet das Modal, indem der Wert des Subjects auf 'true' gesetzt wird
@@ -93,16 +98,22 @@ export class ModalService {
 }
 ```
 
-**Erklärung der Befehle:**
+**Detailierte Kommentare zu den Befehlen:**
 
-- `new BehaviorSubject<boolean>(false)`: Erstellt ein Subject, das immer einen
-  aktuellen Wert hält (hier: `false` = Modal geschlossen).
-- `.next(true/false)`: Setzt einen neuen Wert, den alle Subscriber sofort
-  erhalten.
-- `.asObservable()`: Gibt das Subject als Observable aus, damit andere nur
-  lesen/abonnieren können.
-- `@Injectable({ providedIn: "root" })`: Macht den Service überall in der App
-  verfügbar.
+- `private modalSubject = new BehaviorSubject<boolean>(false);`  
+  Erstellt ein BehaviorSubject, das immer einen aktuellen Wert hält (hier:
+  `false` = Modal geschlossen).  
+  Das Subject ist privat, damit nur der Service den Wert direkt verändern kann.
+- `modal$: Observable<boolean> = this.modalSubject.asObservable();`  
+  Gibt das Subject als Observable nach außen, damit andere Komponenten den Wert
+  abonnieren können, aber nicht direkt verändern.  
+  Die `$`-Konvention zeigt an, dass es sich um ein Observable handelt.
+- `showModal()` und `close()`  
+  Methoden, um den State zentral zu ändern. Komponenten rufen diese Methoden
+  auf, statt direkt den Wert zu setzen.
+- `get isOpen(): boolean`  
+  Ermöglicht synchronen Zugriff auf den aktuellen Wert, z.B. für Logik im
+  Service.
 
 ---
 
@@ -139,12 +150,18 @@ export class ModalComponent implements OnDestroy {
 }
 ```
 
-**Erklärung der Befehle:**
+**Detailierte Kommentare zu den Befehlen:**
 
-- `subscribe(...)`: Reagiert auf jeden neuen Wert des Subjects.
-- `ngOnDestroy()`: Lebenszyklus-Hook, wird beim Entfernen der Komponente
-  aufgerufen.
-- `unsubscribe()`: Beendet das Abo, damit keine Speicherlecks entstehen.
+- `this.sub = this.modalService.modal$.subscribe(...)`  
+  Die Komponente abonniert das zentrale Observable aus dem Service.  
+  Bei jeder Änderung des Modal-Status wird die lokale Variable `show`
+  aktualisiert.
+- `ngOnDestroy()`  
+  Lebenszyklus-Hook, wird beim Entfernen der Komponente aufgerufen.  
+  Hier wird die Subscription beendet, um Speicherlecks zu vermeiden.
+- `closeModal()`  
+  Methode, die das Modal über den Service schließt.  
+  Die Komponente verändert den State nie direkt, sondern immer über den Service.
 
 ---
 
@@ -158,11 +175,14 @@ export class ModalComponent implements OnDestroy {
 </div>
 ```
 
-**Erklärung der Befehle:**
+**Detailierte Kommentare zu den Befehlen:**
 
-- `*ngIf="show"`: Zeigt das Modal nur, wenn `show` true ist.
-- `(click)="closeModal()"`: Führt die Methode aus, wenn der Button geklickt
-  wird.
+- `*ngIf="show"`  
+  Das Modal wird nur angezeigt, wenn `show` true ist.  
+  Die Anzeige ist direkt an den State aus dem Service gekoppelt.
+- `(click)="closeModal()"`  
+  Beim Klick auf den Button wird die Methode `closeModal()` ausgeführt, die das
+  Modal über den Service schließt.
 
 ---
 
@@ -178,10 +198,13 @@ openModal() {
 }
 ```
 
-**Erklärung der Befehle:**
+**Detailierte Kommentare zu den Befehlen:**
 
-- `modalService.showModal()`: Setzt den Wert im Subject auf `true`, alle
-  Subscriber (z.B. Modal-Komponente) reagieren darauf.
+- `modalService.showModal()`  
+  Setzt den Wert im Subject auf `true`, alle Subscriber (z.B. Modal-Komponente)
+  reagieren darauf.  
+  So kann das Modal von jeder beliebigen Komponente aus geöffnet werden, ohne
+  direkte Verbindung zur Modal-Komponente.
 
 ---
 
