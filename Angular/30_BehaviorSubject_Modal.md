@@ -1,6 +1,6 @@
 [Zurück zur Übersicht](../README.md)
 
-# State-Management mit BehaviorSubject im Service (am Beispiel Modal-Steuerung)
+# State-Management mit BehaviorSubject im Service (am Beispiel Dialog-Steuerung)
 
 ---
 
@@ -64,78 +64,93 @@ müssen.**
 ### 1. Service mit BehaviorSubject anlegen
 
 ```typescript
-// modal.service.ts
+// dialog.service.ts
 import { Injectable } from "@angular/core"; // Macht die Klasse als Service nutzbar
 import { BehaviorSubject, Observable } from "rxjs"; // Importiert RxJS für reaktive Programmierung
 
 @Injectable({ providedIn: "root" }) // Service wird global bereitgestellt
-export class ModalService {
-  // Zentrale Quelle für den Modal-Status
-  // Erstellt ein BehaviorSubject mit Startwert 'false' (Modal ist geschlossen)
-  private modalSubject = new BehaviorSubject<boolean>(false);
+export class DialogService {
+  // Zentrale Quelle für den Dialog-Status
+  // Erstellt ein BehaviorSubject mit Startwert 'false' (Dialog ist geschlossen)
+  private dialogOpenSubject = new BehaviorSubject<boolean>(false);
 
   // Gibt das Subject als Observable nach außen, damit Komponenten abonnieren können
-  // Das $ am Ende von 'modal$' ist eine Konvention, um zu kennzeichnen, dass es sich um ein Observable handelt.
+  // Das $ am Ende von 'dialogOpen$' ist eine Konvention, um zu kennzeichnen, dass es sich um ein Observable handelt.
   // So erkennt man direkt, dass man dieses Property abonnieren kann und nicht direkt verändert.
   // Die Methode asObservable() wandelt das BehaviorSubject in ein Observable um.
   // Dadurch können andere Komponenten den Wert abonnieren, aber nicht direkt verändern.
-  modal$: Observable<boolean> = this.modalSubject.asObservable();
+  dialogOpen$: Observable<boolean> = this.dialogOpenSubject.asObservable();
 
-  // Öffnet das Modal, indem der Wert des Subjects auf 'true' gesetzt wird
-  showModal() {
-    this.modalSubject.next(true);
+  // Öffnet den Dialog, indem der Wert des Subjects auf 'true' gesetzt wird
+  openDialog() {
+    this.dialogOpenSubject.next(true);
   }
 
-  // Schließt das Modal, indem der Wert des Subjects auf 'false' gesetzt wird
-  close() {
-    this.modalSubject.next(false);
+  // Schließt den Dialog, indem der Wert des Subjects auf 'false' gesetzt wird
+  closeDialog() {
+    this.dialogOpenSubject.next(false);
   }
 
   // Gibt den aktuellen Wert des Subjects synchron zurück
-  get isOpen(): boolean {
-    return this.modalSubject.value;
+  get isDialogOpen(): boolean {
+    return this.dialogOpenSubject.value;
   }
 }
 ```
 
-**Detailierte Kommentare zu den Befehlen:**
+**Detailierte Kommentare und Erklärungen:**
 
-- `private modalSubject = new BehaviorSubject<boolean>(false);`  
+- `private dialogOpenSubject = new BehaviorSubject<boolean>(false);`  
   Erstellt ein BehaviorSubject, das immer einen aktuellen Wert hält (hier:
-  `false` = Modal geschlossen).  
+  `false` = Dialog geschlossen).  
   Das Subject ist privat, damit nur der Service den Wert direkt verändern kann.
-- `modal$: Observable<boolean> = this.modalSubject.asObservable();`  
+- `dialogOpen$: Observable<boolean> = this.dialogOpenSubject.asObservable();`  
   Gibt das Subject als Observable nach außen, damit andere Komponenten den Wert
   abonnieren können, aber nicht direkt verändern.  
   Die `$`-Konvention zeigt an, dass es sich um ein Observable handelt.
-- `showModal()` und `close()`  
+- `openDialog()` und `closeDialog()`  
   Methoden, um den State zentral zu ändern. Komponenten rufen diese Methoden
   auf, statt direkt den Wert zu setzen.
-- `get isOpen(): boolean`  
+- `get isDialogOpen(): boolean`  
   Ermöglicht synchronen Zugriff auf den aktuellen Wert, z.B. für Logik im
-  Service.
+  Service.  
+  **Wann brauche ich das?**
+  - Wenn du im Service selbst oder in anderen Services den aktuellen Status
+    direkt abfragen willst, ohne ein Observable zu abonnieren.
+  - Beispiel: Du willst vor dem Öffnen eines Dialogs prüfen, ob er schon offen
+    ist.
+  - Vorteil: Du bekommst sofort den Wert, ohne auf einen neuen Wert im Stream zu
+    warten. **Wie gehe ich vor, wenn ich das nicht nutzen will?**
+  - Du kannst komplett auf die Property verzichten und stattdessen immer das
+    Observable (`dialogOpen$`) abonnieren.
+  - Das ist besonders sinnvoll, wenn du ausschließlich reaktiv arbeiten willst
+    und keine synchrone Abfrage brauchst.
+  - In Komponenten solltest du ohnehin das Observable abonnieren, z.B. mit
+    `subscribe` oder `async`-Pipe.
 
 ---
 
 ### 2. Komponente abonniert den State
 
 ```typescript
-// modal.component.ts
-import { Component, OnDestroy } from "@angular/core"; // Basis für Angular-Komponenten
-import { ModalService } from "./modal.service"; // Importiert den Service
-import { Subscription } from "rxjs"; // Ermöglicht das Verwalten von Subscriptions
+// dialog.component.ts
+import { Component, OnDestroy } from "@angular/core";
+import { DialogService } from "./dialog.service";
+import { Subscription } from "rxjs";
 
 @Component({
   /* ... */
 })
-export class ModalComponent implements OnDestroy {
-  show = false; // Steuert die Anzeige des Modals
-  private sub: Subscription; // Speichert die Subscription
+export class DialogComponent implements OnDestroy {
+  show = false; // Steuert die Anzeige des Dialogs
+  private sub: Subscription;
 
-  constructor(private modalService: ModalService) {
+  constructor(private dialogService: DialogService) {
     // Abonniert das Observable aus dem Service
     // Bei jeder Änderung wird 'show' aktualisiert
-    this.sub = this.modalService.modal$.subscribe((val) => (this.show = val));
+    this.sub = this.dialogService.dialogOpen$.subscribe(
+      (val) => (this.show = val),
+    );
   }
 
   ngOnDestroy() {
@@ -143,68 +158,38 @@ export class ModalComponent implements OnDestroy {
     this.sub.unsubscribe();
   }
 
-  closeModal() {
-    // Ruft die Methode im Service auf, um das Modal zu schließen
-    this.modalService.close();
+  closeDialog() {
+    // Ruft die Methode im Service auf, um den Dialog zu schließen
+    this.dialogService.closeDialog();
   }
 }
 ```
-
-**Detailierte Kommentare zu den Befehlen:**
-
-- `this.sub = this.modalService.modal$.subscribe(...)`  
-  Die Komponente abonniert das zentrale Observable aus dem Service.  
-  Bei jeder Änderung des Modal-Status wird die lokale Variable `show`
-  aktualisiert.
-- `ngOnDestroy()`  
-  Lebenszyklus-Hook, wird beim Entfernen der Komponente aufgerufen.  
-  Hier wird die Subscription beendet, um Speicherlecks zu vermeiden.
-- `closeModal()`  
-  Methode, die das Modal über den Service schließt.  
-  Die Komponente verändert den State nie direkt, sondern immer über den Service.
 
 ---
 
 ### 3. Template: Anzeige abhängig vom State
 
 ```html
-<!-- modal.component.html -->
-<div *ngIf="show" class="modal">
-  <p>Modal-Inhalt</p>
-  <button (click)="closeModal()">Schließen</button>
+<!-- dialog.component.html -->
+<div *ngIf="show" class="dialog">
+  <p>Dialog-Inhalt</p>
+  <button (click)="closeDialog()">Schließen</button>
 </div>
 ```
 
-**Detailierte Kommentare zu den Befehlen:**
-
-- `*ngIf="show"`  
-  Das Modal wird nur angezeigt, wenn `show` true ist.  
-  Die Anzeige ist direkt an den State aus dem Service gekoppelt.
-- `(click)="closeModal()"`  
-  Beim Klick auf den Button wird die Methode `closeModal()` ausgeführt, die das
-  Modal über den Service schließt.
-
 ---
 
-### 4. Modal von überall öffnen
+### 4. Dialog von überall öffnen
 
 ```typescript
 // irgendeine andere Komponente
-constructor(private modalService: ModalService) {}
+constructor(private dialogService: DialogService) {}
 
-openModal() {
-  // Öffnet das Modal über den Service
-  this.modalService.showModal();
+openDialog() {
+  // Öffnet den Dialog über den Service
+  this.dialogService.openDialog();
 }
 ```
-
-**Detailierte Kommentare zu den Befehlen:**
-
-- `modalService.showModal()`  
-  Setzt den Wert im Subject auf `true`, alle Subscriber (z.B. Modal-Komponente)
-  reagieren darauf.  
-  So kann das Modal von jeder beliebigen Komponente aus geöffnet werden, ohne
-  direkte Verbindung zur Modal-Komponente.
 
 ---
 
@@ -219,6 +204,20 @@ openModal() {
 | `.unsubscribe()`              | Beendet das Abo, verhindert Speicherlecks             |
 | `*ngIf="..."`                 | Zeigt/verbirgt Elemente im Template abhängig vom Wert |
 | `(click)="..."`               | Führt eine Methode beim Klick aus                     |
+| `get isDialogOpen`            | Gibt den aktuellen Wert synchron zurück               |
+
+---
+
+## Hinweise zu `get isDialogOpen`
+
+- **Vorteil:**  
+  Direkter Zugriff auf den aktuellen Wert, z.B. für Bedingungen im Service.
+- **Nachteil:**  
+  Nicht reaktiv – Änderungen werden nicht automatisch erkannt.  
+  In Komponenten solltest du immer das Observable nutzen.
+- **Ohne diese Property:**  
+  Arbeite ausschließlich mit dem Observable (`dialogOpen$`).  
+  Das ist der empfohlene Weg für UI und reaktive Logik.
 
 ---
 
@@ -269,12 +268,12 @@ Komponenten direkt miteinander kommunizieren.
 
 ## 8. Methodenübersicht
 
-| Methode/Property | Beschreibung                             |
-| ---------------- | ---------------------------------------- |
-| `modal$`         | Observable für den aktuellen Modal-State |
-| `showModal()`    | Modal öffnen                             |
-| `close()`        | Modal schließen                          |
-| `isOpen`         | Aktueller Wert synchron abfragbar        |
+| Methode/Property | Beschreibung                              |
+| ---------------- | ----------------------------------------- |
+| `dialog$`        | Observable für den aktuellen Dialog-State |
+| `openDialog()`   | Dialog öffnen                             |
+| `closeDialog()`  | Dialog schließen                          |
+| `isDialogOpen`   | Aktueller Wert synchron abfragbar         |
 
 ---
 
