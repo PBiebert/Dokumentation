@@ -134,29 +134,18 @@ export class DialogService {
 
 ```typescript
 // dialog.component.ts
-import { Component, OnDestroy } from "@angular/core";
+import { Component } from "@angular/core";
 import { DialogService } from "./dialog.service";
-import { Subscription } from "rxjs";
 
 @Component({
   /* ... */
 })
-export class DialogComponent implements OnDestroy {
-  show = false; // Steuert die Anzeige des Dialogs
-  private sub: Subscription;
+export class DialogComponent {
+  // Das Observable aus dem Service wird direkt als Property bereitgestellt.
+  // Die Komponente muss keine Subscription mehr verwalten.
+  dialogOpen$ = this.dialogService.dialogOpen$;
 
-  constructor(private dialogService: DialogService) {
-    // Abonniert das Observable aus dem Service
-    // Bei jeder Änderung wird 'show' aktualisiert
-    this.sub = this.dialogService.dialogOpen$.subscribe(
-      (val) => (this.show = val),
-    );
-  }
-
-  ngOnDestroy() {
-    // Subscription aufräumen, um Speicherlecks zu vermeiden
-    this.sub.unsubscribe();
-  }
+  constructor(private dialogService: DialogService) {}
 
   closeDialog() {
     // Ruft die Methode im Service auf, um den Dialog zu schließen
@@ -165,17 +154,33 @@ export class DialogComponent implements OnDestroy {
 }
 ```
 
+**Hinweis zu Angular v20:**
+
+- Die explizite Subscription im Konstruktor (`private sub: Subscription;`) ist
+  nicht mehr nötig, da die `async`-Pipe im Template das Observable automatisch
+  abonniert und verwaltet.
+- Die Variable `private sub: Subscription;` diente früher dazu, die Subscription
+  zu speichern, damit sie im `ngOnDestroy` wieder aufgelöst werden kann.
+- Mit der `async`-Pipe wird das automatisch erledigt – kein Memory-Leak-Risiko
+  und weniger Boilerplate-Code.
+
 ---
 
 ### 3. Template: Anzeige abhängig vom State
 
 ```html
 <!-- dialog.component.html -->
-<div *ngIf="show" class="dialog">
+<div *ngIf="dialogOpen$ | async" class="dialog">
   <p>Dialog-Inhalt</p>
   <button (click)="closeDialog()">Schließen</button>
 </div>
 ```
+
+**Erklärung:**
+
+- Die `async`-Pipe übernimmt das Abonnieren und Entabonnieren des Observables
+  automatisch.
+- Das Template zeigt den Dialog nur, wenn das Observable `true` liefert.
 
 ---
 
