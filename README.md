@@ -49,6 +49,13 @@
 </details>
 
 <details>
+<summary><strong>RxJs</strong></summary>
+
+- [State management with `BehaviorSubject` in the service (Angular)](./RxJS/01_BehaviorSubject_Angular.md)
+
+</details>
+
+<details>
 <summary><strong>Angular v20</strong></summary>
 
 - [Install Angular CLI](./Angular/01_install.md)
