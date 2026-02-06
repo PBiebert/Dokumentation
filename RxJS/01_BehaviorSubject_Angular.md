@@ -136,17 +136,18 @@ export class DialogService {
 
 ```typescript
 // dialog.component.ts
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogService } from "./dialog.service";
 
 @Component({
   /* ... */
 })
-export class DialogComponent implements OnDestroy {
+export class DialogComponent implements OnInit, OnDestroy {
   private sub!: Subscription;
+  private dialogService = inject(DialogService);
 
-  constructor(private dialogService: DialogService) {
+  ngOnInit() {
     this.sub = this.dialogService.dialogOpen$.subscribe((open) => {
       // Reaktion auf State-Änderung (imperative Logik)
       if (open) {
@@ -175,10 +176,12 @@ direkt mit `async` nutzen, ohne manuelles `subscribe`.
 
 ```typescript
 // dialog.component.ts
-export class DialogComponent {
-  dialogOpen$ = this.dialogService.dialogOpen$;
+import { inject } from "@angular/core";
+import { DialogService } from "./dialog.service";
 
-  constructor(private dialogService: DialogService) {}
+export class DialogComponent {
+  private dialogService = inject(DialogService);
+  dialogOpen$ = this.dialogService.dialogOpen$;
 
   closeDialog() {
     this.dialogService.closeDialog();
