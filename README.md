@@ -106,6 +106,13 @@
 </details>
 
 <details>
+<summary><strong>Material Design</strong></summary>
+
+- [Installing Angular Material – Modern UI design for Angular projects](./Material%20Design/installAngularMaterial.md)
+
+</details>
+
+<details>
 <summary><strong>SCSS</strong></summary>
 
 - [SCSS Installation and Compilation](./Scss/basics.md)
