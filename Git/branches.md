@@ -206,6 +206,45 @@ wechseln und dort weiterarbeiten.
 Du kannst diesen Ablauf beliebig oft wiederholen, um flexibel zwischen Branches
 zu wechseln und überall Änderungen vorzunehmen.
 
+## Branches zusammenführen (Mergen)
+
+Wenn du mit der Arbeit an einem Branch (z.B. `feature/xyz`) fertig bist und die
+Änderungen in einen anderen Branch (z.B. `main` oder `dev`) übernehmen möchtest,
+kannst du die Branches zusammenführen (mergen).
+
+**So funktioniert das Mergen:**
+
+1. **Wechsle in den Ziel-Branch (z.B. `main`):**
+
+   ```bash
+   git switch main
+   ```
+
+   oder
+
+   ```bash
+   git checkout main
+   ```
+
+2. **Führe den Merge aus:**
+
+   ```bash
+   git merge feature/xyz
+   ```
+
+   Dadurch werden die Änderungen aus `feature/xyz` in den aktuellen Branch
+   (`main`) übernommen.
+
+3. **(Optional) Push auf das Remote-Repository:**
+   ```bash
+   git push origin main
+   ```
+
+**Hinweis:**  
+Falls es Konflikte gibt, zeigt Git dir an, welche Dateien angepasst werden
+müssen. Löse die Konflikte, committe die Änderungen und führe ggf. den Merge
+fort.
+
 ## Wichtige Punkte
 
 - Verwende für jede neue Aufgabe oder Bugfix einen eigenen Branch.
