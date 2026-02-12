@@ -83,12 +83,6 @@ auf dem du dich gerade befindest (z.B. `origin/feature/xyz` auf
 **Um explizit die neuesten Änderungen aus `main` auf deinen aktuellen Branch zu
 holen, verwende:**
 
-> **Hinweis:**  
-> In vielen Beispielen steht zuerst `git checkout <dein-branch>`.  
-> Das ist nur nötig, wenn du dich noch nicht auf deinem Ziel-Branch befindest.  
-> Bist du bereits auf dem Branch, kannst du direkt mit `git fetch` und
-> `git merge` oder `git pull origin main` weitermachen.
-
 **Möglichkeit 1: Mergen**
 
 ```bash
@@ -102,6 +96,12 @@ git merge origin/main
 git fetch origin
 git rebase origin/main
 ```
+
+> **Hinweis:**  
+> In vielen Beispielen steht zuerst `git checkout <dein-branch>`.  
+> Das ist nur nötig, wenn du dich noch nicht auf deinem Ziel-Branch befindest.  
+> Bist du bereits auf dem Branch, kannst du direkt mit `git fetch` und
+> `git merge` oder `git pull origin main` weitermachen.
 
 > `git pull origin main` würde die Änderungen aus `main` direkt in deinen
 > aktuellen Branch mergen (entspricht `fetch` + `merge`).  
@@ -124,12 +124,6 @@ git rebase origin/main
 Wenn du mit einem Branch fertig bist (z.B. nach dem Merge in `main`), kannst du
 ihn löschen:
 
-> **Hinweis:**  
-> Das Löschen von Branches ist **nicht zwingend erforderlich**.  
-> Du kannst Branches auch behalten.  
-> Allerdings empfiehlt es sich, nicht mehr benötigte Branches zu löschen, um das
-> Repository übersichtlich zu halten und Verwirrung zu vermeiden.
-
 **Lokal löschen:**
 
 ```bash
@@ -147,9 +141,33 @@ git push origin --delete <branchname>
 
 - Damit entfernst du den Branch auch vom Remote-Repository (z.B. auf GitHub).
 
+> **Hinweis:**  
+> Das Löschen von Branches ist **nicht zwingend erforderlich**.  
+> Du kannst Branches auch behalten.  
+> Allerdings empfiehlt es sich, nicht mehr benötigte Branches zu löschen, um das
+> Repository übersichtlich zu halten und Verwirrung zu vermeiden.
+
 > **Tipp:**  
 > Lösche Branches erst, wenn sie wirklich nicht mehr benötigt werden und alle
 > Änderungen übernommen wurden.
+
+## Branch veröffentlichen
+
+Wenn du einen neuen Branch erstellt hast, ist dieser zunächst nur lokal
+vorhanden.  
+Um ihn für andere sichtbar zu machen und auf das Remote-Repository (z.B. GitHub)
+hochzuladen, verwende:
+
+```bash
+git push origin <branchname>
+```
+
+- Dadurch wird der Branch auf das Remote-Repository übertragen.
+- Nach dem Push können andere Teammitglieder darauf zugreifen.
+
+> **Tipp:**  
+> Nach dem ersten Push kannst du mit `git push` und `git pull` wie gewohnt
+> arbeiten, da der Branch nun mit dem Remote-Branch verknüpft ist.
 
 ## Key Points
 
