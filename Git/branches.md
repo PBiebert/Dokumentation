@@ -1,78 +1,62 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Working with Branches
+# Git – Arbeiten mit Branches
 
-Branches are the central tool for parallel development and a clean commit
-history in Git. They allow you to test new features or bugfixes without
-affecting the main development line.
+Branches sind das zentrale Werkzeug für parallele Entwicklung und eine saubere
+Commit-Historie in Git. Sie ermöglichen es dir, neue Features oder Bugfixes zu
+testen, ohne die Hauptentwicklungslinie zu beeinflussen.
 
-## Benefits and Use Cases
+## Vorteile und Anwendungsfälle
 
-- Each branch is its own development environment
-- Enables parallel teamwork
-- Supports different release states (e.g. `main`, `dev`, `feature/*`,
+- Jeder Branch ist eine eigene Entwicklungsumgebung
+- Ermöglicht parallele Teamarbeit
+- Unterstützt verschiedene Release-Stände (z.B. `main`, `dev`, `feature/*`,
   `bugfix/*`)
-- Keeps history clear and understandable
+- Hält die Historie klar und verständlich
 
-## Typical Branch Names and Workflows
+## Typische Branchnamen und Workflows
 
-- **main**: Main development branch, contains stable code
-- **dev**: Development branch for new features
-- **feature/xyz**: For new features, e.g. `feature/login-system`
-- **bugfix/xyz**: For bugfixes, e.g. `bugfix/login-error`
+- **main**: Hauptentwicklungs-Branch, enthält stabilen Code
+- **dev**: Entwicklungs-Branch für neue Features
+- **feature/xyz**: Für neue Features, z.B. `feature/login-system`
+- **bugfix/xyz**: Für Bugfixes, z.B. `bugfix/login-error`
 
-## Creating and Switching Branches
+## Branches erstellen und wechseln
 
-Create and switch to a new branch:
+Einen neuen Branch erstellen und direkt darauf wechseln:
 
 ```bash
 git checkout -b <branchname>
 ```
 
-Or, more modern:
+Oder moderner:
 
 ```bash
 git switch -c <branchname>
 ```
 
-Switch to an existing branch:
+Zu einem bestehenden Branch wechseln:
 
 ```bash
 git checkout <branchname>
 ```
 
-Or, more modern:
+Oder moderner:
 
 ```bash
 git switch <branchname>
 ```
 
-List all branches:
+Alle Branches auflisten:
 
 ```bash
 git branch
 ```
 
-Delete a branch:
+Einen Branch löschen:
 
 ```bash
 git branch -d <branchname>
-```
-
-## Detached HEAD and Switching to Commits
-
-Switch to a specific commit (detached HEAD):
-
-```bash
-git checkout <commit-id>
-```
-
-- HEAD now points directly to a commit, not a branch.
-- Changes you make here are "dangling" and will be lost unless you create a new
-  branch:
-
-```bash
-git checkout -b <new-branch>
 ```
 
 ## Änderungen aus `main` auf den eigenen Branch holen
@@ -169,16 +153,69 @@ git push origin <branchname>
 > Nach dem ersten Push kannst du mit `git push` und `git pull` wie gewohnt
 > arbeiten, da der Branch nun mit dem Remote-Branch verknüpft ist.
 
-## Key Points
+## Zwischenzeitlich zu einem anderen Branch wechseln
 
-- Use branches for every new task or bugfix.
-- Switch between branches with `switch` or `checkout`.
-- In detached HEAD state, always create a new branch if you want to keep your
-  changes.
+Manchmal möchtest du während deiner Arbeit an einem Branch (z.B. `feature/xyz`)
+kurz zu einem anderen Branch (z.B. `main`) wechseln, um dort Änderungen
+vorzunehmen. Danach kannst du wieder zurück in deinem ursprünglichen Branch
+wechseln und dort weiterarbeiten.
+
+**So gehst du vor:**
+
+1. **Stelle sicher, dass deine aktuellen Änderungen gesichert sind:**  
+   Wenn du noch nicht committet hast, kannst du deine Änderungen mit `git stash`
+   zwischenspeichern:
+
+   ```bash
+   git stash
+   ```
+
+2. **Wechsle zum gewünschten Branch (z.B. `main`):**
+
+   ```bash
+   git switch main
+   ```
+
+   oder
+
+   ```bash
+   git checkout main
+   ```
+
+3. **Nimm deine Änderungen im anderen Branch vor**  
+   Führe die gewünschten Änderungen durch und committe sie wie gewohnt.
+
+4. **Wechsle zurück zu deinem ursprünglichen Branch:**
+
+   ```bash
+   git switch feature/xyz
+   ```
+
+   oder
+
+   ```bash
+   git checkout feature/xyz
+   ```
+
+5. **(Optional) Hole deine zwischengespeicherten Änderungen zurück:**  
+   Falls du `git stash` verwendet hast, hole die Änderungen mit:
+   ```bash
+   git stash pop
+   ```
+
+Du kannst diesen Ablauf beliebig oft wiederholen, um flexibel zwischen Branches
+zu wechseln und überall Änderungen vorzunehmen.
+
+## Wichtige Punkte
+
+- Verwende für jede neue Aufgabe oder Bugfix einen eigenen Branch.
+- Wechsle zwischen Branches mit `switch` oder `checkout`.
+- Im Detached-HEAD-Zustand immer einen neuen Branch erstellen, wenn du deine
+  Änderungen behalten möchtest.
 
 ---
 
-**See also:**
+**Siehe auch:**
 
-- [Undoing changes and commits](./aenderungen_und_commits_rueckgaengig.md)
-- [Merge conflicts and undoing merges](./merge_commits.md)
+- [Änderungen und Commits rückgängig machen](./aenderungen_und_commits_rueckgaengig.md)
+- [Merge-Konflikte und Merges rückgängig machen](./merge_commits.md)
