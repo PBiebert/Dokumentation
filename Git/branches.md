@@ -6,6 +6,21 @@ Branches sind das zentrale Werkzeug für parallele Entwicklung und eine saubere
 Commit-Historie in Git. Sie ermöglichen es dir, neue Features oder Bugfixes zu
 testen, ohne die Hauptentwicklungslinie zu beeinflussen.
 
+<!-- Inhaltsverzeichnis -->
+
+## Inhaltsverzeichnis
+
+- [Vorteile und Anwendungsfälle](#vorteile-und-anwendungsfälle)
+- [Typische Branchnamen und Workflows](#typische-branchnamen-und-workflows)
+- [Branches erstellen und wechseln](#branches-erstellen-und-wechseln)
+- [Branch veröffentlichen](#branch-veröffentlichen)
+- [Änderungen aus main auf den eigenen Branch holen](#änderungen-aus-main-auf-den-eigenen-branch-holen)
+- [Zwischenzeitlich zu einem anderen Branch wechseln](#zwischenzeitlich-zu-einem-anderen-branch-wechseln)
+- [Branches zusammenführen (Mergen)](#branches-zusammenführen-mergen)
+- [Abgeschlossene Branches löschen](#abgeschlossene-branches-löschen)
+- [Wichtige Punkte](#wichtige-punkte)
+- [Siehe auch](#siehe-auch)
+
 ## Vorteile und Anwendungsfälle
 
 - Jeder Branch ist eine eigene Entwicklungsumgebung
@@ -53,11 +68,23 @@ Alle Branches auflisten:
 git branch
 ```
 
-Einen Branch löschen:
+## Branch veröffentlichen
+
+Wenn du einen neuen Branch erstellt hast, ist dieser zunächst nur lokal
+vorhanden.  
+Um ihn für andere sichtbar zu machen und auf das Remote-Repository (z.B. GitHub)
+hochzuladen, verwende:
 
 ```bash
-git branch -d <branchname>
+git push origin <branchname>
 ```
+
+- Dadurch wird der Branch auf das Remote-Repository übertragen.
+- Nach dem Push können andere Teammitglieder darauf zugreifen.
+
+> **Tipp:**  
+> Nach dem ersten Push kannst du mit `git push` und `git pull` wie gewohnt
+> arbeiten, da der Branch nun mit dem Remote-Branch verknüpft ist.
 
 ## Änderungen aus `main` auf den eigenen Branch holen
 
@@ -102,56 +129,6 @@ git rebase origin/main
 - `git pull` allein aktualisiert nur deinen aktuellen Branch.
 - Mit `git pull origin main` oder `git merge origin/main` holst du gezielt die
   Änderungen aus `main`.
-
-## Abgeschlossene Branches löschen
-
-Wenn du mit einem Branch fertig bist (z.B. nach dem Merge in `main`), kannst du
-ihn löschen:
-
-**Lokal löschen:**
-
-```bash
-git branch -d <branchname>
-```
-
-- Nutze `-d` (delete), wenn der Branch bereits gemerged wurde.
-- Nutze `-D` (force delete), um den Branch auch ohne Merge zu löschen.
-
-**Remote löschen:**
-
-```bash
-git push origin --delete <branchname>
-```
-
-- Damit entfernst du den Branch auch vom Remote-Repository (z.B. auf GitHub).
-
-> **Hinweis:**  
-> Das Löschen von Branches ist **nicht zwingend erforderlich**.  
-> Du kannst Branches auch behalten.  
-> Allerdings empfiehlt es sich, nicht mehr benötigte Branches zu löschen, um das
-> Repository übersichtlich zu halten und Verwirrung zu vermeiden.
-
-> **Tipp:**  
-> Lösche Branches erst, wenn sie wirklich nicht mehr benötigt werden und alle
-> Änderungen übernommen wurden.
-
-## Branch veröffentlichen
-
-Wenn du einen neuen Branch erstellt hast, ist dieser zunächst nur lokal
-vorhanden.  
-Um ihn für andere sichtbar zu machen und auf das Remote-Repository (z.B. GitHub)
-hochzuladen, verwende:
-
-```bash
-git push origin <branchname>
-```
-
-- Dadurch wird der Branch auf das Remote-Repository übertragen.
-- Nach dem Push können andere Teammitglieder darauf zugreifen.
-
-> **Tipp:**  
-> Nach dem ersten Push kannst du mit `git push` und `git pull` wie gewohnt
-> arbeiten, da der Branch nun mit dem Remote-Branch verknüpft ist.
 
 ## Zwischenzeitlich zu einem anderen Branch wechseln
 
@@ -244,6 +221,38 @@ kannst du die Branches zusammenführen (mergen).
 Falls es Konflikte gibt, zeigt Git dir an, welche Dateien angepasst werden
 müssen. Löse die Konflikte, committe die Änderungen und führe ggf. den Merge
 fort.
+
+## Abgeschlossene Branches löschen
+
+Wenn du mit einem Branch fertig bist (z.B. nach dem Merge in `main`), kannst du
+ihn löschen:
+
+**Lokal löschen:**
+
+```bash
+git branch -d <branchname>
+```
+
+- Nutze `-d` (delete), wenn der Branch bereits gemerged wurde.
+- Nutze `-D` (force delete), um den Branch auch ohne Merge zu löschen.
+
+**Remote löschen:**
+
+```bash
+git push origin --delete <branchname>
+```
+
+- Damit entfernst du den Branch auch vom Remote-Repository (z.B. auf GitHub).
+
+> **Hinweis:**  
+> Das Löschen von Branches ist **nicht zwingend erforderlich**.  
+> Du kannst Branches auch behalten.  
+> Allerdings empfiehlt es sich, nicht mehr benötigte Branches zu löschen, um das
+> Repository übersichtlich zu halten und Verwirrung zu vermeiden.
+
+> **Tipp:**  
+> Lösche Branches erst, wenn sie wirklich nicht mehr benötigt werden und alle
+> Änderungen übernommen wurden.
 
 ## Wichtige Punkte
 
