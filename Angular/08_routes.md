@@ -64,13 +64,13 @@ Jede Route zeigt eine eigene Komponente an. Beispiel:
 Um zwischen Seiten zu navigieren, verwendet man Links mit dem Pfad der Route.
 
 ```html
-<a href="imprint">Impressum</a>
+<a routerLink="imprint">Impressum</a>
 ```
 
-Alternativ kann man Angulars RouterLink verwenden:
+**Auch Buttons können für Navigation genutzt werden:**
 
 ```html
-<a routerLink="imprint">Impressum</a>
+<button [routerLink]="['/imprint']">Impressum</button>
 ```
 
 ---
@@ -82,7 +82,8 @@ Im Footer können Links zu verschiedenen Routen eingebaut werden:
 ```html
 <footer>
   <!-- ...existing code... -->
-  <a href="imprint">Impressum</a>
+  <a routerLink="imprint">Impressum</a>
+  <button [routerLink]="['/imprint']">Impressum</button>
 </footer>
 ```
 
