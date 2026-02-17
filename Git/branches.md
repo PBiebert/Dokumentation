@@ -108,27 +108,25 @@ git fetch origin
 git rebase origin/main
 ```
 
-> **Hinweis:**  
-> In vielen Beispielen steht zuerst `git checkout <dein-branch>`.  
-> Das ist nur nötig, wenn du dich noch nicht auf deinem Ziel-Branch befindest.  
-> Bist du bereits auf dem Branch, kannst du direkt mit `git fetch` und
-> `git merge` oder `git pull origin main` weitermachen.
+**Unterschied zwischen Merge und Rebase**
 
-> `git pull origin main` würde die Änderungen aus `main` direkt in deinen
-> aktuellen Branch mergen (entspricht `fetch` + `merge`).  
-> Das ist möglich, aber explizit:
->
-> ```bash
-> git pull origin main
-> ```
->
-> **Achtung:** Das macht ein Merge von `origin/main` in deinen aktuellen Branch.
+- **Merge (`git merge origin/main`):**
+  - Erstellt einen neuen "Merge-Commit", der die Änderungen aus `origin/main` und deinem aktuellen Branch zusammenführt.
+  - Die Historie bleibt verzweigt, d.h. man sieht, dass zwei Entwicklungsstränge zusammengeführt wurden.
+  - Vorteil: Die Commit-Historie bleibt vollständig und zeigt, wann Branches zusammengeführt wurden.
+  - Nachteil: Die Historie kann bei vielen Merges unübersichtlich werden.
 
-**Zusammengefasst:**
+- **Rebase (`git rebase origin/main`):**
+  - "Spult" deine eigenen Commits so um, als ob sie direkt auf den neuesten Stand von `origin/main` aufgesetzt wurden.
+  - Die Historie wirkt dadurch linearer und aufgeräumter.
+  - Vorteil: Saubere, lineare Commit-Historie, als ob alles nacheinander entwickelt wurde.
+  - Nachteil: Bei öffentlichen Branches kann das Umschreiben der Historie zu Problemen führen, wenn andere darauf arbeiten.
 
-- `git pull` allein aktualisiert nur deinen aktuellen Branch.
-- Mit `git pull origin main` oder `git merge origin/main` holst du gezielt die
-  Änderungen aus `main`.
+**Wann sollte man was verwenden?**
+
+- **Merge** eignet sich, wenn du die Historie vollständig und nachvollziehbar halten möchtest, z.B. in Teamprojekten oder bei öffentlichen Branches.
+- **Rebase** ist sinnvoll, wenn du eine saubere, lineare Historie bevorzugst und dein Branch nur von dir genutzt wird (z.B. vor dem Erstellen eines Pull Requests).
+- **Wichtig:** Bei gemeinsam genutzten Branches solltest du Rebase nur anwenden, wenn alle Teammitglieder damit einverstanden sind und wissen, wie man mit eventuellen Konflikten umgeht.
 
 ## Zwischenzeitlich zu einem anderen Branch wechseln
 
