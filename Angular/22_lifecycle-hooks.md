@@ -13,6 +13,29 @@ oder Zerstörung zu reagieren und gezielt Code auszuführen.
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was sind Lifecycle-Hooks?](#was-sind-lifecycle-hooks)
+2. [Übersicht Lifecycle-Hooks](#übersicht-lifecycle-hooks)
+3. [OnInit – Initialisierung von Komponenten und Directives](#oninit--initialisierung-von-komponenten-und-directives)
+   - [Was ist OnInit?](#was-ist-oninit)
+   - [Wann verwendet man OnInit?](#wann-verwendet-man-oninit)
+   - [Vorteile von OnInit](#vorteile-von-oninit)
+   - [Begriffe](#begriffe)
+   - [Schritt-für-Schritt: OnInit verwenden](#schritt-für-schritt-oninit-verwenden)
+   - [Best Practices](#best-practices)
+   - [Fazit](#fazit)
+4. [AfterViewInit – Zugriff auf das View-Template nach der Initialisierung](#afterviewinit--zugriff-auf-das-view-template-nach-der-initialisierung)
+   - [Was ist AfterViewInit?](#was-ist-afterviewinit)
+   - [Wann verwendet man AfterViewInit?](#wann-verwendet-man-afterviewinit)
+   - [Vorteile von AfterViewInit](#vorteile-von-afterviewinit)
+   - [Begriffe](#begriffe-1)
+   - [Schritt-für-Schritt: AfterViewInit verwenden](#schritt-für-schritt-afterviewinit-verwenden)
+   - [Best Practices](#best-practices-1)
+   - [Fazit](#fazit-1)
+
+---
+
 ## Übersicht Lifecycle-Hooks
 
 | Hook              | Wann wird er aufgerufen?                                      | Typische Anwendungsfälle          |

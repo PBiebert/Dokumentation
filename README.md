@@ -1,38 +1,38 @@
-# Table of Contents – Documentation
+# Inhaltsverzeichnis – Dokumentation
 
 <details>
 <summary><strong>JavaScript</strong></summary>
 
-- [Basics](./Javascript/basics.md)
-- [Numbers & Strings](./Javascript/string_numbers.md)
-- [Objects](./Javascript/objects.md)
-- [Arrays & Loops](./Javascript/arrays_and_loops.md)
-- [Date Object](./Javascript/date-objekt.md)
-- [Functions](./Javascript/functions.md)
-- [Conditionals & Comparisons](./Javascript/conditional_code.md)
-- [DOM Manipulation](./Javascript/dom_manipulation.md)
+- [Grundlagen](./Javascript/basics.md)
+- [Zahlen & Strings](./Javascript/string_numbers.md)
+- [Objekte](./Javascript/objects.md)
+- [Arrays & Schleifen](./Javascript/arrays_and_loops.md)
+- [Date-Objekt](./Javascript/date-objekt.md)
+- [Funktionen](./Javascript/functions.md)
+- [Bedingungen & Vergleiche](./Javascript/conditional_code.md)
+- [DOM-Manipulation](./Javascript/dom_manipulation.md)
 - [Local Storage](./Javascript/localStorage.md)
 - [Scopes](./Javascript/scopes.md)
 - [fetch, Promises & Async](./Javascript/fetch.md)
-- [class](./Javascript/class.md)
+- [Klassen](./Javascript/class.md)
 - [canvas](./Javascript/canvas.md)
-- [canvas-game-mechanics](./Javascript/canvas-game-mechanics.md)
+- [canvas-Spielmechaniken](./Javascript/canvas-game-mechanics.md)
 
 </details>
 
 <details>
 <summary><strong>Git</strong></summary>
 
-- [Git Cheat Sheet – The most important Git commands at a glance](./Git/git-cheat-sheet.md)
-- [Basic Principles and First Steps](./Git/git_basic_principles_and_first_steps.md)
-- [Typical Workflow](./Git/workflow.md)
-- [Working with Branches](./Git/branches.md)
-- [Remote Repositories](./Git/remote_repositories.md)
-- [Cloning Repositories](./Git/clone_repositories.md)
-- [Undoing Changes and Commits](./Git/undoing_changes_and_commits.md)
-- [Merge Commits](./Git/merge_commits.md)
-- [Merge Conflicts](./Git/merge_conflicts.md)
-- [Repository Structure: .gitignore, README, LICENSE](./Git/repo_structure.md)
+- [Git Cheat Sheet – Die wichtigsten Git-Befehle auf einen Blick](./Git/git-cheat-sheet.md)
+- [Grundprinzipien und erste Schritte](./Git/git_basic_principles_and_first_steps.md)
+- [Typischer Workflow](./Git/workflow.md)
+- [Arbeiten mit Branches](./Git/branches.md)
+- [Remote-Repositories](./Git/remote_repositories.md)
+- [Repositories klonen](./Git/clone_repositories.md)
+- [Änderungen und Commits rückgängig machen](./Git/undoing_changes_and_commits.md)
+- [Merge-Commits](./Git/merge_commits.md)
+- [Merge-Konflikte](./Git/merge_conflicts.md)
+- [Repository-Struktur: .gitignore, README, LICENSE](./Git/repo_structure.md)
 - [Personal Access Token](./Git/personal_access_token.md)
 
 </details>
@@ -40,95 +40,96 @@
 <details>
 <summary><strong>TypeScript</strong></summary>
 
-- [TypeScript Installation and Compilation](./Typescript/basics.md)
-- [Primitive types](./Typescript/primitive_types.md)
-- [Object types](./Typescript/object_types.md)
-- [Types in arrays and functions](./Typescript/types_in_arrays_and_functions.md)
-- [Literals and Tuples](./Typescript/literals_and_tuples.md)
+- [TypeScript Installation und Kompilierung](./Typescript/basics.md)
+- [Primitive Typen](./Typescript/primitive_types.md)
+- [Objekttypen](./Typescript/object_types.md)
+- [Typen in Arrays und Funktionen](./Typescript/types_in_arrays_and_functions.md)
+- [Literals und Tupel](./Typescript/literals_and_tuples.md)
 
 </details>
 
 <details>
 <summary><strong>RxJs</strong></summary>
 
-- [State management with `BehaviorSubject` in the service (Angular)](./RxJS/01_BehaviorSubject_Angular.md)
+- [State-Management mit `BehaviorSubject` im Service (Angular)](./RxJS/01_BehaviorSubject_Angular.md)
 
 </details>
 
 <details>
 <summary><strong>Angular v20</strong></summary>
 
-- [Install Angular CLI](./Angular/01_install.md)
-- [Create new Angular project](./Angular/02_create_new_project.md)
-- [What are components?](./Angular/03_what_are_components.md)
-- [Create new component manually](./Angular/04_create_new_component.md)
-- [Displaying TypeScript variables in HTML: The `{{}}` notation](./Angular/05_show-ts-variable-in-html.md)
-- [Embed fonts](./Angular/06_embedding_fonts.md)
-- [Create new component with ng generate](./Angular/07_ng_generate_component.md)
+- [Angular CLI installieren](./Angular/01_install.md)
+- [Neues Angular-Projekt erstellen](./Angular/02_create_new_project.md)
+- [Was sind Komponenten?](./Angular/03_what_are_components.md)
+- [Neue Komponente manuell erstellen](./Angular/04_create_new_component.md)
+- [TypeScript-Variablen im HTML anzeigen: Die `{{}}`-Notation](./Angular/05_show-ts-variable-in-html.md)
+- [Schriftarten einbinden](./Angular/06_embedding_fonts.md)
+- [Neue Komponente mit ng generate erstellen](./Angular/07_ng_generate_component.md)
 - [Routing](./Angular/08_routes.md)
-- [Build Angular project](./Angular/09_ng_build.md)
-- [Server configuration for Angular routing](./Angular/10_htaccess.md)
-- [Conditions and control structures in the Angular template](./Angular/11_condition.md)
-- [@for-loop](./Angular/12_for-loop.md)
-- [Dynamic styles](./Angular/13_ngStyle.md)
-- [Dynamic CSS classes](./Angular/14_ngClass.md)
-- [@Input – Passing external data to components](./Angular/15_input.md)
+- [Angular-Projekt bauen](./Angular/09_ng_build.md)
+- [Serverkonfiguration für Angular Routing](./Angular/10_htaccess.md)
+- [Bedingungen und Kontrollstrukturen im Angular-Template](./Angular/11_condition.md)
+- [@for-Schleife](./Angular/12_for-loop.md)
+- [Dynamische Styles](./Angular/13_ngStyle.md)
+- [Dynamische CSS-Klassen](./Angular/14_ngClass.md)
+- [@Input – Externe Daten an Komponenten übergeben](./Angular/15_input.md)
 - [Event Listener](./Angular/17_event-listeners.md)
-- [Data binding and event communication](./Angular/18_Data_binding_and_event_communication.md)
-- [Services – Sharing common logic and data](./Angular/19_services.md)
-- [ElementRef – Working directly with DOM elements](./Angular/20_elementRef.md)
-- [inject() – Modern Dependency Injection](./Angular/21_inject.md)
-- [Lifecycle hooks in Angular](./Angular/22_lifecycle-hooks.md)
-- [Directives – Control the behavior and appearance of components](./Angular/23_derectives.md)
-- [Renderer2 – Secure and cross-platform DOM manipulation in Angular](./Angular/24_Renderer2.md)
-- [@HostListener – Intercept events directly at the host element in Angular](./Angular/25_HostListener.md)
-- [@HostBinding – Binding properties and classes to the host element in Angular](./Angular/26_HostBinding.md)
-- [Property Binding – Controlling the properties of DOM elements in Angular](./Angular/26_PropertyBinding.md)
-- [Forms with ngSubmit in Angular](./Angular/27_ngSubmit.md)
-- [Scroll to top on route change in Angular (from v20)](./Angular/28_DOCUMENT.md)
-- [ngx-translate – Multilingualism in Angular (from v20)](./Angular/29_ngx-translate.md)
-- [Contact form in Angular – Step by step](./Angular/99_Kontaktformular.md)
-- [State-Management mit BehaviorSubject im Service](./Angular/30_BehaviorSubject_Modal.md)
+- [Datenbindung und Event-Kommunikation](./Angular/18_Data_binding_and_event_communication.md)
+- [Services – Gemeinsame Logik und Daten teilen](./Angular/19_services.md)
+- [ElementRef – Direkt mit DOM-Elementen arbeiten](./Angular/20_elementRef.md)
+- [inject() – Moderne Dependency Injection](./Angular/21_inject.md)
+- [Lifecycle-Hooks in Angular](./Angular/22_lifecycle-hooks.md)
+- [ChangeDetectorRef in Angular](./Angular/22a_changedetectorref.md)
+- [Directives – Verhalten und Aussehen von Komponenten steuern](./Angular/23_derectives.md)
+- [Renderer2 – Sichere und plattformübergreifende DOM-Manipulation in Angular](./Angular/24_Renderer2.md)
+- [@HostListener – Events direkt am Host-Element abfangen in Angular](./Angular/25_HostListener.md)
+- [@HostBinding – Properties und Klassen an das Host-Element binden in Angular](./Angular/26_HostBinding.md)
+- [Property Binding – Eigenschaften von DOM-Elementen steuern in Angular](./Angular/26_PropertyBinding.md)
+- [Formulare mit ngSubmit in Angular](./Angular/27_ngSubmit.md)
+- [Scroll to top beim Routenwechsel in Angular (ab v20)](./Angular/28_DOCUMENT.md)
+- [ngx-translate – Mehrsprachigkeit in Angular (ab v20)](./Angular/29_ngx-translate.md)
+- [Kontaktformular in Angular – Schritt für Schritt](./Angular/99_Kontaktformular.md)
+- [Angular BreakpointObserver](./Angular/30-angular-breakpoint-observer.md)
 
 </details>
 
 <details>
 <summary><strong>Firestone in Angular</strong></summary>
 
-- [Create a Firebase project and connect with Angular](./Firebase/create_new_project.md)
-- [Database access with Angular and Firebase](./Firebase/show_data.md)
-- [Add documents to Firestore using `addDoc` in Angular](./Firebase/addDoc.md)
-- [Updating individual fields of a document using `updateDoc` in Firebase](./Firebase/updateDoc.md)
-- [Securely storing the Firebase API key in Angular](./Firebase/secure_api_key.md)
-- [Delete documents with `deleteDoc` in Firebase](./Firebase/deleteDoc.md)
-- [Filtering and limiting Firestore queries with `query`, `limit` and `onSnapshot`](./Firebase/query-limit-onSnapshot.md)
+- [Firebase-Projekt erstellen und mit Angular verbinden](./Firebase/create_new_project.md)
+- [Datenbankzugriff mit Angular und Firebase](./Firebase/show_data.md)
+- [Dokumente mit `addDoc` zu Firestore hinzufügen in Angular](./Firebase/addDoc.md)
+- [Einzelne Felder eines Dokuments mit `updateDoc` in Firebase aktualisieren](./Firebase/updateDoc.md)
+- [Firebase API-Key sicher in Angular speichern](./Firebase/secure_api_key.md)
+- [Dokumente mit `deleteDoc` in Firebase löschen](./Firebase/deleteDoc.md)
+- [Firestore-Abfragen filtern und begrenzen mit `query`, `limit` und `onSnapshot`](./Firebase/query-limit-onSnapshot.md)
 
 </details>
 
 <details>
 <summary><strong>Material Design</strong></summary>
 
-- [Installing Angular Material – Modern UI design for Angular projects](./Material%20Design/installAngularMaterial.md)
+- [Angular Material installieren – Modernes UI-Design für Angular-Projekte](./Material%20Design/installAngularMaterial.md)
 
 </details>
 
 <details>
 <summary><strong>SCSS</strong></summary>
 
-- [SCSS Installation and Compilation](./Scss/basics.md)
-- [Nesting](./Scss/nesting.md)
-- [Variables](./Scss/variablen.md)
+- [SCSS Installation und Kompilierung](./Scss/basics.md)
+- [Verschachtelung (Nesting)](./Scss/nesting.md)
+- [Variablen](./Scss/variablen.md)
 - [Mixin](./Scss/mixin.md)
-- [Fluid layout with Flexbox and Grid in CSS](./Scss/layout-fluid-flexbox-grid.md)
+- [Fluid Layout mit Flexbox und Grid in CSS](./Scss/layout-fluid-flexbox-grid.md)
 
 </details>
 
 <details>
 <summary><strong>NPM</strong></summary>
 
-- [NPM Install](./npm/install.md)
-- [Global modules](./npm/global_modules.md)
+- [NPM Installieren](./npm/install.md)
+- [Globale Module](./npm/global_modules.md)
 - [http-server](./npm/http-server.md)
-- [Serve spa](./npm/serve_spa.md)
+- [Single Page Application bereitstellen](./npm/serve_spa.md)
 
 </details>

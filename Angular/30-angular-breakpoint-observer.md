@@ -1,4 +1,4 @@
-# 30. Angular BreakpointObserver
+# Angular BreakpointObserver
 
 Der `BreakpointObserver` ist ein Service aus dem Angular CDK (Component Dev
 Kit), der es ermöglicht, auf Änderungen von Media Queries (z.B.
