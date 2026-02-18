@@ -40,16 +40,16 @@
 <details>
 <summary><strong>TypeScript</strong></summary>
 
-###### Grundlagen & Setup
+##### Grundlagen & Setup
 
 - [TypeScript Installation und Kompilierung](./Typescript/basics.md)
 
-###### Typen-Grundlagen
+##### Typen-Grundlagen
 
 - [Primitive Typen](./Typescript/primitive_types.md)
 - [Objekttypen](./Typescript/object_types.md)
 
-###### Typen in Arrays & Funktionen
+##### Typen in Arrays & Funktionen
 
 - [Typen in Arrays und Funktionen](./Typescript/types_in_arrays_and_functions.md)
 - [Literals und Tupel](./Typescript/literals_and_tuples.md)
@@ -66,14 +66,14 @@
 <details>
 <summary><strong>Angular v20</strong></summary>
 
-###### Grundlagen & Projektsetup
+##### Grundlagen & Projektsetup
 
 - [Angular CLI installieren](./Angular/01_install.md)
 - [Neues Angular-Projekt erstellen](./Angular/02_create_new_project.md)
 - [Angular-Projekt bauen](./Angular/09_ng_build.md)
 - [Serverkonfiguration für Angular Routing](./Angular/10_htaccess.md)
 
-###### Komponenten & Templates
+##### Komponenten & Templates
 
 - [Was sind Komponenten?](./Angular/03_what_are_components.md)
 - [Neue Komponente manuell erstellen](./Angular/04_create_new_component.md)
@@ -81,18 +81,18 @@
 - [Schriftarten einbinden](./Angular/06_embedding_fonts.md)
 - [Neue Komponente mit ng generate erstellen](./Angular/07_ng_generate_component.md)
 
-###### Routing
+##### Routing
 
 - [Routing](./Angular/08_routes.md)
 
-###### Template-Bindings & Kontrollstrukturen
+##### Template-Bindings & Kontrollstrukturen
 
 - [Bedingungen und Kontrollstrukturen im Angular-Template](./Angular/11_condition.md)
 - [@for-Schleife](./Angular/12_for-loop.md)
 - [`ngStyle`- Dynamische Styles](./Angular/13_ngStyle.md)
 - [`ngClass` - Dynamische CSS-Klassen](./Angular/14_ngClass.md)
 
-###### Datenbindung & Kommunikation
+##### Datenbindung & Kommunikation
 
 - [`@Input` – Externe Daten an Komponenten übergeben](./Angular/15_input.md)
 - [`[(ngModel)]` Datenbindung und Event-Kommunikation](./Angular/18_Data_binding_and_event_communication.md)
@@ -100,34 +100,34 @@
 - [`@Output` und EventEmitter](./Angular/18_Data_binding_and_event_communication.md)
 - [Services – Gemeinsame Logik und Daten teilen](./Angular/19_services.md)
 
-###### DOM & Dependency Injection
+##### DOM & Dependency Injection
 
 - [`ElementRef` - Direkt mit DOM-Elementen arbeiten](./Angular/20_elementRef.md)
 - [`Renderer2`– Sichere und plattformübergreifende DOM-Manipulation in Angular](./Angular/24_Renderer2.md)
 - [`inject()` – Moderne Dependency Injection](./Angular/21_inject.md)
 - [`DOCUMENT` - Zugriff auf das globale Dokument-Objekt in Angular](./Angular/28_DOCUMENT.md)
 
-###### Direktiven
+##### Direktiven
 
 - [Directives – Verhalten und Aussehen von Komponenten steuern](./Angular/23_derectives.md)
 - [`@HostListener` – Events direkt am Host-Element abfangen in Angular](./Angular/25_HostListener.md)
 - [`@HostBinding` – Properties und Klassen an das Host-Element binden in Angular](./Angular/26_HostBinding.md)
 
-###### Lifecycle & Change Detection
+##### Lifecycle & Change Detection
 
 - [Lifecycle-Hooks in Angular](./Angular/22_lifecycle-hooks.md)
 - [`ChangeDetectorRef` - ChangeDetectorRef in Angular](./Angular/22a_changedetectorref.md)
 
-###### Formulare
+##### Formulare
 
 - [`ngSubmit` - Formulare mit ngSubmit in Angular](./Angular/27_ngSubmit.md)
 - [Kontaktformular in Angular – Schritt für Schritt](./Angular/99_Kontaktformular.md)
 
-###### Internationalisierung
+##### Internationalisierung
 
 - [ngx-translate – Mehrsprachigkeit in Angular (ab v20)](./Angular/29_ngx-translate.md)
 
-###### Responsive & Erweiterte Themen
+##### Responsive & Erweiterte Themen
 
 - [`BreakpointObserver` - Angular BreakpointObserver](./Angular/30-angular-breakpoint-observer.md)
 
@@ -156,17 +156,17 @@
 <details>
 <summary><strong>SCSS</strong></summary>
 
-###### Grundlagen & Setup
+##### Grundlagen & Setup
 
 - [SCSS Installation und Kompilierung](./Scss/basics.md)
 
-###### SCSS Features
+##### SCSS Features
 
 - [Variablen](./Scss/variablen.md)
 - [Mixin](./Scss/mixin.md)
 - [Verschachtelung (Nesting)](./Scss/nesting.md)
 
-###### Layout-Techniken
+##### Layout-Techniken
 
 - [Fluid Layout mit Flexbox und Grid in CSS](./Scss/layout-fluid-flexbox-grid.md)
 
