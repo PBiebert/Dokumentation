@@ -1,6 +1,24 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # TypeScript Installation und Kompilierung
+
+## Inhaltsverzeichnis
+
+- [package.json und package-lock.json](#packagejson-und-package-lockjson)
+- [TypeScript Installation](#typescript-installation)
+  - [Lokal installieren](#lokal-installieren)
+  - [Global installieren](#global-installieren)
+- [TypeScript Version prüfen und steuern](#typescript-version-prüfen-und-steuern)
+  - [Version anzeigen](#version-anzeigen)
+  - [Version ändern](#version-ändern)
+- [TypeScript kompilieren](#typescript-kompilieren)
+  - [Kompilieren eines TypeScript-Files zu JavaScript](#kompilieren-eines-typescript-files-zu-javascript)
+  - [Kompilieren aller Dateien im Projekt](#kompilieren-aller-dateien-im-projekt)
+  - [Kompilieren mit Ziel-JavaScript-Version](#kompilieren-mit-ziel-javascript-version)
+- [Browser-Kompatibilität und Versionsempfehlung](#browser-kompatibilität-und-versionsempfehlung)
+- [Zusammenfassung](#zusammenfassung)
+
+---
 
 ## package.json und package-lock.json
 
@@ -88,7 +106,7 @@ tsc --version
 
 ## TypeScript kompilieren
 
-### Kompilieren eines TypeScript-Files zu JavaScript
+### Kompilieren einer TypeScript-Datei zu JavaScript
 
 ```bash
 tsc datei.ts
@@ -120,8 +138,10 @@ Du kannst beim Kompilieren direkt die gewünschte JavaScript-Version angeben:
 tsc *.ts --target ES5
 ```
 
-- Das kompiliert alle `.ts`-Dateien im Verzeichnis und erzeugt JavaScript im angegebenen Standard (z.B. ES5, ES6, ES2017, etc.).
-- Die Option `--target <version>` überschreibt die Einstellung aus der `tsconfig.json` für diesen Kompiliervorgang.
+- Das kompiliert alle `.ts`-Dateien im Verzeichnis und erzeugt JavaScript im
+  angegebenen Standard (z.B. ES5, ES6, ES2017, etc.).
+- Die Option `--target <version>` überschreibt die Einstellung aus der
+  `tsconfig.json` für diesen Kompiliervorgang.
 
 ---
 

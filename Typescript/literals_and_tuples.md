@@ -1,53 +1,67 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# TypeScript: Literal Types und Tupel
+# TypeScript: Literaltypen und Tupel
 
-## Literal Types
+## Inhaltsverzeichnis
 
-Mit Literal Types kannst du Variablen auf ganz bestimmte Werte beschränken,
+- [Literaltypen](#literaltypen)
+  - [Beispiele für Literaltypen](#beispiele-für-literaltypen)
+  - [Anwendung: Enums ersetzen](#anwendung-enums-ersetzen)
+- [Arrays mit bestimmten erlaubten Werten (Literaltypen)](#arrays-mit-bestimmten-erlaubten-werten-literaltypen)
+- [Tupel (Tuples)](#tupel-tuples)
+  - [Beispiel für ein Tupel](#beispiel-für-ein-tupel)
+  - [Zugriff auf Tupel](#zugriff-auf-tupel)
+  - [Optionale und Rest-Elemente](#optionale-und-rest-elemente)
+- [Zusammenfassung](#zusammenfassung)
+
+---
+
+## Literaltypen
+
+Mit Literaltypen kannst du Variablen auf ganz bestimmte Werte beschränken,
 anstatt nur auf einen allgemeinen Typ wie `string` oder `number`.
 
-### Beispiele für Literal Types
+### Beispiele für Literaltypen
 
 ```typescript
-let direction: "left" | "right";
-direction = "left"; // erlaubt
-direction = "right"; // erlaubt
-direction = "up"; // Fehler!
+let richtung: "links" | "rechts";
+richtung = "links"; // erlaubt
+richtung = "rechts"; // erlaubt
+richtung = "oben"; // Fehler!
 ```
 
-Du kannst Literal Types auch mit Zahlen oder Booleans verwenden:
+Du kannst Literaltypen auch mit Zahlen oder Booleans verwenden:
 
 ```typescript
-let answer: 42 | 7;
-answer = 42; // erlaubt
-answer = 7; // erlaubt
-answer = 10; // Fehler!
+let antwort: 42 | 7;
+antwort = 42; // erlaubt
+antwort = 7; // erlaubt
+antwort = 10; // Fehler!
 ```
 
 ### Anwendung: Enums ersetzen
 
-Literal Types werden oft genutzt, um feste Werte zu definieren, ähnlich wie
+Literaltypen werden oft genutzt, um feste Werte zu definieren, ähnlich wie
 Enums:
 
 ```typescript
-type Color = "red" | "green" | "blue";
-let myColor: Color = "red";
+type Farbe = "rot" | "grün" | "blau";
+let meineFarbe: Farbe = "rot";
 ```
 
 ---
 
-## Arrays mit bestimmten erlaubten Werten (Literal Types)
+## Arrays mit bestimmten erlaubten Werten (Literaltypen)
 
 Du kannst Arrays so typisieren, dass sie nur bestimmte Werte enthalten dürfen,
 z.B. nur `"rot"`, `"grün"` oder `"blau"`:
 
 ```typescript
-let colors: ("rot" | "grün" | "blau")[];
+let farben: ("rot" | "grün" | "blau")[];
 
-colors = ["rot", "blau"]; // erlaubt
-colors = ["grün", "rot", "blau"]; // erlaubt
-colors = ["gelb"]; // Fehler! "gelb" ist nicht erlaubt
+farben = ["rot", "blau"]; // erlaubt
+farben = ["grün", "rot", "blau"]; // erlaubt
+farben = ["gelb"]; // Fehler! "gelb" ist nicht erlaubt
 ```
 
 **Hinweis:**  
@@ -79,15 +93,15 @@ console.log(person[0]); // "Anna"
 console.log(person[1]); // 25
 ```
 
-### Optional und Rest-Elemente
+### Optionale und Rest-Elemente
 
 Tupel können optionale oder beliebig viele Elemente am Ende enthalten:
 
 ```typescript
-let point: [number, number?, number?];
-point = [1];
-point = [1, 2];
-point = [1, 2, 3];
+let punkt: [number, number?, number?];
+punkt = [1];
+punkt = [1, 2];
+punkt = [1, 2, 3];
 
 let rgb: [number, ...number[]];
 rgb = [255];
@@ -98,6 +112,6 @@ rgb = [255, 128, 64];
 
 ## Zusammenfassung
 
-- **Literal Types** beschränken Variablen auf ganz bestimmte Werte.
+- **Literaltypen** beschränken Variablen auf ganz bestimmte Werte.
 - **Tupel** sind Arrays mit fester Länge und Typenreihenfolge.
 - Beide Features helfen, den Code sicherer und klarer zu machen.

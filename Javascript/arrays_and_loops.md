@@ -1,24 +1,60 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Arrays and Loops in JavaScript
+# Arrays und Schleifen in JavaScript
 
-## Arrays – Basics
+## Inhaltsverzeichnis
 
-Arrays are lists of values. Indexing starts at 0.
+1. [Arrays – Grundlagen](#arrays--grundlagen)
+2. [Array-Methoden](#array-methoden)
+   - [.push()](#push)
+   - [.pop()](#pop)
+   - [.shift()](#shift)
+   - [.unshift()](#unshift)
+   - [.splice()](#splice)
+3. [Suchen und Prüfen](#suchen-und-prüfen)
+   - [.includes()](#includes)
+   - [.indexOf()](#indexof)
+   - [.find()](#find)
+   - [.filter()](#filter)
+   - [.findIndex()](#findindex)
+4. [Kopieren und Transformieren von Arrays](#kopieren-und-transformieren-von-arrays)
+   - [.slice()](#slice)
+   - [.join()](#join)
+   - [Spread Operator (...)](#spread-operator-)
+5. [Schleifen – Grundlagen](#schleifen--grundlagen)
+   - [for-Schleife](#for-schleife)
+   - [for...of-Schleife](#forof-schleife)
+   - [while-Schleife](#while-schleife)
+   - [forEach()](#foreach)
+6. [Schleifen – Beispiele](#schleifen--beispiele)
+   - [Summe aller Elemente](#summe-aller-elemente)
+   - [Zahlenreihe erzeugen](#zahlenreihe-erzeugen)
+   - [Zahlenreihe rückwärts erzeugen](#zahlenreihe-rückwärts-erzeugen)
+   - [Jedes dritte Element ausgeben](#jedes-dritte-element-ausgeben)
+   - [Primzahl-Prüfung](#primzahl-prüfung)
+7. [Schleifensteuerung](#schleifensteuerung)
+8. [Zusammenfassung](#zusammenfassung)
+
+## Arrays – Grundlagen
+
+Arrays sind Listen von Werten. Die Indizierung beginnt bei 0.
 
 ```js
-let myList = [12, "banana", 1];
-let fruits = ["Banana", "Orange", "Apple", "Mango"];
+let myList = [12, "Banane", 1];
+let fruits = ["Banane", "Orange", "Apfel", "Mango"];
 
-console.log(myList[1]); // Access an element
-myList[1] = "no Banana"; // Overwrite value
+console.log(myList[1]); // Zugriff auf ein Element
+myList[1] = "keine Banane"; // Wert überschreiben
 ```
 
 ---
 
+## Array-Methoden
+
 ### .push()
 
-**.push()** adds one or more elements to the end of the array and returns the new length.
+**.push()** fügt ein oder mehrere Elemente am Ende des Arrays hinzu und gibt die
+neue Länge zurück.
 
 ```js
 fruits.push("Kiwi");
@@ -26,7 +62,7 @@ fruits.push("Kiwi");
 
 ### .pop()
 
-**.pop()** removes the last element from the array and returns it.
+**.pop()** entfernt das letzte Element aus dem Array und gibt es zurück.
 
 ```js
 fruits.pop();
@@ -34,7 +70,7 @@ fruits.pop();
 
 ### .shift()
 
-**.shift()** removes the first element from the array and returns it.
+**.shift()** entfernt das erste Element aus dem Array und gibt es zurück.
 
 ```js
 function removeFirstElement(array) {
@@ -45,7 +81,8 @@ function removeFirstElement(array) {
 
 ### .unshift()
 
-**.unshift()** adds one or more elements to the beginning of the array and returns the new length.
+**.unshift()** fügt ein oder mehrere Elemente am Anfang des Arrays hinzu und
+gibt die neue Länge zurück.
 
 ```js
 function addElementToStart(array, element) {
@@ -56,7 +93,8 @@ function addElementToStart(array, element) {
 
 ### .splice()
 
-**.splice()** changes the array by removing, replacing, or adding elements.
+**.splice()** verändert das Array, indem Elemente entfernt, ersetzt oder
+hinzugefügt werden.
 
 ```js
 function modifyArray(array, start, deleteCount, ...items) {
@@ -67,11 +105,12 @@ function modifyArray(array, start, deleteCount, ...items) {
 
 ---
 
-## Searching and Checking
+## Suchen und Prüfen
 
 ### .includes()
 
-**.includes()** checks if a value is in the array (returns true or false).
+**.includes()** prüft, ob ein Wert im Array enthalten ist (gibt true oder false
+zurück).
 
 ```js
 let arr = ["Anna", "Ben", "Clara"];
@@ -80,7 +119,8 @@ arr.includes("Ben"); // true
 
 ### .indexOf()
 
-**.indexOf()** returns the index of a value (or -1 if not found).
+**.indexOf()** gibt den Index eines Wertes zurück (oder -1, wenn nicht
+gefunden).
 
 ```js
 arr.indexOf("Clara"); // 2
@@ -88,7 +128,8 @@ arr.indexOf("Clara"); // 2
 
 ### .find()
 
-**.find()** returns the first element that matches a condition (otherwise undefined).
+**.find()** gibt das erste Element zurück, das eine Bedingung erfüllt (ansonsten
+undefined).
 
 ```js
 let people = [
@@ -101,7 +142,7 @@ let foundPerson = people.find((person) => person.age > 26);
 
 ### .filter()
 
-**.filter()** returns all elements that match a condition.
+**.filter()** gibt alle Elemente zurück, die eine Bedingung erfüllen.
 
 ```js
 let onlyGoodGuys = people.filter((person) => person.age > 26);
@@ -109,7 +150,7 @@ let onlyGoodGuys = people.filter((person) => person.age > 26);
 
 ### .findIndex()
 
-**.findIndex()** returns the index of the first matching element (or -1).
+**.findIndex()** gibt den Index des ersten passenden Elements zurück (oder -1).
 
 ```js
 let index = people.findIndex((person) => person.name === "Ben");
@@ -117,11 +158,12 @@ let index = people.findIndex((person) => person.name === "Ben");
 
 ---
 
-## Copying and Transforming Arrays
+## Kopieren und Transformieren von Arrays
 
 ### .slice()
 
-**.slice()** creates a copy of a section of an array (from start to end index, end index exclusive).
+**.slice()** erstellt eine Kopie eines Abschnitts des Arrays (von Start- bis
+End-Index, End-Index exklusiv).
 
 ```js
 let arr = [1, 2, 3, 4, 5];
@@ -130,7 +172,8 @@ let subArr = arr.slice(1, 4); // [2, 3, 4]
 
 ### .join()
 
-**.join()** joins all elements into a string, separated by the given character.
+**.join()** verbindet alle Elemente zu einem String, getrennt durch das
+angegebene Zeichen.
 
 ```js
 let joined = arr.join(" - "); // "1 - 2 - 3 - 4 - 5"
@@ -138,7 +181,7 @@ let joined = arr.join(" - "); // "1 - 2 - 3 - 4 - 5"
 
 ### Spread Operator (...)
 
-**...** copies or expands arrays.
+**...** kopiert oder erweitert Arrays.
 
 ```js
 let copy = [...arr];
@@ -146,11 +189,11 @@ let copy = [...arr];
 
 ---
 
-## Loops – Basics
+## Schleifen – Grundlagen
 
-### for loop
+### for-Schleife
 
-**for loop**: Repeats code as long as a condition is true.
+**for-Schleife**: Wiederholt Code, solange eine Bedingung wahr ist.
 
 ```js
 for (let i = 0; i < fruits.length; i++) {
@@ -158,9 +201,9 @@ for (let i = 0; i < fruits.length; i++) {
 }
 ```
 
-### for...of loop
+### for...of-Schleife
 
-**for...of loop**: Iterates directly over the values of an array.
+**for...of-Schleife**: Iteriert direkt über die Werte eines Arrays.
 
 ```js
 for (const fruit of fruits) {
@@ -168,9 +211,9 @@ for (const fruit of fruits) {
 }
 ```
 
-### while loop
+### while-Schleife
 
-**while loop**: Executes code as long as a condition is true.
+**while-Schleife**: Führt Code aus, solange eine Bedingung wahr ist.
 
 ```js
 function whileLoop() {
@@ -185,7 +228,7 @@ whileLoop();
 
 ### forEach()
 
-**forEach()**: Executes a function for each element in the array.
+**forEach()**: Führt eine Funktion für jedes Element im Array aus.
 
 ```js
 fruits.forEach((element) => {
@@ -195,9 +238,9 @@ fruits.forEach((element) => {
 
 ---
 
-## Loops – Examples
+## Schleifen – Beispiele
 
-### Sum of all elements
+### Summe aller Elemente
 
 ```js
 function sumArray(array) {
@@ -209,7 +252,7 @@ function sumArray(array) {
 }
 ```
 
-### Generate a sequence of numbers
+### Zahlenreihe erzeugen
 
 ```js
 function printNumbers(num) {
@@ -223,7 +266,7 @@ function printNumbers(num) {
 }
 ```
 
-### Generate a sequence in reverse
+### Zahlenreihe rückwärts erzeugen
 
 ```js
 function printNumbersReverse(num) {
@@ -237,7 +280,7 @@ function printNumbersReverse(num) {
 }
 ```
 
-### Print every third element
+### Jedes dritte Element ausgeben
 
 ```js
 function printEveryThirdElement(array) {
@@ -255,26 +298,27 @@ function printEveryThirdElement(array) {
 }
 ```
 
-### Prime number check
+### Primzahl-Prüfung
 
 ```js
 function isPrime(num) {
-  if (num < 2) return `${num} is not a prime number`;
+  if (num < 2) return `${num} ist keine Primzahl`;
   for (let i = 2; i < num; i++) {
     if (num % i === 0) {
-      return `${num} is not a prime number`;
+      return `${num} ist keine Primzahl`;
     }
   }
-  return `${num} is a prime number`;
+  return `${num} ist eine Primzahl`;
 }
 ```
 
 ---
 
-## Loop Control Statements
+## Schleifensteuerung
 
-**break** immediately ends the current loop.  
-**continue** skips the current iteration and continues with the next one.
+**break** beendet die aktuelle Schleife sofort.  
+**continue** überspringt die aktuelle Iteration und macht mit der nächsten
+weiter.
 
 ```js
 function sumArrayBreak(array) {
@@ -303,9 +347,10 @@ function sumArrayContinue(array) {
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- Arrays store lists of values.
-- With methods like push, pop, shift, unshift, splice, slice, join, includes, etc. you can flexibly manipulate arrays.
-- Loops help automate repetitive tasks.
-- With break and continue you control the flow of loops.
+- Arrays speichern Listen von Werten.
+- Mit Methoden wie push, pop, shift, unshift, splice, slice, join, includes usw.
+  kannst du Arrays flexibel bearbeiten.
+- Schleifen helfen, wiederkehrende Aufgaben zu automatisieren.
+- Mit break und continue steuerst du den Ablauf von Schleifen.

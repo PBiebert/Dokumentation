@@ -5,10 +5,13 @@
 Diese Anleitung zeigt dir, wie du mit Angular und Firebase Firestore neue
 Dokumente in eine Collection einfügst.
 
-- **1. Firestore-Service vorbereiten**
-- **2. Methode zum Hinzufügen (`addDoc`) implementieren**
-- **3. Dokumente aus Angular-Komponenten hinzufügen**
-- **4. Hinweise und Fehlerquellen**
+## Inhaltsverzeichnis
+
+1. [Firestore-Service vorbereiten](#1-firestore-service-vorbereiten)
+2. [Methode zum Hinzufügen (`addDoc`) implementieren](#2-methode-zum-hinzufügen-adddoc-implementieren)
+3. [Dokumente aus Angular-Komponenten hinzufügen](#3-dokumente-aus-angular-komponenten-hinzufügen)
+4. [Hinweise und Fehlerquellen](#4-hinweise-und-fehlerquellen)
+5. [Tipp](#tipp)
 
 ---
 
@@ -114,9 +117,12 @@ export class AddNoteDialogComponent {
 
 ---
 
-**Tipp:**  
+## 5. Tipp
+
 Mit `addDoc` kannst du beliebige Datenstrukturen speichern. Die ID des neuen
 Dokuments wird automatisch generiert und kann über `docRef.id` abgerufen werden.
+
+---
 
 Weitere Infos:  
 [AngularFire Dokumentation zu addDoc](https://github.com/angular/angularfire)

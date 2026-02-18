@@ -1,61 +1,78 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # Scopes in JavaScript
 
-## What is a Scope?
+## Inhaltsverzeichnis
 
-A scope determines where in the code you can access variables. In JavaScript, there are different types of scopes:
+1. [Was ist ein Scope?](#was-ist-ein-scope)
+2. [Block-Scope mit let und const](#block-scope-mit-let-und-const)
+3. [Funktions-Scope mit var](#funktions-scope-mit-var)
+4. [Globaler Scope](#globaler-scope)
+5. [Zusammenfassung](#zusammenfassung)
 
-- **Global scope**: Variables declared outside of functions are visible everywhere in the code.
-- **Function scope**: Variables declared with `var`, `let`, or `const` inside a function are only visible within that function.
-- **Block scope**: Variables declared with `let` or `const` inside a block (e.g. if, for) are only visible within that block.
+## Was ist ein Scope?
+
+Ein Scope bestimmt, wo im Code du auf Variablen zugreifen kannst. In JavaScript
+gibt es verschiedene Arten von Scopes:
+
+- **Globaler Scope**: Variablen, die außerhalb von Funktionen deklariert werden,
+  sind überall im Code sichtbar.
+- **Funktions-Scope**: Variablen, die mit `var`, `let` oder `const` innerhalb
+  einer Funktion deklariert werden, sind nur innerhalb dieser Funktion sichtbar.
+- **Block-Scope**: Variablen, die mit `let` oder `const` innerhalb eines Blocks
+  (z.B. if, for) deklariert werden, sind nur innerhalb dieses Blocks sichtbar.
 
 ---
 
-## Block Scope with let and const
+## Block-Scope mit let und const
 
-**let** and **const** are block-scoped, meaning they are only visible within the surrounding block.
+**let** und **const** sind blockbasiert, das heißt sie sind nur innerhalb des
+umgebenden Blocks sichtbar.
 
 ```js
 function scopeTest() {
   if (true) {
-    let testScopeVar = "hello world"; // Block scope
+    let testScopeVar = "hello world"; // Block-Scope
   }
   console.log(testScopeVar); // ReferenceError: testScopeVar is not defined
 }
 ```
 
-- `testScopeVar` is only visible inside the if block.
-- Outside the block (but still in the function), accessing it causes an error.
+- `testScopeVar` ist nur innerhalb des if-Blocks sichtbar.
+- Außerhalb des Blocks (aber noch in der Funktion) führt der Zugriff zu einem
+  Fehler.
 
 ---
 
-## Function Scope with var
+## Funktions-Scope mit var
 
-**var** is only function-scoped, not block-scoped. This means a variable declared with var is visible throughout the function, even outside of blocks.
+**var** ist nur funktionsbasiert, nicht blockbasiert. Das bedeutet, eine mit var
+deklarierte Variable ist innerhalb der gesamten Funktion sichtbar, auch
+außerhalb von Blöcken.
 
 ```js
 function varScopeTest() {
   if (true) {
-    var testVar = "visible";
+    var testVar = "sichtbar";
   }
-  console.log(testVar); // Output: visible
+  console.log(testVar); // Ausgabe: sichtbar
 }
 ```
 
-- `testVar` is visible throughout the function, even outside the if block.
+- `testVar` ist in der gesamten Funktion sichtbar, auch außerhalb des if-Blocks.
 
 ---
 
-## Global Scope
+## Globaler Scope
 
-Variables declared outside of functions are global and visible everywhere in the code.
+Variablen, die außerhalb von Funktionen deklariert werden, sind global und
+überall im Code sichtbar.
 
 ```js
-let globalVar = "I am global";
+let globalVar = "Ich bin global";
 
 function showGlobal() {
-  console.log(globalVar); // Output: I am global
+  console.log(globalVar); // Ausgabe: Ich bin global
 }
 
 showGlobal();
@@ -63,9 +80,10 @@ showGlobal();
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- Use `let` and `const` for block-level visibility.
-- Variables declared with `var` are only visible within the function.
-- Avoid global variables to prevent errors and unexpected behavior.
-- Scopes help keep variables clean and safe.
+- Verwende `let` und `const` für blockbasierte Sichtbarkeit.
+- Mit `var` deklarierte Variablen sind nur innerhalb der Funktion sichtbar.
+- Vermeide globale Variablen, um Fehler und unerwartetes Verhalten zu
+  verhindern.
+- Scopes helfen, Variablen sauber und sicher zu halten.

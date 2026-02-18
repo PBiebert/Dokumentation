@@ -1,6 +1,22 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # TypeScript: Typen bei Objekten
+
+## Inhaltsverzeichnis
+
+- [Objekt-Typen definieren](#objekt-typen-definieren)
+  - [Beispiel: Person-Objekt](#beispiel-person-objekt)
+  - [Werte direkt zuweisen](#werte-direkt-zuweisen)
+  - [Zugriff und Verhalten](#zugriff-und-verhalten)
+- [Das Fragezeichen (`?`) bei Eigenschaften](#das-fragezeichen--bei-eigenschaften)
+- [Objekt-Typen mit `interface`](#objekt-typen-mit-interface)
+  - [Wann macht ein `interface` Sinn?](#wann-macht-ein-interface-sinn)
+  - [Kurz](#kurz)
+- [Auslagern von Interfaces](#auslagern-von-interfaces)
+- [Zusammenfassung](#zusammenfassung)
+  - [Beispiel: Struktur festlegen und direkt Werte zuweisen](#beispiel-struktur-festlegen-und-direkt-werte-zuweisen)
+
+---
 
 ## Objekt-Typen definieren
 
@@ -27,7 +43,7 @@ const person: Person = { name: "Florian", age: 50 };
 
 ### Werte direkt zuweisen
 
-man kann die Struktur eines Objekts auch direkt beim Anlegen festlegen und
+Man kann die Struktur eines Objekts auch direkt beim Anlegen festlegen und
 sofort Werte zuweisen:
 
 ```typescript
@@ -76,7 +92,7 @@ interface Person {
 const person: Person = { name: "Florian", age: 50 };
 ```
 
-**Wann macht ein `interface` Sinn?**
+### Wann macht ein `interface` Sinn?
 
 - Wenn du möchtest, dass dein Typ von anderen erweitert oder implementiert
   werden kann (z.B. bei Klassen oder für Vererbung).
@@ -84,7 +100,8 @@ const person: Person = { name: "Florian", age: 50 };
 - Interfaces sind speziell für die Beschreibung von Objektstrukturen gedacht und
   werden von TypeScript bevorzugt, wenn es um reine Objekttypen geht.
 
-**Kurz:**  
+### Kurz
+
 Verwende `interface` für Objektstrukturen, die erweitert werden sollen oder von
 Klassen implementiert werden. Für einfache, einmalige Typdefinitionen reicht
 meist auch `type`.

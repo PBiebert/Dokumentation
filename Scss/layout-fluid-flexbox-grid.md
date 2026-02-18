@@ -2,6 +2,20 @@
 
 # Fluides Layout mit Flexbox & Grid in SCSS
 
+## Inhaltsverzeichnis
+
+- [Einleitung](#einleitung)
+- [Maximale Flexibilität ohne feste Größen](#maximale-flexibilität-ohne-feste-größen)
+  - [Flexbox: Mit `flex-grow` flexibel verteilen](#flexbox-mit-flex-grow-flexibel-verteilen)
+  - [Grid: Dynamische Spalten mit `auto-fit` und `minmax`](#grid-dynamische-spalten-mit-auto-fit-und-minmax)
+- [Flexbox: Flexible Container](#flexbox-flexible-container)
+- [Grid: Zweidimensionale Layouts](#grid-zweidimensionale-layouts)
+- [Absolut positionierte Elemente](#absolut-positionierte-elemente)
+- [Beispiel: Fluides Layout in der `about-me`- und `stack`-Section](#beispiel-fluides-layout-in-der-about-me-und-stack-section)
+- [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Einleitung
 
 Ein fluides Layout passt sich flexibel an verschiedene Bildschirmgrößen an. Mit

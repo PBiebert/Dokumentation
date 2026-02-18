@@ -2,6 +2,18 @@
 
 # Filtern und Begrenzen von Firestore-Abfragen mit `query`, `limit`, `where`, `orderBy` und `onSnapshot`
 
+## Inhaltsverzeichnis
+
+1. [Zweck](#zweck)
+2. [Funktionsweise im Projekt](#funktionsweise-im-projekt)
+3. [Beispiel: Abfrage mit `query`, `where`, `orderBy`, `limit` und `onSnapshot`](#beispiel-abfrage-mit-query-where-orderby-limit-und-onsnapshot)
+4. [Erklärung der wichtigsten Query-Operatoren](#erklärung-der-wichtigsten-query-operatoren)
+5. [Parameter und Ablauf](#parameter-und-ablauf)
+6. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+7. [Fehlerquellen und Troubleshooting](#fehlerquellen-und-troubleshooting)
+8. [Best Practices](#best-practices)
+9. [Siehe auch](#siehe-auch)
+
 ## Zweck
 
 Mit der Kombination aus `query`, `limit` und weiteren Filtern wie `where` und

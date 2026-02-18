@@ -1,25 +1,40 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # Local Storage in JavaScript
 
-## What is Local Storage?
+## Inhaltsverzeichnis
 
-Local Storage is a browser feature that lets you store data directly in the user's browser. The data remains even after closing and reopening the browser. Everything is stored as a string.
+1. [Was ist Local Storage?](#was-ist-local-storage)
+2. [Einfaches Anwendungsbeispiel](#einfaches-anwendungsbeispiel)
+3. [Daten im Local Storage speichern](#daten-im-local-storage-speichern)
+4. [Daten aus Local Storage laden](#daten-aus-local-storage-laden)
+5. [Neue Daten hinzufügen und speichern](#neue-daten-hinzufügen-und-speichern)
+6. [Daten auf der Seite anzeigen](#daten-auf-der-seite-anzeigen)
+7. [Initialisierung](#initialisierung)
+8. [Zusammenfassung](#zusammenfassung)
+
+## Was ist Local Storage?
+
+Local Storage ist eine Browser-Funktion, mit der du Daten direkt im Browser des
+Nutzers speichern kannst. Die Daten bleiben auch nach dem Schließen und erneuten
+Öffnen des Browsers erhalten. Alles wird als String gespeichert.
 
 ---
 
-## Simple Usage Example
+## Einfaches Anwendungsbeispiel
 
 ```js
-// Initial array with example data
-let myData = ["Banana", "not Banana", "Apple"];
+// Initiales Array mit Beispieldaten
+let myData = ["Banane", "keine Banane", "Apfel"];
 ```
 
 ---
 
-## Storing Data in Local Storage
+## Daten im Local Storage speichern
 
-**localStorage.setItem(key, value)** stores a value under a key. The value must be a string, so arrays or objects are converted with **JSON.stringify()**.
+**localStorage.setItem(key, value)** speichert einen Wert unter einem Schlüssel.
+Der Wert muss ein String sein, daher werden Arrays oder Objekte mit
+**JSON.stringify()** umgewandelt.
 
 ```js
 function saveToLocalStorage() {
@@ -29,9 +44,10 @@ function saveToLocalStorage() {
 
 ---
 
-## Loading Data from Local Storage
+## Daten aus Local Storage laden
 
-**localStorage.getItem(key)** reads a value by key. With **JSON.parse()** you convert the string back into an array or object.
+**localStorage.getItem(key)** liest einen Wert anhand des Schlüssels. Mit
+**JSON.parse()** wandelst du den String wieder in ein Array oder Objekt um.
 
 ```js
 function getFromLocalStorage() {
@@ -46,9 +62,9 @@ function getFromLocalStorage() {
 
 ---
 
-## Adding and Saving New Data
+## Neue Daten hinzufügen und speichern
 
-You can add new data to the array and then save it in Local Storage.
+Du kannst neue Daten zum Array hinzufügen und dann im Local Storage speichern.
 
 ```js
 function saveData() {
@@ -64,9 +80,10 @@ function saveData() {
 
 ---
 
-## Displaying Data on the Page
+## Daten auf der Seite anzeigen
 
-You can display the data from the array in the HTML, e.g. as a list or as paragraphs.
+Du kannst die Daten aus dem Array im HTML anzeigen, z.B. als Liste oder als
+Absätze.
 
 ```js
 function render() {
@@ -80,9 +97,10 @@ function render() {
 
 ---
 
-## Initialization
+## Initialisierung
 
-When loading the page, you can load and display the data from Local Storage.
+Beim Laden der Seite kannst du die Daten aus dem Local Storage laden und
+anzeigen.
 
 ```js
 function init() {
@@ -93,9 +111,10 @@ function init() {
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- With Local Storage you can permanently store data in the browser.
-- With **JSON.stringify()** and **JSON.parse()** you store and load arrays or objects.
-- Data is always stored as a string.
-- Useful for saving user input, settings, or lists locally.
+- Mit Local Storage kannst du Daten dauerhaft im Browser speichern.
+- Mit **JSON.stringify()** und **JSON.parse()** speicherst und lädst du Arrays
+  oder Objekte.
+- Daten werden immer als String gespeichert.
+- Nützlich, um Benutzereingaben, Einstellungen oder Listen lokal zu speichern.

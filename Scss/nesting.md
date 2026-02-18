@@ -1,21 +1,18 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # SCSS Verschachtelung (Nesting)
 
-## Was sind At-Rules?
+## Inhaltsverzeichnis
 
-At-Rules sind spezielle CSS-Anweisungen, die mit einem `@` beginnen. Sie steuern
-das Verhalten des Stylesheets oder fügen zusätzliche Informationen hinzu.
-Beispiele sind:
-
-- `@media` – Für Media Queries (z.B. unterschiedliche Styles für verschiedene
-  Bildschirmgrößen)
-- `@import` – Um andere Stylesheets zu laden
-- `@font-face` – Um eigene Schriftarten zu definieren
-- `@keyframes` – Für CSS-Animationen
-
-In SCSS können At-Rules verschachtelt werden, um sie direkt an einen Selektor zu
-binden.
+- [Grundlagen](#grundlagen)
+- [Verschachtelungstiefe](#verschachtelungstiefe)
+- [Das &-Zeichen](#das-zeichen)
+  - [Modifier](#modifier)
+  - [Pseudoklassen und Pseudoelemente](#pseudoklassen-und-pseudoelemente)
+- [Verschachtelung mit @-Rules](#verschachtelung-mit--rules)
+- [Beispiel: Komplexe Verschachtelung](#beispiel-komplexe-verschachtelung)
+- [Best Practices](#best-practices)
+- [Zusammenfassung](#zusammenfassung)
 
 ---
 

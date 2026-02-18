@@ -1,6 +1,16 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # SCSS @mixin
+
+## Inhaltsverzeichnis
+
+- [Was ist ein @mixin?](#was-ist-ein-mixin)
+- [Syntax](#syntax)
+- [Beispiel: Flexbox-Mixin](#beispiel-flexbox-mixin)
+- [Vorteile von Mixins](#vorteile-von-mixins)
+- [Zusammenfassung](#zusammenfassung)
+
+---
 
 ## Was ist ein @mixin?
 
@@ -45,8 +55,8 @@ Eigenschaften flexibel setzt:
 }
 ```
 
-> In diesem Beispiel haben alle Parameter einen Default-Wert. Du kannst
-> Default-Werte angeben, musst es aber nicht – Parameter können auch ohne
+> In diesem Beispiel haben alle Parameter einen Standardwert. Du kannst
+> Standardwerte angeben, musst es aber nicht – Parameter können auch ohne
 > Vorgabewert definiert werden.
 
 Verwendung:
@@ -88,7 +98,7 @@ Das erzeugt im CSS:
 
 ## Vorteile von Mixins
 
-- Vermeiden von doppeltem Code
+- Vermeidung von doppeltem Code
 - Zentrale Wartung von wiederkehrenden Mustern
 - Mixins können Parameter mit Standardwerten haben
 

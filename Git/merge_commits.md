@@ -1,91 +1,106 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Merge Commits and Undoing Merges
+# Git – Merge-Commits und Merges rückgängig machen
 
-## 1. Basics of a Merge Commit
+## Inhaltsverzeichnis
 
-- A merge commit connects two or more branches.
-- It has at least two parent commits:
-  - `HEAD^1`: first parent commit (usually the branch you were on)
-  - `HEAD^2`: second parent commit (the branch that was merged in)
+1. [Grundlagen eines Merge-Commits](#1-grundlagen-eines-merge-commits)
+2. [Merge abbrechen (während des Vorgangs)](#2-merge-abbrechen-während-des-vorgangs)
+3. [Merge rückgängig machen (nach Commit)](#3-merge-rückgängig-machen-nach-commit)
+   - [Option 1: git reset (nur lokal)](#option-1-using-git-reset-local-only)
+   - [Option 2: git revert (empfohlen für Remote)](#option-2-using-git-revert-recommended-for-remote)
+4. [Merge erneut durchführen](#4-merge-erneut-durchführen)
+5. [Umgang mit Merge-Konflikten](#5-umgang-mit-merge-konflikten)
+6. [Wichtiger Hinweis](#key-point)
 
-**Example:**
+## 1. Grundlagen eines Merge-Commits
+
+- Ein Merge-Commit verbindet zwei oder mehr Branches.
+- Er hat mindestens zwei Eltern-Commits:
+  - `HEAD^1`: erster Eltern-Commit (meist der Branch, auf dem du warst)
+  - `HEAD^2`: zweiter Eltern-Commit (der Branch, der gemerged wurde)
+
+**Beispiel:**
 
 ```bash
-git show HEAD         # Shows the merge commit
-git show HEAD^1       # Shows the first parent commit
-git show HEAD^2       # Shows the second parent commit
+git show HEAD         # Zeigt den Merge-Commit
+git show HEAD^1       # Zeigt den ersten Eltern-Commit
+git show HEAD^2       # Zeigt den zweiten Eltern-Commit
 ```
 
-## 2. Abort a Merge (while in progress)
+## 2. Merge abbrechen (während des Vorgangs)
 
-If you started a merge but encounter conflicts or want to stop:
+Wenn du einen Merge gestartet hast, aber Konflikte auftreten oder du abbrechen
+möchtest:
 
 ```bash
 git merge --abort
 ```
 
-- Aborts the ongoing merge and restores the state before the merge.
+- Bricht den laufenden Merge ab und stellt den Zustand vor dem Merge wieder her.
 
-## 3. Undo a Merge (after it was committed)
+## 3. Merge rückgängig machen (nach Commit)
 
-### Option 1: Using git reset (local only!)
+### Option 1: git reset (nur lokal!)
 
-If the merge commit has not been pushed yet:
+Wenn der Merge-Commit noch nicht gepusht wurde:
 
 ```bash
 git reset --hard HEAD~1
 ```
 
-- Deletes the merge commit and goes one step back.
-- **Warning:** Only use if the commit has not been pushed to remote!
+- Löscht den Merge-Commit und geht einen Schritt zurück.
+- **Achtung:** Nur verwenden, wenn der Commit noch nicht zum Remote gepusht
+  wurde!
 
-### Option 2: Using git revert (recommended for remote!)
+### Option 2: git revert (empfohlen für Remote!)
 
-A merge commit is special, so you need `-m` ("mainline") to specify which parent to keep working from.
+Ein Merge-Commit ist speziell, daher brauchst du `-m` ("mainline"), um
+anzugeben, von welchem Eltern-Commit du weiterarbeiten willst.
 
 ```bash
 git revert -m 1 <merge-commit-id>
 ```
 
-- `-m 1` → keep the first parent commit (`HEAD^1`)
-- `-m 2` → keep the second parent commit (`HEAD^2`)
+- `-m 1` → erster Eltern-Commit (`HEAD^1`) bleibt erhalten
+- `-m 2` → zweiter Eltern-Commit (`HEAD^2`) bleibt erhalten
 
-**Example:**
+**Beispiel:**
 
 ```bash
 git log --oneline
 # e3a1b2c Merge branch 'feature'
 # a7f8d3e Add new feature
 # 9c5b7f1 Initial commit
-
-
 ```
 
-- Creates a new commit that undoes the merge and continues from the first parent commit.
-- Advantage: History stays clean, even if the merge was already pushed.
+- Erstellt einen neuen Commit, der den Merge rückgängig macht und vom ersten
+  Eltern-Commit weiterarbeitet.
+- Vorteil: Die Historie bleibt sauber, auch wenn der Merge schon gepusht wurde.
 
-## 4. Redo a Merge
+## 4. Merge erneut durchführen
 
-If you want to redo the merge after a reset or revert:
+Wenn du den Merge nach einem Reset oder Revert erneut durchführen möchtest:
 
 ```bash
 git merge feature-branch
 ```
 
-- Starts the merge again.
-- If conflicts occur: edit the files, resolve the conflicts, then:
+- Startet den Merge erneut.
+- Bei Konflikten: Dateien bearbeiten, Konflikte lösen, dann:
 
 ```bash
-git add <changed-file>
+git add <geänderte-Datei>
 git commit
 ```
 
-## 5. Handling Merge Conflicts
+## 5. Umgang mit Merge-Konflikten
 
-- If conflicts occur, Git marks them in the files.
-- Edit the affected files, resolve the conflicts, and continue as described above.
+- Bei Konflikten markiert Git die betroffenen Stellen in den Dateien.
+- Bearbeite die Dateien, löse die Konflikte und committe wie oben beschrieben.
 
-## Key Point
+## Wichtiger Hinweis
 
-Merges can be safely undone – locally with `reset`, on remote with `revert -m`. If you encounter conflicts: stay calm, resolve them carefully, and commit cleanly.
+Merges können sicher rückgängig gemacht werden – lokal mit `reset`, remote mit
+`revert -m`. Bei Konflikten: Ruhe bewahren, sorgfältig lösen und sauber
+committen.

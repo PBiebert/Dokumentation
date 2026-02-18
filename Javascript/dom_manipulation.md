@@ -1,68 +1,87 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# DOM Manipulation in JavaScript
+# DOM-Manipulation in JavaScript
 
-## What is the DOM?
+## Inhaltsverzeichnis
 
-The DOM (Document Object Model) is the interface that allows you to read, change, and react to HTML elements using JavaScript.
+1. [Was ist das DOM?](#was-ist-das-dom)
+2. [Selektoren](#selektoren)
+3. [Element-Inhalt ändern](#element-inhalt-ändern)
+4. [Klassen bearbeiten](#klassen-bearbeiten)
+5. [Attribute bearbeiten](#attribute-bearbeiten)
+6. [Werte von Form-Elementen](#werte-von-form-elementen)
+7. [Events und EventListener](#events-und-eventlistener)
+   - [Click-Event](#click-event)
+   - [Maus-Events](#maus-events)
+   - [Tastatur-Events](#tastatur-events)
+   - [Focus-Events bei Inputs](#focus-events-bei-inputs)
+   - [Form-Event](#form-event)
+8. [Eigene Hilfsfunktionen](#eigene-hilfsfunktionen)
+9. [Zusammenfassung](#zusammenfassung)
+
+## Was ist das DOM?
+
+Das DOM (Document Object Model) ist die Schnittstelle, mit der du HTML-Elemente
+mit JavaScript auslesen, verändern und auf sie reagieren kannst.
 
 ---
 
-## Selectors
+## Selektoren
 
-Selectors let you select elements in HTML:
+Mit Selektoren kannst du Elemente im HTML auswählen:
 
 ```js
-// ID selector
+// ID-Selektor
 let title = document.getElementById("websiteTitel");
 
-// Class selector
+// Klassen-Selektor
 let boxes = document.getElementsByClassName("box");
 
-// Tag selector
+// Tag-Selektor
 let paragraphs = document.getElementsByTagName("p");
 
-// CSS selectors
-let firstDiv = document.querySelector("#testDiv"); // First element with matching selector
-let allDivs = document.querySelectorAll("div"); // All <div> elements
-let firstBox = document.querySelector(".box"); // First element with class 'box'
+// CSS-Selektoren
+let firstDiv = document.querySelector("#testDiv"); // Erstes Element mit passendem Selektor
+let allDivs = document.querySelectorAll("div"); // Alle <div>-Elemente
+let firstBox = document.querySelector(".box"); // Erstes Element mit Klasse 'box'
 ```
 
 ---
 
-## Changing Element Content
+## Element-Inhalt ändern
 
-**.innerHTML** reads or sets the HTML content of an element.
+**.innerHTML** liest oder setzt den HTML-Inhalt eines Elements.
 
-**.innerText** reads or sets the visible text (without HTML tags).
+**.innerText** liest oder setzt den sichtbaren Text (ohne HTML-Tags).
 
 ```js
-console.log(title.innerHTML); // Current HTML content
-title.innerHTML = "<p>test</p>"; // Set new HTML content
-title.innerHTML = "new text"; // Set only text
-document.getElementById("testDiv").innerText = "test"; // Set visible text
+console.log(title.innerHTML); // Aktueller HTML-Inhalt
+title.innerHTML = "<p>test</p>"; // Neuen HTML-Inhalt setzen
+title.innerHTML = "neuer Text"; // Nur Text setzen
+document.getElementById("testDiv").innerText = "test"; // Sichtbaren Text setzen
 ```
 
 ---
 
-## Editing Classes
+## Klassen bearbeiten
 
-With **.classList** you can add, remove, toggle, or check classes:
+Mit **.classList** kannst du Klassen hinzufügen, entfernen, toggeln oder prüfen:
 
 ```js
-document.getElementById("testDiv").classList.add("green_bg"); // Add
-document.getElementById("testDiv").classList.remove("green_bg"); // Remove
-document.getElementById("testDiv").classList.toggle("green_bg"); // Toggle
-console.log(document.getElementById("testDiv").classList.contains("green_bg")); // Check
+document.getElementById("testDiv").classList.add("green_bg"); // Hinzufügen
+document.getElementById("testDiv").classList.remove("green_bg"); // Entfernen
+document.getElementById("testDiv").classList.toggle("green_bg"); // Umschalten
+console.log(document.getElementById("testDiv").classList.contains("green_bg")); // Prüfen
 
-document.getElementById("testDiv").classList.replace("green_bg", "red_bg"); // Replace
+document.getElementById("testDiv").classList.replace("green_bg", "red_bg"); // Ersetzen
 ```
 
 ---
 
-## Editing Attributes
+## Attribute bearbeiten
 
-With **.setAttribute()**, **.getAttribute()**, and **.removeAttribute()** you can set, read, or remove attributes:
+Mit **.setAttribute()**, **.getAttribute()** und **.removeAttribute()** kannst
+du Attribute setzen, auslesen oder entfernen:
 
 ```js
 document.getElementById("testInput").setAttribute("value", 15);
@@ -72,9 +91,9 @@ document.getElementById("testInput").removeAttribute("value");
 
 ---
 
-## Values of Form Elements
+## Werte von Form-Elementen
 
-With **.value** you read or set the value of an input field:
+Mit **.value** liest oder setzt du den Wert eines Input-Felds:
 
 ```js
 document.getElementById("testInput").value = 20;
@@ -83,92 +102,93 @@ console.log(document.getElementById("testInput").value);
 
 ---
 
-## Events and EventListener
+## Events und EventListener
 
-With **addEventListener** you can react to various events in the DOM. Here are some important events:
+Mit **addEventListener** kannst du auf verschiedene Ereignisse im DOM reagieren.
+Hier einige wichtige Events:
 
-### Click Event
+### Click-Event
 
-**"click"** is triggered when an element is clicked.
+**"click"** wird ausgelöst, wenn ein Element angeklickt wird.
 
 ```js
 let button = document.getElementById("myButton");
 button.addEventListener("click", () => {
-  alert("Button clicked!");
+  alert("Button geklickt!");
 });
 ```
 
-### Mouse Events
+### Maus-Events
 
-**"mouseover"** is triggered when the mouse moves over an element.  
-**"mouseout"** is triggered when the mouse leaves the element.  
-**"dblclick"** is triggered on double click.
+**"mouseover"** wird ausgelöst, wenn die Maus über ein Element fährt.  
+**"mouseout"** wird ausgelöst, wenn die Maus das Element verlässt.  
+**"dblclick"** wird beim Doppelklick ausgelöst.
 
 ```js
 button.addEventListener("mouseover", () => {
-  console.log("Mouse over the button");
+  console.log("Maus über dem Button");
 });
 button.addEventListener("mouseout", () => {
-  console.log("Mouse left the button");
+  console.log("Maus hat den Button verlassen");
 });
 button.addEventListener("dblclick", () => {
-  console.log("Button double clicked");
+  console.log("Button doppelt geklickt");
 });
 ```
 
-### Keyboard Events
+### Tastatur-Events
 
-**"keydown"** is triggered when a key is pressed.  
-**"keyup"** is triggered when a key is released.
+**"keydown"** wird ausgelöst, wenn eine Taste gedrückt wird.  
+**"keyup"** wird ausgelöst, wenn eine Taste losgelassen wird.
 
 ```js
 document.addEventListener("keydown", (event) => {
-  console.log("Key pressed:", event.key);
+  console.log("Taste gedrückt:", event.key);
 });
 document.addEventListener("keyup", (event) => {
-  console.log("Key released:", event.key);
+  console.log("Taste losgelassen:", event.key);
 });
 ```
 
-### Focus Events on Inputs
+### Focus-Events bei Inputs
 
-**"focus"** is triggered when an input field gets focus.  
-**"blur"** is triggered when the input field loses focus.  
-**"input"** is triggered when the value of an input field changes.
+**"focus"** wird ausgelöst, wenn ein Input-Feld den Fokus bekommt.  
+**"blur"** wird ausgelöst, wenn das Input-Feld den Fokus verliert.  
+**"input"** wird ausgelöst, wenn sich der Wert eines Input-Felds ändert.
 
 ```js
 let input = document.getElementById("testInput");
 input.addEventListener("focus", () => {
-  console.log("Input in focus");
+  console.log("Input im Fokus");
 });
 input.addEventListener("blur", () => {
-  console.log("Input no longer in focus");
+  console.log("Input nicht mehr im Fokus");
 });
 input.addEventListener("input", (event) => {
-  console.log("Current value:", event.target.value);
+  console.log("Aktueller Wert:", event.target.value);
 });
 ```
 
-### Form Event
+### Form-Event
 
-**"submit"** is triggered when a form is submitted.
+**"submit"** wird ausgelöst, wenn ein Formular abgeschickt wird.
 
 ```js
 let form = document.getElementById("myForm");
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevents page reload
-  console.log("Form submitted!");
+  event.preventDefault(); // Verhindert das Neuladen der Seite
+  console.log("Formular abgeschickt!");
 });
 ```
 
 ---
 
-## Custom Helper Functions
+## Eigene Hilfsfunktionen
 
-You can write your own functions to manipulate DOM elements:
+Du kannst eigene Funktionen schreiben, um DOM-Elemente zu manipulieren:
 
 ```js
-// Toggles an element's visibility by toggling the class "dNone" (display:none)
+// Sichtbarkeit eines Elements toggeln durch Umschalten der Klasse "dNone" (display:none)
 function toggleDNone(id) {
   document.getElementById(id).classList.toggle("dNone");
 }
@@ -176,8 +196,8 @@ function toggleDNone(id) {
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- With DOM methods you can specifically select and change HTML elements.
-- With event listeners you react to user actions.
-- With your own functions you can easily solve recurring tasks in the DOM.
+- Mit DOM-Methoden kannst du gezielt HTML-Elemente auswählen und verändern.
+- Mit Event-Listenern reagierst du auf Benutzeraktionen.
+- Mit eigenen Funktionen kannst du wiederkehrende Aufgaben im DOM einfach lösen.

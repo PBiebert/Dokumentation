@@ -40,9 +40,17 @@
 <details>
 <summary><strong>TypeScript</strong></summary>
 
+### Grundlagen & Setup
+
 - [TypeScript Installation und Kompilierung](./Typescript/basics.md)
+
+### Typen-Grundlagen
+
 - [Primitive Typen](./Typescript/primitive_types.md)
 - [Objekttypen](./Typescript/object_types.md)
+
+### Typen in Arrays & Funktionen
+
 - [Typen in Arrays und Funktionen](./Typescript/types_in_arrays_and_functions.md)
 - [Literals und Tupel](./Typescript/literals_and_tuples.md)
 
@@ -86,7 +94,7 @@
 
 ### Datenbindung & Kommunikation
 
-- [@Input – Externe Daten an Komponenten übergeben](./Angular/15_input.md)
+- [`@Input` – Externe Daten an Komponenten übergeben](./Angular/15_input.md)
 - [`[(ngModel)]` Datenbindung und Event-Kommunikation](./Angular/18_Data_binding_and_event_communication.md)
 - [`[data] = "data"` Property Binding – Eigenschaften von DOM-Elementen steuern in Angular](./Angular/26_PropertyBinding.md)
 - [`@Output` und EventEmitter](./Angular/18_Data_binding_and_event_communication.md)
@@ -148,10 +156,18 @@
 <details>
 <summary><strong>SCSS</strong></summary>
 
+### Grundlagen & Setup
+
 - [SCSS Installation und Kompilierung](./Scss/basics.md)
-- [Verschachtelung (Nesting)](./Scss/nesting.md)
+
+### SCSS Features
+
 - [Variablen](./Scss/variablen.md)
 - [Mixin](./Scss/mixin.md)
+- [Verschachtelung (Nesting)](./Scss/nesting.md)
+
+### Layout-Techniken
+
 - [Fluid Layout mit Flexbox und Grid in CSS](./Scss/layout-fluid-flexbox-grid.md)
 
 </details>

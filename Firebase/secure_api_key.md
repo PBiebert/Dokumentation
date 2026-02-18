@@ -2,6 +2,14 @@
 
 # Sicheres Ablegen des Firebase API Keys in Angular
 
+## Inhaltsverzeichnis
+
+1. [Ordner für Umgebungsvariablen anlegen](#1-ordner-für-umgebungsvariablen-anlegen)
+2. [Datei `environments.ts` erstellen](#2-datei-environmentsts-erstellen)
+3. [Verwendung in der `app.config.ts`](#3-verwendung-in-der-appconfigts)
+4. [Datei in `.gitignore` eintragen](#4-datei-in-gitignore-eintragen)
+5. [Hinweise](#5-hinweise)
+
 ## 1. Ordner für Umgebungsvariablen anlegen
 
 Lege im `src/app`-Verzeichnis einen Ordner namens `environments` an (falls noch

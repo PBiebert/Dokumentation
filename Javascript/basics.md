@@ -1,48 +1,60 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# JavaScript Basics
+# JavaScript Grundlagen
 
-## Difference between let and const
+## Inhaltsverzeichnis
 
-With `let` you declare a variable that can be changed. With `const` you declare a constant that cannot be changed.
+1. [Unterschied zwischen let und const](#unterschied-zwischen-let-und-const)
+2. [Datentypen](#datentypen)
+   - [String](#string)
+   - [Number](#number)
+   - [Boolean](#boolean)
+   - [Array](#array)
+   - [Object](#object)
+3. [Zusammenfassung](#zusammenfassung)
+
+## Unterschied zwischen let und const
+
+Mit `let` deklarierst du eine Variable, die verändert werden kann. Mit `const`
+deklarierst du eine Konstante, die nicht verändert werden kann.
 
 ```js
 let age = 27;
-console.log("Age: ", age); // Output: 27
+console.log("Alter: ", age); // Ausgabe: 27
 
 age = 32;
-console.log("New age: ", age); // Output: 32
+console.log("Neues Alter: ", age); // Ausgabe: 32
 
 const birthYear = 1996;
-console.log("Birth year: ", birthYear); // Output: 1996
+console.log("Geburtsjahr: ", birthYear); // Ausgabe: 1996
 ```
 
 ---
 
-## Data Types
+## Datentypen
 
-JavaScript has several data types:
+JavaScript kennt verschiedene Datentypen:
 
 ### String
 
-**String** stands for text.
+**String** steht für Text.
 
 ```js
-let myString = "This is a text";
+let myString = "Das ist ein Text";
 ```
 
 ### Number
 
-**Number** stands for numbers (integer or floating point).
+**Number** steht für Zahlen (Ganzzahl oder Kommazahl).
 
 ```js
-let myInt = 32; // Integer
-let myFloat = 32.5466; // Floating point
+let myInt = 32; // Ganzzahl
+let myFloat = 32.5466; // Kommazahl
 ```
 
 ### Boolean
 
-**Boolean** stands for true or false.
+**Boolean** steht für wahr oder falsch.
 
 ```js
 let myBoolean = true;
@@ -50,15 +62,15 @@ let myBoolean = true;
 
 ### Array
 
-**Array** is a list of values.
+**Array** ist eine Liste von Werten.
 
 ```js
-let myArray = [2, 5, "Hello"];
+let myArray = [2, 5, "Hallo"];
 ```
 
 ### Object
 
-**Object** is a collection of key-value pairs.
+**Object** ist eine Sammlung von Schlüssel-Wert-Paaren.
 
 ```js
 let myObject = { age: 32, height: 177 };
@@ -66,8 +78,8 @@ let myObject = { age: 32, height: 177 };
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- With `let` you can change variables, with `const` you cannot.
-- The most important data types are: String, Number, Boolean, Array, and Object.
-- Arrays store lists, objects store structured data.
+- Mit `let` kannst du Variablen ändern, mit `const` nicht.
+- Die wichtigsten Datentypen sind: String, Number, Boolean, Array und Object.
+- Arrays speichern Listen, Objekte speichern strukturierte Daten.

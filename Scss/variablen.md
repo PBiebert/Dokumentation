@@ -1,6 +1,17 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # SCSS Variablen
+
+## Inhaltsverzeichnis
+
+- [Was sind SCSS-Variablen?](#was-sind-scss-variablen)
+- [Globale Variablen definieren](#globale-variablen-definieren)
+- [Variablen in andere SCSS-Dateien importieren](#variablen-in-andere-scss-dateien-importieren)
+- [Beispiel: Verwendung globaler Variablen](#beispiel-verwendung-globaler-variablen)
+- [Hinweis zu @use (neuere Syntax)](#hinweis-zu-use-neuere-syntax)
+- [Zusammenfassung](#zusammenfassung)
+
+---
 
 ## Was sind SCSS-Variablen?
 

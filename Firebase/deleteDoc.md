@@ -2,6 +2,18 @@
 
 # Dokumente mit `deleteDoc` in Firebase löschen
 
+## Inhaltsverzeichnis
+
+1. [Zweck](#zweck)
+2. [Funktionsweise im Projekt](#funktionsweise-im-projekt)
+3. [Beispiel: deleteNote](#beispiel-deletenote)
+4. [Beispiel: Notiz in den Papierkorb verschieben](#beispiel-notiz-in-den-papierkorb-verschieben)
+5. [Zentrale Methoden im Detail](#zentrale-methoden-im-detail)
+6. [Typischer Ablauf im UI](#typischer-ablauf-im-ui)
+7. [Fehlerquellen und Troubleshooting](#fehlerquellen-und-troubleshooting)
+8. [Best Practices](#best-practices)
+9. [Siehe auch](#siehe-auch)
+
 ## Zweck
 
 Die Funktion `deleteDoc` aus der Firebase Firestore-Bibliothek dient dazu, ein

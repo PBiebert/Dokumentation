@@ -2,6 +2,21 @@
 
 # State-Management mit BehaviorSubject im Service (am Beispiel Dialog-Steuerung)
 
+## Inhaltsverzeichnis
+
+1. [Was ist ein BehaviorSubject?](#was-ist-ein-behaviorsubject)
+2. [Vorteile von BehaviorSubject im Service](#vorteile-von-behaviorsubject-im-service)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Wichtigste RxJS-Begriffe](#wichtigste-rxjs-begriffe)
+5. [Zentrale Grundlage: Service steuert den State](#zentrale-grundlage-service-steuert-den-state)
+6. [Beispiel: Service mit BehaviorSubject (RxJS)](#beispiel-service-mit-behaviorsubject-rxjs)
+7. [Beispiel: Manuelles subscribe (imperative Logik)](#beispiel-manuelles-subscribe-imperative-logik)
+8. [Variante B: Kein subscribe – Template mit async Pipe (Angular v17+ / v20)](#variante-b-kein-subscribe--template-mit-async-pipe-angular-v17--v20)
+9. [Hinweise](#hinweise)
+10. [Schritt-für-Schritt: So funktioniert der Flow](#schritt-für-schritt-so-funktioniert-der-flow)
+11. [Methodenübersicht](#methodenübersicht)
+12. [Fazit](#fazit)
+
 ---
 
 ## Was ist ein BehaviorSubject?

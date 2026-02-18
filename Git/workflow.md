@@ -1,89 +1,93 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Typical Workflow
+# Git – Typischer Workflow
 
-A structured workflow helps avoid errors and conflicts and ensures a clean version history.
+Ein strukturierter Workflow hilft, Fehler und Konflikte zu vermeiden und sorgt
+für eine saubere Versionshistorie.
 
-## 1. Always Pull the Latest Changes First
+## 1. Immer zuerst die neuesten Änderungen ziehen
 
-Before you commit anything, you should pull the latest changes from the remote repository (e.g. GitHub):
+Bevor du etwas committest, solltest du die neuesten Änderungen aus dem
+Remote-Repository (z.B. GitHub) holen:
 
 ```bash
 git pull
 ```
 
-- Fetches the latest changes from the remote (usually `origin main`) and integrates them into your local repository.
+- Holt die neuesten Änderungen vom Remote (meist `origin main`) und integriert
+  sie in dein lokales Repository.
 
-## 2. Stage Files for Commit
+## 2. Dateien zum Commit vormerken (stagen)
 
-If you have edited one or more files:
+Wenn du eine oder mehrere Dateien bearbeitet hast:
 
 ```bash
 git add file.txt
 ```
 
-- Stages a file for the next commit.
+- Merkt eine Datei für den nächsten Commit vor.
 
-Or stage all changes:
+Oder alle Änderungen stagen:
 
 ```bash
 git add .
 ```
 
-- Stages all changed files.
+- Merkt alle geänderten Dateien vor.
 
-## 3. Create a Commit
+## 3. Commit erstellen
 
-Create a commit with a meaningful message:
+Erstelle einen Commit mit einer aussagekräftigen Nachricht:
 
 ```bash
-git commit -m "Short, clear description of the change"
+git commit -m "Kurze, klare Beschreibung der Änderung"
 ```
 
-- Saves your changes permanently in the repository.
+- Speichert deine Änderungen dauerhaft im Repository.
 
-## 4. Push Changes
+## 4. Änderungen pushen
 
-So others (or you on another computer) can see your changes:
+Damit andere (oder du auf einem anderen Computer) deine Änderungen sehen können:
 
 ```bash
 git push
 ```
 
-- Pushes your commits to the remote repository (e.g. GitHub).
+- Pusht deine Commits ins Remote-Repository (z.B. GitHub).
 
-## Short Version (always same order)
+## Kurzversion (immer gleiche Reihenfolge)
 
 ```bash
-git pull               # 1. Pull latest changes
-git add .              # 2. Stage changes
-git commit -m "..."    # 3. Commit with message
-git push               # 4. Push changes
+git pull               # 1. Neueste Änderungen holen
+git add .              # 2. Änderungen stagen
+git commit -m "..."    # 3. Commit mit Nachricht
+git push               # 4. Änderungen pushen
 ```
 
-## Useful Extras
+## Nützliche Extras
 
-- **Check status:**
+- **Status prüfen:**
 
   ```bash
   git status
   ```
 
-  Shows which files have been changed or are already staged for commit.
+  Zeigt, welche Dateien geändert wurden oder bereits zum Commit vorgemerkt sind.
 
-- **View recent commit log:**
+- **Letzte Commits anzeigen:**
 
   ```bash
   git log --oneline --graph --decorate
   ```
 
-  Shows the history in a concise and clear format.
+  Zeigt die Historie kompakt und übersichtlich an.
 
-- **Resolve conflicts after git pull:**
-  1. Manually edit the conflicting sections in the affected files.
-  2. Stage the changes again with `git add` and commit with `git commit`.
-  3. Then push as usual with `git push`.
+- **Konflikte nach git pull lösen:**
+  1. Bearbeite die betroffenen Abschnitte in den Dateien manuell.
+  2. Stag die Änderungen erneut mit `git add` und committe mit `git commit`.
+  3. Danach wie gewohnt mit `git push` hochladen.
 
-## Key Point
+## Wichtig
 
-Stick to the order: `pull → add → commit → push`. This keeps your repository in sync and minimizes conflicts.
+Halte dich an die Reihenfolge: `pull → add → commit → push`. So bleibt dein
+Repository synchron und Konflikte werden minimiert.

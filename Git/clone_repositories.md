@@ -1,32 +1,42 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Cloning Repositories
+# Git – Repositories klonen
 
-With `git clone` you copy a remote repository (e.g. from GitHub) to your local machine.
+Mit `git clone` kopierst du ein entferntes Repository (z.B. von GitHub) auf
+deinen lokalen Rechner.
 
-## Command
+## Inhaltsverzeichnis
+
+1. [Befehl](#befehl)
+2. [Option: Direkt ins aktuelle Verzeichnis klonen](#option-direkt-ins-aktuelle-verzeichnis-klonen)
+3. [Zusammenfassung](#zusammenfassung)
+
+## Befehl
 
 ```bash
 git clone <GitHub-URL>
 ```
 
-- `<GitHub-URL>` is the address of the repository (HTTPS or SSH).
-- You can find the URL on the GitHub page of the repository via the "Code" button.
-- Alternatively, you can download the repository as a ZIP file, but then you lose the Git history and version control.
+- `<GitHub-URL>` ist die Adresse des Repositories (HTTPS oder SSH).
+- Die URL findest du auf der GitHub-Seite des Repositories über den
+  "Code"-Button.
+- Alternativ kannst du das Repository als ZIP herunterladen, verlierst aber die
+  Git-Historie und Versionskontrolle.
 
-## Option: Clone directly into the current folder
+## Option: Direkt ins aktuelle Verzeichnis klonen
 
 ```bash
 git clone <GitHub-URL> .
 ```
 
-- The dot (`.`) at the end means: copy directly into the current folder.
-- Advantage: No new subfolder is created, everything is copied directly into your current directory.
-- Useful if you have already prepared a project folder.
+- Der Punkt (`.`) am Ende bedeutet: direkt ins aktuelle Verzeichnis kopieren.
+- Vorteil: Es wird kein neuer Unterordner erstellt, alles wird direkt in dein
+  aktuelles Verzeichnis kopiert.
+- Praktisch, wenn du bereits einen Projektordner vorbereitet hast.
 
-## Summary
+## Zusammenfassung
 
-| Variant             | Result                                                                   |
-| ------------------- | ------------------------------------------------------------------------ |
-| `git clone <URL>`   | Creates a new folder with the repository name and copies everything in   |
-| `git clone <URL> .` | Copies all files directly into the current folder, no new folder created |
+| Variante            | Ergebnis                                                                      |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `git clone <URL>`   | Erstellt einen neuen Ordner mit dem Repository-Namen und kopiert alles hinein |
+| `git clone <URL> .` | Kopiert alle Dateien direkt ins aktuelle Verzeichnis, kein neuer Ordner       |

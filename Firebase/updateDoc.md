@@ -2,6 +2,20 @@
 
 # Einzelne Felder eines Dokuments mit `updateDoc` in Firebase aktualisieren
 
+## Inhaltsverzeichnis
+
+1. [Zweck](#zweck)
+2. [Funktionsweise im Projekt](#funktionsweise-im-projekt)
+3. [Beispiel: updateNote](#beispiel-updatenote)
+4. [Zentrale Methoden im Detail](#zentrale-methoden-im-detail)
+   - [getSingleDocRef](#getsingledocref)
+   - [getColIdFromNote](#getcolidfromnote)
+   - [getCleanJson](#getcleanjson)
+5. [Typischer Ablauf im UI](#typischer-ablauf-im-ui)
+6. [Fehlerquellen und Troubleshooting](#fehlerquellen-und-troubleshooting)
+7. [Best Practices](#best-practices)
+8. [Siehe auch](#siehe-auch)
+
 ## Zweck
 
 Die Funktion `updateDoc` aus der Firebase Firestore-Bibliothek dient dazu,

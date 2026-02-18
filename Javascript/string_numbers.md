@@ -1,24 +1,38 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Numbers and Strings in JavaScript
+# Zahlen und Strings in JavaScript
 
-## Numbers – Basic Arithmetic
+## Inhaltsverzeichnis
+
+1. [Zahlen – Grundrechenarten](#zahlen--grundrechenarten)
+2. [Strings](#strings)
+3. [String-Methoden](#string-methoden)
+   - [Länge und Leerzeichen](#länge-und-leerzeichen)
+   - [Groß- und Kleinschreibung](#groß--und-kleinschreibung)
+   - [Suchen in Strings](#suchen-in-strings)
+   - [Text ersetzen](#text-ersetzen)
+   - [Zahlen formatieren](#zahlen-formatieren)
+   - [Strings aufteilen](#strings-aufteilen)
+   - [Strings auffüllen](#strings-auffüllen)
+4. [Zusammenfassung](#zusammenfassung)
+
+## Zahlen – Grundrechenarten
 
 ```js
-let myDivision = 10 / 5; // division
-console.log("Division:", myDivision); // Output: 2
+let myDivision = 10 / 5; // Division
+console.log("Division:", myDivision); // Ausgabe: 2
 
-let myMultiplication = 10 * 5; // multiplication
-console.log("Multiplication:", myMultiplication); // Output: 50
+let myMultiplication = 10 * 5; // Multiplikation
+console.log("Multiplikation:", myMultiplication); // Ausgabe: 50
 
-let myPower = 2 ** 3; // exponentiation
-console.log("Power:", myPower); // Output: 8
+let myPower = 2 ** 3; // Potenzierung
+console.log("Potenz:", myPower); // Ausgabe: 8
 
-let mySubtraction = 10 - 5; // subtraction
-console.log("Subtraction:", mySubtraction); // Output: 5
+let mySubtraction = 10 - 5; // Subtraktion
+console.log("Subtraktion:", mySubtraction); // Ausgabe: 5
 
-let myAddition = 10 + 5; // addition
-console.log("Addition:", myAddition); // Output: 15
+let myAddition = 10 + 5; // Addition
+console.log("Addition:", myAddition); // Ausgabe: 15
 ```
 
 ---
@@ -26,138 +40,148 @@ console.log("Addition:", myAddition); // Output: 15
 ## Strings
 
 ```js
-let myConcat = "Hello " + "World"; // string concatenation
-console.log("Concatenation:", myConcat); // Output: Hello World
+let myConcat = "Hallo " + "Welt"; // String-Verkettung
+console.log("Verkettung:", myConcat); // Ausgabe: Hallo Welt
 
-// Combination of strings and numbers
-let myCombination1 = "5" + 5; // results in the string "55"
-console.log("String + Number:", myCombination1);
+// Kombination von Strings und Zahlen
+let myCombination1 = "5" + 5; // ergibt den String "55"
+console.log("String + Zahl:", myCombination1);
 
-let myCombination2 = 5 + "5"; // also results in "55"
-console.log("Number + String:", myCombination2);
+let myCombination2 = 5 + "5"; // ergibt ebenfalls "55"
+console.log("Zahl + String:", myCombination2);
 ```
 
 ---
 
-## String Methods
+## String-Methoden
 
-### Length and Whitespace
+### Länge und Leerzeichen
 
-**.length** returns the length of the string (including spaces).  
-**.trim()** removes whitespace from the beginning and end of the string.
+**.length** gibt die Länge des Strings zurück (inklusive Leerzeichen).  
+**.trim()** entfernt Leerzeichen am Anfang und Ende des Strings.
 
 ```js
-let myTestString = " Hello  ";
-console.log(myTestString.length); // Output: 8
-console.log(myTestString.trim()); // Output: "Hello"
+let myTestString = " Hallo  ";
+console.log(myTestString.length); // Ausgabe: 8
+console.log(myTestString.trim()); // Ausgabe: "Hallo"
 ```
 
-### Uppercase and Lowercase
+### Groß- und Kleinschreibung
 
-**.toUpperCase()** converts all characters to uppercase.  
-**.toLowerCase()** converts all characters to lowercase.
+**.toUpperCase()** wandelt alle Zeichen in Großbuchstaben um.  
+**.toLowerCase()** wandelt alle Zeichen in Kleinbuchstaben um.
 
 ```js
 let fruit = "bAnanA";
-console.log(fruit.toUpperCase()); // Output: "BANANA"
-console.log(fruit.toLowerCase()); // Output: "banana"
+console.log(fruit.toUpperCase()); // Ausgabe: "BANANA"
+console.log(fruit.toLowerCase()); // Ausgabe: "banana"
 ```
 
-### Searching in Strings
+### Suchen in Strings
 
-**.includes()** checks if a substring exists in the string (returns true or false).
+**.includes()** prüft, ob ein Teilstring im String enthalten ist (gibt true oder
+false zurück).
 
 ```js
-console.log(myTestString.includes("Hell")); // Output: true
-console.log(myTestString.includes("world")); // Output: false
+console.log(myTestString.includes("Hall")); // Ausgabe: true
+console.log(myTestString.includes("welt")); // Ausgabe: false
 ```
 
-**.startsWith(searchText)** checks if the string starts with the given text.
+**.startsWith(suchText)** prüft, ob der String mit dem angegebenen Text beginnt.
 
 ```js
-console.log("JavaScript".startsWith("Java")); // Output: true
-console.log("JavaScript".startsWith("Script")); // Output: false
+console.log("JavaScript".startsWith("Java")); // Ausgabe: true
+console.log("JavaScript".startsWith("Script")); // Ausgabe: false
 ```
 
-**.endsWith(searchText)** checks if the string ends with the given text.
+**.endsWith(suchText)** prüft, ob der String mit dem angegebenen Text endet.
 
 ```js
-console.log("JavaScript".endsWith("Script")); // Output: true
-console.log("JavaScript".endsWith("Java")); // Output: false
+console.log("JavaScript".endsWith("Script")); // Ausgabe: true
+console.log("JavaScript".endsWith("Java")); // Ausgabe: false
 ```
 
-**.indexOf(searchText)** returns the index of the first occurrence of searchText, or -1 if not found.
+**.indexOf(suchText)** gibt den Index des ersten Vorkommens von suchText zurück
+oder -1, wenn nicht gefunden.
 
 ```js
-console.log("Banana".indexOf("a")); // Output: 1
-console.log("Banana".indexOf("x")); // Output: -1
+console.log("Banane".indexOf("a")); // Ausgabe: 1
+console.log("Banane".indexOf("x")); // Ausgabe: -1
 ```
 
-**.lastIndexOf(searchText)** returns the index of the last occurrence of searchText, or -1 if not found.
+**.lastIndexOf(suchText)** gibt den Index des letzten Vorkommens von suchText
+zurück oder -1, wenn nicht gefunden.
 
 ```js
-console.log("Banana".lastIndexOf("a")); // Output: 5
-console.log("Banana".lastIndexOf("x")); // Output: -1
+console.log("Banane".lastIndexOf("a")); // Ausgabe: 5
+console.log("Banane".lastIndexOf("x")); // Ausgabe: -1
 ```
 
-### Replacing Text
+### Text ersetzen
 
-**.replace(searchValue, newValue)** replaces the first occurrence of searchValue with newValue (does not change the original, returns a new string).
+**.replace(suchWert, neuerWert)** ersetzt das erste Vorkommen von suchWert durch
+neuerWert (ändert nicht das Original, gibt einen neuen String zurück).
 
 ```js
-let greeting = "Hello World";
-console.log(greeting.replace("World", "JavaScript")); // Output: "Hello JavaScript"
+let greeting = "Hallo Welt";
+console.log(greeting.replace("Welt", "JavaScript")); // Ausgabe: "Hallo JavaScript"
 
-let sentence = "I love apples";
-let newSentence = sentence.replace("apples", "bananas");
-console.log(newSentence); // Output: "I love bananas"
+let sentence = "Ich liebe Äpfel";
+let newSentence = sentence.replace("Äpfel", "Bananen");
+console.log(newSentence); // Ausgabe: "Ich liebe Bananen"
 ```
 
-### Formatting Numbers
+### Zahlen formatieren
 
-**.toFixed(digits)** rounds a number and returns it as a string with a fixed number of decimal places.  
-With **.replace()** you can, for example, replace the decimal point with a comma.
+**.toFixed(anzahlStellen)** rundet eine Zahl und gibt sie als String mit fester
+Nachkommastellenanzahl zurück.  
+Mit **.replace()** kannst du z.B. den Punkt durch ein Komma ersetzen.
 
 ```js
 let myNumber = 10.2560876;
-console.log(myNumber.toFixed(2)); // Output: "10.26"
-console.log(myNumber.toFixed(0)); // Output: "10"
-console.log(myNumber.toFixed(4)); // Output: "10.2560"
+console.log(myNumber.toFixed(2)); // Ausgabe: "10.26"
+console.log(myNumber.toFixed(0)); // Ausgabe: "10"
+console.log(myNumber.toFixed(4)); // Ausgabe: "10.2560"
 
 let price = 10.25;
 let formattedPrice = price.toString().replace(".", ",");
-console.log(formattedPrice); // Output: "10,25"
+console.log(formattedPrice); // Ausgabe: "10,25"
 ```
 
-### Splitting Strings
+### Strings aufteilen
 
-**.split(separator)** splits a string into an array using the separator.
+**.split(trennzeichen)** teilt einen String anhand des Trennzeichens in ein
+Array.
 
 ```js
-let fruits = "Apple,Banana,Cherry";
-console.log(fruits.split(",")); // Output: ["Apple", "Banana", "Cherry"]
+let fruits = "Apfel,Banane,Kirsche";
+console.log(fruits.split(",")); // Ausgabe: ["Apfel", "Banane", "Kirsche"]
 ```
 
-### Padding Strings
+### Strings auffüllen
 
-**.padStart(targetLength, padString)** pads the string at the start to reach the target length.
-
-```js
-let code = "7";
-console.log(code.padStart(3, "0")); // Output: "007"
-```
-
-**.padEnd(targetLength, padString)** pads the string at the end to reach the target length.
+**.padStart(zielLänge, auffüllString)** füllt den String am Anfang auf die
+gewünschte Länge auf.
 
 ```js
 let code = "7";
-console.log(code.padEnd(3, "0")); // Output: "700"
+console.log(code.padStart(3, "0")); // Ausgabe: "007"
+```
+
+**.padEnd(zielLänge, auffüllString)** füllt den String am Ende auf die
+gewünschte Länge auf.
+
+```js
+let code = "7";
+console.log(code.padEnd(3, "0")); // Ausgabe: "700"
 ```
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- With basic arithmetic and string operations, you can solve many tasks in JavaScript.
-- String methods like `.trim()`, `.toUpperCase()`, `.includes()`, or `.replace()` are very useful for text processing.
-- Numbers can be formatted with `.toFixed()`.
+- Mit Grundrechenarten und String-Operationen kannst du viele Aufgaben in
+  JavaScript lösen.
+- String-Methoden wie `.trim()`, `.toUpperCase()`, `.includes()` oder
+  `.replace()` sind sehr nützlich für die Textverarbeitung.
+- Zahlen können mit `.toFixed()` formatiert werden.

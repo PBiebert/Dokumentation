@@ -1,27 +1,32 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Merge Conflicts
+# Git – Merge-Konflikte
 
-A merge conflict occurs when multiple people work on the same file or even the same line at the same time.
+Ein Merge-Konflikt tritt auf, wenn mehrere Personen gleichzeitig an derselben
+Datei oder sogar an derselben Zeile arbeiten.
 
-- Git cannot automatically merge the changes in this case.
-- An error occurs because Git does not know which change to keep.
+- Git kann die Änderungen in diesem Fall nicht automatisch zusammenführen.
+- Es tritt ein Fehler auf, weil Git nicht weiß, welche Änderung übernommen
+  werden soll.
 
-## Steps in a Merge Conflict
+## Schritte bei einem Merge-Konflikt
 
-1. **Git/GitHub detects and marks the conflict.**
-2. In VS Code, a special window opens:
-   - **Incoming:** Code from the other developer / remote branch
-   - **Current:** Your own code / local branch
-   - **Result:** Preview of how the file will look after merging
-3. **Options in VS Code:**
-   - Accept or ignore changes
-   - Select individual blocks or combine both
-4. **Finish:**
-   - After editing, mark the conflict as resolved
-   - Commit (`git commit`) and push (`git push`)
-   - Other developers must then `git pull` to get the updated version
+1. **Git/GitHub erkennt und markiert den Konflikt.**
+2. In VS Code öffnet sich ein spezielles Fenster:
+   - **Incoming:** Code vom anderen Entwickler / Remote-Branch
+   - **Current:** Dein eigener Code / lokaler Branch
+   - **Result:** Vorschau, wie die Datei nach dem Zusammenführen aussehen wird
+3. **Optionen in VS Code:**
+   - Änderungen akzeptieren oder ignorieren
+   - Einzelne Blöcke auswählen oder beide kombinieren
+4. **Abschluss:**
+   - Nach der Bearbeitung den Konflikt als gelöst markieren
+   - Commit (`git commit`) und Push (`git push`)
+   - Andere Entwickler müssen dann `git pull` ausführen, um die aktualisierte
+     Version zu erhalten
 
-## Key Point
+## Wichtig
 
-Merge conflicts are Git’s safety mechanism to prevent accidental overwrites. They require manual intervention and conscious merging.
+Merge-Konflikte sind ein Sicherheitsmechanismus von Git, um versehentliche
+Überschreibungen zu verhindern. Sie erfordern manuelles Eingreifen und bewusstes
+Zusammenführen.

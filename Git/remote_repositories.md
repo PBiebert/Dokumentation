@@ -1,67 +1,77 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Connecting and Syncing Remote Repositories
+# Git – Verbinden und Synchronisieren von Remote-Repositories
 
-With `git remote add` you link a remote repository (e.g. on GitHub) to your local repository. You can then push your changes or pull updates from the remote.
+Mit `git remote add` verknüpfst du ein Remote-Repository (z.B. auf GitHub) mit
+deinem lokalen Repository. Du kannst dann deine Änderungen pushen oder Updates
+vom Remote ziehen.
 
-## 1. Add a Remote
+## 1. Remote hinzufügen
 
 ```bash
 git remote add origin <URL>
 ```
 
-Example:
+Beispiel:
 
 ```bash
 git remote add origin https://github.com/PBiebert/Github-remote-repo-test.git
 ```
 
-- `origin` is the name of the remote repository (default, but can be any name).
+- `origin` ist der Name des Remote-Repositories (Standard, kann aber beliebig
+  gewählt werden).
 
-## 2. Rename Branch (optional)
+## 2. Branch umbenennen (optional)
 
 ```bash
 git branch -M main
 ```
 
-- Makes the current branch `main`.
-- Note: In some projects, the default branch is still `master`. Adjust if needed:
+- Macht den aktuellen Branch zum `main`.
+- Hinweis: In manchen Projekten ist der Standard-Branch noch `master`. Passe
+  ggf. an:
 
 ```bash
 git branch -M master
 ```
 
-## 3. Push Changes to Remote (initial setup)
+## 3. Änderungen zum Remote pushen (Ersteinrichtung)
 
 ```bash
 git push -u origin main
 ```
 
-- `-u` sets up tracking: your local branch is linked to the remote branch.
-- After this, `git push` and `git pull` are enough, no need to specify remote and branch every time.
+- Mit `-u` wird das Tracking eingerichtet: Dein lokaler Branch wird mit dem
+  Remote-Branch verknüpft.
+- Danach reichen `git push` und `git pull`, du musst Remote und Branch nicht
+  jedes Mal angeben.
 
-**Important:**
+**Wichtig:**
 
-- Check your default branch name (`main` or `master`).
-- `git remote add` is only needed once per remote.
+- Prüfe den Namen deines Standard-Branches (`main` oder `master`).
+- `git remote add` ist nur einmal pro Remote nötig.
 
-## 4. Push Changes to Remote (after initial setup)
+## 4. Änderungen zum Remote pushen (nach Ersteinrichtung)
 
-If you already ran `git push -u origin main`, for further uploads just use:
+Wenn du bereits `git push -u origin main` ausgeführt hast, genügt für weitere
+Uploads:
 
 ```bash
 git push
 ```
 
-- Pushes all new commits from your local branch to the remote.
-- Useful for ongoing work, as remote and local branch are already linked.
+- Pusht alle neuen Commits von deinem lokalen Branch zum Remote.
+- Praktisch für laufende Arbeit, da Remote und lokaler Branch bereits verknüpft
+  sind.
 
-## 5. Pull Changes from Remote
+## 5. Änderungen vom Remote ziehen
 
-If there are new commits in the remote repository (e.g. from teammates or direct changes on GitHub), you can fetch them locally:
+Wenn es neue Commits im Remote-Repository gibt (z.B. von Teammitgliedern oder
+direkten Änderungen auf GitHub), kannst du sie lokal holen:
 
 ```bash
 git pull
 ```
 
-- Fetches new commits from the linked remote branch and automatically merges them with your local state.
+- Holt neue Commits vom verknüpften Remote-Branch und führt sie automatisch mit
+  deinem lokalen Stand zusammen.

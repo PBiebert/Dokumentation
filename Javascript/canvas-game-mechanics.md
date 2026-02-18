@@ -1,6 +1,22 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Canvas Spiel Mechaniken
+# Canvas-Spielmechaniken
+
+## Inhaltsverzeichnis
+
+1. [Canvas in der Spielmechanik](#canvas-in-der-spielmechanik)
+2. [Arbeiten mit Bild-Animationen und Bild-Cache](#arbeiten-mit-bild-animationen-und-bild-cache)
+3. [Hitboxen setzen und zeichnen](#hitboxen-setzen-und-zeichnen)
+4. [Kollisionsabfrage zwischen Objekten](#kollisionsabfrage-zwischen-objekten)
+5. [Kollisionsprüfung in der World-Klasse](#kollisionsprüfung-in-der-world-klasse)
+6. [Steuerung mit Keyboard-Klasse](#steuerung-mit-keyboard-klasse)
+7. [Charakter-Steuerung und Bild-Spiegelung](#charakter-steuerung-und-bild-spiegelung)
+8. [Level-Management und Auslagerung der Leveldetails](#level-management-und-auslagerung-der-leveldetails)
+9. [Kameraverschiebung und Begrenzung des Charakters](#kameraverschiebung-und-begrenzung-des-charakters)
+10. [Gravitation im Spiel](#gravitation-im-spiel)
+11. [Cooldown-Logik für Aktionen](#cooldown-logik-für-aktionen)
+12. [Kollision zwischen Gegner und Blase erkennen](#kollision-zwischen-gegner-und-blase-erkennen)
+13. [Audio-Management im Spiel](#audio-management-im-spiel)
 
 ## Canvas in der Spielmechanik
 
@@ -285,7 +301,7 @@ class World {
           this.character.cooldown();
           this.statusBar.setPercentage(
             this.character.energy,
-            ImageAssets.LIFE_BAR
+            ImageAssets.LIFE_BAR,
           );
           this.currentCharacterDamage = true;
         } else {
@@ -443,7 +459,7 @@ class Character extends MovableObject {
 
 ---
 
-## Charakter-Steuerung und Bild- Spiegelung
+## Charakter-Steuerung und Bild-Spiegelung
 
 ### Bewegung des Charakters
 
@@ -558,7 +574,7 @@ class World {
       object.x,
       object.y,
       object.width,
-      object.height
+      object.height,
     ); // 4. Bild zeichnen
     if (object.otherDirection) {
       object.x = object.x * -1; // 5. x-Position zurücksetzen
@@ -617,7 +633,7 @@ let level1 = new Level(
   [new Fish(), new Fish(), new Fish()],
   [new LightBeam()],
   [],
-  0 // levelLength initial 0
+  0, // levelLength initial 0
 );
 
 let backgroundImagesLevel = [
@@ -646,7 +662,7 @@ function renderBackground(level, backgroundRepeats, backgroundImages) {
       new BackgroundObject(backgroundImages[4], insertPosition + 720),
       new BackgroundObject(backgroundImages[5], insertPosition + 720),
       new BackgroundObject(backgroundImages[6], insertPosition + 720),
-      new BackgroundObject(backgroundImages[7], insertPosition + 720)
+      new BackgroundObject(backgroundImages[7], insertPosition + 720),
     );
     insertPosition += 1440;
   }
@@ -1050,7 +1066,7 @@ bleibt das Spiel balanciert und die Steuerung nachvollziehbar.
 
 ---
 
-## Kollision zwischen Gegner (Enemy) und Blase (Bubble) erkennen
+## Kollision zwischen Gegner und Blase erkennen
 
 Um zu erkennen, ob eine geworfene Blase einen Gegner trifft, wird eine
 Kollisionserkennung zwischen den jeweiligen Objekten durchgeführt. Das Vorgehen
@@ -1306,8 +1322,6 @@ eines Sliders setzt.
 
 **Beispiel: Lautstärke-Slider im Optionsmenü**
 
-Angenommen, du hast ein Optionsmenü mit einem HTML-Input vom Typ `range`:
-
 ```html
 <!-- Beispiel für einen Lautstärke-Slider im Optionsmenü -->
 <label for="volumeSlider">Lautstärke:</label>
@@ -1325,13 +1339,6 @@ Angenommen, du hast ein Optionsmenü mit einem HTML-Input vom Typ `range`:
 Die Methode in der AudioHub-Klasse könnte so aussehen:
 
 ```javascript
-// ...existing code...
-static objSetVolume(volumeSliderID) {
-  let currentVolumeValue = document.getElementById(volumeSliderID).value;
-  AudioHub.allSounds.forEach((sound) => {
-    sound.volume = currentVolumeValue;
-  });
-}
 // ...existing code...
 ```
 

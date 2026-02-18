@@ -1,16 +1,30 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Classes in JavaScript
+# Klassen in JavaScript
 
-## What are Classes?
+## Inhaltsverzeichnis
 
-Classes are blueprints for objects. They define how an object should look and which properties and methods it has. Classes help to organize complex structures in a clear and reusable way.
+1. [Was sind Klassen?](#was-sind-klassen)
+2. [Aufbau einer Klasse](#aufbau-einer-klasse)
+3. [Vererbung](#vererbung)
+4. [Methoden in Klassen](#methoden-in-klassen)
+5. [Objekte aus Klassen erstellen](#objekte-aus-klassen-erstellen)
+6. [Beispiel: Kontaktbuch](#beispiel-kontaktbuch)
+7. [Zusammenfassung](#zusammenfassung)
+8. [Klassendiagramm](#klassendiagramm)
+
+## Was sind Klassen?
+
+Klassen sind Baupläne für Objekte. Sie definieren, wie ein Objekt aussehen soll
+und welche Eigenschaften und Methoden es besitzt. Klassen helfen dabei, komplexe
+Strukturen übersichtlich und wiederverwendbar zu organisieren.
 
 ---
 
-## Structure of a Class
+## Aufbau einer Klasse
 
-A class is defined using the `class` keyword. Properties are usually initialized in the constructor.
+Eine Klasse wird mit dem Schlüsselwort `class` definiert. Eigenschaften werden
+meist im Konstruktor initialisiert.
 
 ```javascript
 class Person {
@@ -24,17 +38,19 @@ class Person {
 }
 ```
 
-**Explanation:**
+**Erklärung:**
 
-- `class Person { ... }`: Defines a new class called `Person`.
-- `constructor(...)`: The function that is called when a new object is created.
-- `this`: Refers to the current object.
+- `class Person { ... }`: Definiert eine neue Klasse namens `Person`.
+- `constructor(...)`: Die Funktion, die beim Erstellen eines neuen Objekts
+  aufgerufen wird.
+- `this`: Bezieht sich auf das aktuelle Objekt.
 
 ---
 
-## Inheritance
+## Vererbung
 
-With `extends`, a class can inherit from another. The child class takes over all properties and methods of the parent class.
+Mit `extends` kann eine Klasse von einer anderen erben. Die Kindklasse übernimmt
+alle Eigenschaften und Methoden der Elternklasse.
 
 ```javascript
 class Friend extends Person {
@@ -44,16 +60,17 @@ class Friend extends Person {
 }
 ```
 
-**Explanation:**
+**Erklärung:**
 
-- `extends Person`: Friend inherits from Person.
-- `super(...)`: Calls the constructor of the parent class.
+- `extends Person`: Friend erbt von Person.
+- `super(...)`: Ruft den Konstruktor der Elternklasse auf.
 
 ---
 
-## Methods in Classes
+## Methoden in Klassen
 
-Methods are functions that belong to a class and can access its properties.
+Methoden sind Funktionen, die zu einer Klasse gehören und auf deren
+Eigenschaften zugreifen können.
 
 ```javascript
 class Contact extends Person {
@@ -74,16 +91,16 @@ class Contact extends Person {
 }
 ```
 
-**Explanation:**
+**Erklärung:**
 
-- `printFullName()`: Outputs the full name.
-- `call()`: Opens the phone app with the stored number.
+- `printFullName()`: Gibt den vollständigen Namen aus.
+- `call()`: Öffnet die Telefon-App mit der gespeicherten Nummer.
 
 ---
 
-## Creating Objects from Classes
+## Objekte aus Klassen erstellen
 
-With `new`, a new object is created from a class.
+Mit `new` wird ein neues Objekt aus einer Klasse erstellt.
 
 ```javascript
 let myContact = new Contact("Philipp", "Biebert", "017333333");
@@ -91,7 +108,7 @@ let myContact = new Contact("Philipp", "Biebert", "017333333");
 
 ---
 
-## Example: Contact Book
+## Beispiel: Kontaktbuch
 
 ```javascript
 let contacts = [];
@@ -106,29 +123,29 @@ addContact("Philipp", "Biebert", "017333333");
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- Classes are templates for objects.
-- Properties are set in the constructor.
-- Methods are functions inside the class.
-- Inheritance enables code reuse.
-- Instances are created with `new`.
+- Klassen sind Vorlagen für Objekte.
+- Eigenschaften werden im Konstruktor gesetzt.
+- Methoden sind Funktionen innerhalb der Klasse.
+- Vererbung ermöglicht Code-Wiederverwendung.
+- Instanzen werden mit `new` erstellt.
 
 ---
 
-## Class Diagram
+## Klassendiagramm
 
 ```
 Person
   ├── firstName
   ├── lastName
   │
-  ├── Contact (inherits from Person)
+  ├── Contact (erbt von Person)
   │     ├── phone
   │     ├── printFullName()
   │     └── call()
   │
-  └── Friend (inherits from Person)
+  └── Friend (erbt von Person)
 ```
 
 ---

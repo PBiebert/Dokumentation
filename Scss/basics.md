@@ -1,6 +1,14 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # SCSS Installation und Kompilierung
+
+## Inhaltsverzeichnis
+
+- [SCSS installieren](#scss-installieren)
+- [SCSS kompilieren](#scss-kompilieren)
+- [Zusammenfassung](#zusammenfassung)
+
+---
 
 ## SCSS installieren
 

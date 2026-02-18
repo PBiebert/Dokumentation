@@ -5,10 +5,15 @@
 Diese Anleitung zeigt Schritt für Schritt, wie du mit Angular und Firebase
 Firestore arbeitest:
 
-- **1. Firestore-Service anlegen**
-- **2. Referenzen auf Collections und Dokumente erstellen**
-- **3. Firestore-Daten in Angular anzeigen** (mit `collectionData()` oder
-  `onSnapshot`)
+## Inhaltsverzeichnis
+
+1. [Firestore-Service anlegen](#1-firestore-service-anlegen)
+2. [Referenzen auf Collections und Dokumente erstellen](#2-referenzen-auf-collections-und-dokumente-erstellen)
+3. [Firestore-Daten in Angular anzeigen](#3-firestore-daten-in-angular-anzeigen)
+   - [Variante 1: Daten mit `collectionData()` und Observable anzeigen](#variante-1-daten-mit-collectiondata-und-observable-anzeigen)
+   - [Variante 2: Daten mit `onSnapshot` und lokalen Arrays anzeigen](#variante-2-daten-mit-onsnapshot-und-lokalen-arrays-anzeigen)
+4. [Unterschiede, Vorteile und Hinweise](#unterschiede-vorteile-und-hinweise)
+5. [Service generieren](#service-generieren)
 
 ---
 

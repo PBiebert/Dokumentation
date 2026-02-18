@@ -1,127 +1,148 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Date Object in JavaScript
+# Date-Objekt in JavaScript
 
-The Date object enables working with dates and times. It provides methods for creating, reading, comparing, and formatting points in time.
+## Inhaltsverzeichnis
+
+1. [Date – Grundlagen](#date--grundlagen)
+2. [Timestamps](#timestamps)
+3. [Datum und Uhrzeit lesen & setzen](#datum-und-uhrzeit-lesen--setzen)
+   - [Getter](#getter)
+   - [Setter](#setter)
+4. [Datum und Uhrzeit formatieren](#datum-und-uhrzeit-formatieren)
+5. [Zeit berechnen & vergleichen](#zeit-berechnen--vergleichen)
+   - [Differenz berechnen](#differenz-berechnen)
+   - [Vergleich](#vergleich)
+6. [Nützliche Funktionen](#nützliche-funktionen)
+   - [Datum formatieren (tt.mm.jjjj)](#datum-formatieren-ttmmjjjj)
+   - [Tage bis zu einem Datum](#tage-bis-zu-einem-datum)
+7. [Häufige Fehler & Tipps](#häufige-fehler--tipps)
+8. [Alternativen: Date-Bibliotheken](#alternativen-date-bibliotheken)
+9. [Zusammenfassung](#zusammenfassung)
 
 ---
 
-## Date – Basics
+## Date – Grundlagen
 
-The Date object stores a specific point in time. It can be created with the current date or with a custom value.
+Das Date-Objekt speichert einen bestimmten Zeitpunkt. Es kann mit dem aktuellen
+Datum oder einem eigenen Wert erstellt werden.
 
 ```js
-let now = new Date(); // current date & time
-let birthday = new Date("1990-05-15"); // date from string
-let custom = new Date(2025, 5, 30, 12, 0); // year, month, day, hour, minute
+let now = new Date(); // aktuelles Datum & Uhrzeit
+let birthday = new Date("1990-05-15"); // Datum aus String
+let custom = new Date(2025, 5, 30, 12, 0); // Jahr, Monat, Tag, Stunde, Minute
 ```
 
 ---
 
 ## Timestamps
 
-A timestamp is the number of milliseconds since 1/1/1970 (UTC). Timestamps are useful for comparing and calculating points in time.
+Ein Timestamp ist die Anzahl der Millisekunden seit dem 1.1.1970 (UTC).
+Timestamps sind nützlich zum Vergleichen und Berechnen von Zeitpunkten.
 
 ```js
-let ts = Date.now(); // current timestamp
-let ts2 = now.getTime(); // timestamp from a Date object
+let ts = Date.now(); // aktueller Timestamp
+let ts2 = now.getTime(); // Timestamp aus Date-Objekt
 ```
 
-Conversion between Date and timestamp:
+Umwandlung zwischen Date und Timestamp:
 
 ```js
-let dateFromTs = new Date(ts); // timestamp to Date
-let tsFromDate = birthday.getTime(); // Date to timestamp
+let dateFromTs = new Date(ts); // Timestamp zu Date
+let tsFromDate = birthday.getTime(); // Date zu Timestamp
 ```
 
 ---
 
-## Reading & Setting Date and Time
+## Datum und Uhrzeit lesen & setzen
 
-Getter methods read individual parts of the date, such as year, month, or hour. Setter methods change these values.
+Getter-Methoden lesen einzelne Teile des Datums, wie Jahr, Monat oder Stunde.
+Setter-Methoden ändern diese Werte.
 
 ### Getter
 
 ```js
 let d = new Date();
-d.getFullYear(); // year, e.g. 2025
-d.getMonth(); // month (0 = January)
-d.getDate(); // day of month
-d.getDay(); // weekday (0 = Sunday)
-d.getHours(); // hour
-d.getMinutes(); // minute
-d.getSeconds(); // second
+d.getFullYear(); // Jahr, z.B. 2025
+d.getMonth(); // Monat (0 = Januar)
+d.getDate(); // Tag des Monats
+d.getDay(); // Wochentag (0 = Sonntag)
+d.getHours(); // Stunde
+d.getMinutes(); // Minute
+d.getSeconds(); // Sekunde
 ```
 
 ### Setter
 
-Setter methods change specific parts of the date.
+Setter-Methoden ändern bestimmte Teile des Datums.
 
 ```js
-d.setFullYear(2026); // set year
-d.setMonth(11); // set month (December)
-d.setDate(24); // set day
-d.setHours(23); // set hour
-d.setMinutes(59); // set minute
-d.setSeconds(59); // set second
+d.setFullYear(2026); // Jahr setzen
+d.setMonth(11); // Monat setzen (Dezember)
+d.setDate(24); // Tag setzen
+d.setHours(23); // Stunde setzen
+d.setMinutes(59); // Minute setzen
+d.setSeconds(59); // Sekunde setzen
 ```
 
 ---
 
-## Formatting Date and Time
+## Datum und Uhrzeit formatieren
 
-The Date object provides various methods for displaying dates as text, either standardized or localized.
+Das Date-Objekt bietet verschiedene Methoden, um Daten als Text darzustellen –
+standardisiert oder lokalisiert.
 
 ```js
 d.toString(); // "Mon Jun 30 2025 12:00:00 GMT+0200"
 d.toDateString(); // "Mon Jun 30 2025"
 d.toTimeString(); // "12:00:00 GMT+0200"
 d.toISOString(); // "2025-06-30T10:00:00.000Z"
-d.toLocaleDateString(); // "6/30/2025" (locale dependent)
+d.toLocaleDateString(); // "30.6.2025" (abhängig von Sprache)
 d.toLocaleTimeString(); // "12:00:00"
 ```
 
-Formatting with options:
+Formatieren mit Optionen:
 
 ```js
-d.toLocaleString("en", {
+d.toLocaleString("de", {
   weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric",
-}); // "Monday, June 30, 2025"
+}); // "Montag, 30. Juni 2025"
 ```
 
 ---
 
-## Calculating & Comparing Time
+## Zeit berechnen & vergleichen
 
-Date objects can be used to calculate time spans and compare points in time.
+Date-Objekte können verwendet werden, um Zeitspannen zu berechnen und Zeitpunkte
+zu vergleichen.
 
-### Calculating difference
+### Differenz berechnen
 
 ```js
 let start = new Date("2025-06-30T08:00:00Z");
 let end = new Date("2025-06-30T10:30:00Z");
-let diffMs = end - start; // difference in milliseconds
-let diffMin = diffMs / 1000 / 60; // difference in minutes
+let diffMs = end - start; // Differenz in Millisekunden
+let diffMin = diffMs / 1000 / 60; // Differenz in Minuten
 ```
 
-### Comparison
+### Vergleich
 
 ```js
 if (start < end) {
-  console.log("Start is earlier");
+  console.log("Start ist früher");
 }
 ```
 
 ---
 
-## Useful Functions
+## Nützliche Funktionen
 
-Helper functions for common tasks with dates and times.
+Hilfsfunktionen für typische Aufgaben mit Datum und Zeit.
 
-### Format date (dd.mm.yyyy)
+### Datum formatieren (tt.mm.jjjj)
 
 ```js
 function formatDate(date) {
@@ -133,7 +154,7 @@ function formatDate(date) {
 formatDate(new Date()); // "30.06.2025"
 ```
 
-### Days until a date
+### Tage bis zu einem Datum
 
 ```js
 function daysUntil(date) {
@@ -142,36 +163,38 @@ function daysUntil(date) {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 let vacation = new Date("2025-07-19");
-console.log(`${daysUntil(vacation)} days until vacation`);
+console.log(`${daysUntil(vacation)} Tage bis zum Urlaub`);
 ```
 
 ---
 
-## Common Mistakes & Tips
+## Häufige Fehler & Tipps
 
-- Months are zero-based: January = 0, December = 11.
-- Comparing Date objects with `<`, `>`, `===` refers to the points in time, not the objects themselves.
-- Pay attention to time zones: `toISOString()` returns UTC, local methods return local time.
-- Setter methods like `setDate()` modify the Date object directly.
-
----
-
-## Alternatives: Date Libraries
-
-For more complex tasks, specialized libraries are available.
-
-| Library   | Advantages               | Disadvantages   |
-| --------- | ------------------------ | --------------- |
-| Moment.js | Simple, many features    | Large, outdated |
-| date-fns  | Modular, modern          | Fewer features  |
-| Day.js    | Small, similar to Moment | Fewer plugins   |
+- Monate sind nullbasiert: Januar = 0, Dezember = 11.
+- Der Vergleich von Date-Objekten mit `<`, `>`, `===` bezieht sich auf den
+  Zeitpunkt, nicht auf das Objekt selbst.
+- Auf Zeitzonen achten: `toISOString()` gibt UTC zurück, lokale Methoden geben
+  lokale Zeit aus.
+- Setter-Methoden wie `setDate()` verändern das Date-Objekt direkt.
 
 ---
 
-## Summary
+## Alternativen: Date-Bibliotheken
 
-- The Date object is the basis for working with dates and times in JavaScript.
-- Timestamps enable comparisons and calculations.
-- Methods for reading, setting, and formatting are available.
-- Libraries are useful for complex requirements.
-- Time zones and month index are common sources of errors.
+Für komplexere Aufgaben gibt es spezialisierte Bibliotheken.
+
+| Bibliothek | Vorteile                | Nachteile        |
+| ---------- | ----------------------- | ---------------- |
+| Moment.js  | Einfach, viele Features | Groß, veraltet   |
+| date-fns   | Modular, modern         | Weniger Features |
+| Day.js     | Klein, ähnlich Moment   | Weniger Plugins  |
+
+---
+
+## Zusammenfassung
+
+- Das Date-Objekt ist die Basis für die Arbeit mit Datum und Zeit in JavaScript.
+- Timestamps ermöglichen Vergleiche und Berechnungen.
+- Methoden zum Lesen, Setzen und Formatieren sind verfügbar.
+- Bibliotheken sind für komplexe Anforderungen nützlich.
+- Zeitzonen und Monatsindex sind häufige Fehlerquellen.

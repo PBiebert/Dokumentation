@@ -2,6 +2,19 @@
 
 # Angular Material installieren – Modernes UI-Design für Angular-Projekte
 
+## Inhaltsverzeichnis
+
+1. [Was ist Angular Material?](#was-ist-angular-material)
+2. [Vorteile von Angular Material](#vorteile-von-angular-material)
+3. [Schritt-für-Schritt: Installation von Angular Material](#schritt-für-schritt-installation-von-angular-material)
+   - [Paket installieren](#1-angular-material-paket-installieren)
+   - [Konfiguration auswählen](#2-konfiguration-auswählen)
+   - [Importe prüfen](#3-importe-prüfen)
+   - [Material-Komponenten verwenden](#4-material-komponenten-verwenden)
+4. [Beispiel: Material Button und Input](#beispiel-material-button-und-input)
+5. [Hinweise](#hinweise)
+6. [Fazit](#fazit)
+
 ---
 
 ## Was ist Angular Material?
@@ -24,45 +37,46 @@ du moderne, responsive und barrierefreie Oberflächen schnell umsetzen.
 
 ## Schritt-für-Schritt: Installation von Angular Material
 
-1. **Angular Material Paket installieren**
+### 1. Angular Material Paket installieren
 
-   Öffne das Terminal im Projektordner und führe aus:
+Öffne das Terminal im Projektordner und führe aus:
 
-   ```bash
-   ng add @angular/material
-   ```
+```bash
+ng add @angular/material
+```
 
-   > **Hinweis:**  
-   > Der Befehl installiert alle nötigen Pakete und startet einen Assistenten
-   > für die Konfiguration.
+> **Hinweis:**  
+> Der Befehl installiert alle nötigen Pakete und startet einen Assistenten für
+> die Konfiguration.
 
-2. **Konfiguration auswählen**
-   - Wähle ein Theme (z.B. Indigo/Pink, Deep Purple/Amber, etc.)
-   - Entscheide, ob Angular Material Typography und Animations aktiviert werden
-     sollen
+### 2. Konfiguration auswählen
 
-3. **Importe prüfen**
+- Wähle ein Theme (z.B. Indigo/Pink, Deep Purple/Amber, etc.)
+- Entscheide, ob Angular Material Typography und Animations aktiviert werden
+  sollen
 
-   Der Assistent fügt automatisch die nötigen Importe in deiner `app.module.ts`
-   hinzu:
+### 3. Importe prüfen
 
-   ```typescript
-   // app.module.ts
-   import { MatButtonModule } from "@angular/material/button";
-   import { MatInputModule } from "@angular/material/input";
-   // ...weitere Material-Module...
-   ```
+Der Assistent fügt automatisch die nötigen Importe in deiner `app.module.ts`
+hinzu:
 
-4. **Material-Komponenten verwenden**
+```typescript
+// app.module.ts
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+// ...weitere Material-Module...
+```
 
-   Jetzt kannst du Material-Komponenten im Template nutzen:
+### 4. Material-Komponenten verwenden
 
-   ```html
-   <button mat-raised-button>Material Button</button>
-   <mat-form-field>
-     <input matInput placeholder="Name" />
-   </mat-form-field>
-   ```
+Jetzt kannst du Material-Komponenten im Template nutzen:
+
+```html
+<button mat-raised-button>Material Button</button>
+<mat-form-field>
+  <input matInput placeholder="Name" />
+</mat-form-field>
+```
 
 ---
 

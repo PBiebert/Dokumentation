@@ -1,48 +1,66 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Conditionals and Comparison Operators
+# Bedingungen und Vergleichsoperatoren
 
-## What are Conditionals?
+## Inhaltsverzeichnis
 
-Conditionals control whether a certain block of code is executed or not. For this, you use comparison and logical operators.
+1. [Was sind Bedingungen?](#was-sind-bedingungen)
+2. [Logische Operatoren](#logische-operatoren)
+   - [NOT Operator (!)](#not-operator-)
+   - [ODER Operator (||)](#oder-operator-)
+   - [UND Operator (&&)](#und-operator-)
+3. [Vergleichsoperatoren](#vergleichsoperatoren)
+   - [Gleichheit (== und ===)](#gleichheit--und-)
+   - [Größer/Kleiner als](#größerkleiner-als)
+   - [Ungleich (!= und !==)](#ungleich--und-)
+4. [Ternary Operator (Kurz-If)](#ternary-operator-kurz-if)
+5. [if-else Bedingung](#if-else-bedingung)
+6. [switch/case](#switchcase)
+7. [Zusammenfassung](#zusammenfassung)
+
+## Was sind Bedingungen?
+
+Bedingungen steuern, ob ein bestimmter Codeblock ausgeführt wird oder nicht.
+Dafür nutzt man Vergleichs- und logische Operatoren.
 
 ---
 
-## Logical Operators
+## Logische Operatoren
 
 ### NOT Operator (!)
 
-**!** inverts the boolean value (true becomes false, false becomes true).
+**!** kehrt den booleschen Wert um (true wird false, false wird true).
 
 ```js
 let myCondition = true;
-myCondition = !myCondition; // Result: false
+myCondition = !myCondition; // Ergebnis: false
 ```
 
-### OR Operator (||)
+### ODER Operator (||)
 
-**||** returns true if at least one value is true.
+**||** ergibt true, wenn mindestens ein Wert true ist.
 
 ```js
-myCondition = true || false || true; // Result: true
+myCondition = true || false || true; // Ergebnis: true
 ```
 
-### AND Operator (&&)
+### UND Operator (&&)
 
-**&&** returns true only if both values are true.
+**&&** ergibt nur dann true, wenn beide Werte true sind.
 
 ```js
-myCondition = true && false; // Result: false
+myCondition = true && false; // Ergebnis: false
 ```
 
 ---
 
-## Comparison Operators
+## Vergleichsoperatoren
 
-### Equality (== and ===)
+### Gleichheit (== und ===)
 
-**==** checks if two values are equal (not strict, types can differ).  
-**===** checks if two values are equal and of the same type (strict).
+**==** prüft, ob zwei Werte gleich sind (nicht strikt, Typen können
+unterschiedlich sein).  
+**===** prüft, ob zwei Werte gleich und vom gleichen Typ sind (strikt).
 
 ```js
 myCondition = 45 == 45; // true
@@ -51,12 +69,12 @@ myCondition = 45 === 45; // true
 myCondition = 45 === "45"; // false
 ```
 
-### Greater/Less Than
+### Größer/Kleiner als
 
-**>** checks if the left value is greater.  
-**<** checks if the left value is less.  
-**>=** checks if the left value is greater or equal.  
-**<=** checks if the left value is less or equal.
+**>** prüft, ob der linke Wert größer ist.  
+**<** prüft, ob der linke Wert kleiner ist.  
+**>=** prüft, ob der linke Wert größer oder gleich ist.  
+**<=** prüft, ob der linke Wert kleiner oder gleich ist.
 
 ```js
 myCondition = 45 > 123; // false
@@ -65,10 +83,11 @@ myCondition = 45 >= 123; // false
 myCondition = 45 <= 123; // true
 ```
 
-### Not Equal (!= and !==)
+### Ungleich (!= und !==)
 
-**!=** checks if two values are not equal (not strict).  
-**!==** checks if two values are not equal or of different types (strict).
+**!=** prüft, ob zwei Werte ungleich sind (nicht strikt).  
+**!==** prüft, ob zwei Werte ungleich oder vom unterschiedlichen Typ sind
+(strikt).
 
 ```js
 myCondition = 45 != "47"; // true
@@ -78,31 +97,31 @@ myCondition = 45 !== "45"; // true
 
 ---
 
-## Ternary Operator (Short If)
+## Ternary Operator (Kurz-If)
 
-The ternary operator lets you write a condition in a single line:
+Mit dem ternären Operator kann man eine Bedingung in einer Zeile schreiben:
 
 ```js
 let lang = "de";
-let myTitle = lang == "de" ? "Webseite" : "Website"; // Result: "Webseite"
+let myTitle = lang == "de" ? "Webseite" : "Website"; // Ergebnis: "Webseite"
 ```
 
 ---
 
-## if-else Condition
+## if-else Bedingung
 
-With if-else you can check for different cases:
+Mit if-else kann man verschiedene Fälle prüfen:
 
 ```js
 let myIfCondition = false;
 let mySecondIfCondition = false;
 
 if (myIfCondition) {
-  console.log("First condition is true");
+  console.log("Erste Bedingung ist wahr");
 } else if (mySecondIfCondition) {
-  console.log("Second condition is true");
+  console.log("Zweite Bedingung ist wahr");
 } else {
-  console.log("No condition is true -> else block is executed");
+  console.log("Keine Bedingung ist wahr -> else-Block wird ausgeführt");
 }
 ```
 
@@ -110,7 +129,7 @@ if (myIfCondition) {
 
 ## switch/case
 
-With switch/case you can check a value against multiple possible cases:
+Mit switch/case kann man einen Wert gegen mehrere mögliche Fälle prüfen:
 
 ```js
 function colorCheck(color) {
@@ -135,9 +154,10 @@ function colorCheck(color) {
 
 ---
 
-## Summary
+## Zusammenfassung
 
-- Conditionals control the program flow.
-- Logical operators (&&, ||, !) and comparison operators (==, ===, >, <, ...) are the basis for conditions.
-- With if-else and switch/case you can check for different cases.
-- The ternary operator is a short form for simple conditions.
+- Bedingungen steuern den Programmfluss.
+- Logische Operatoren (&&, ||, !) und Vergleichsoperatoren (==, ===, >, <, ...)
+  sind die Basis für Bedingungen.
+- Mit if-else und switch/case prüfst du verschiedene Fälle.
+- Der ternäre Operator ist eine Kurzform für einfache Bedingungen.

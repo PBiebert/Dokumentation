@@ -1,6 +1,16 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # Canvas
+
+## Inhaltsverzeichnis
+
+1. [Allgemeines zu Canvas](#allgemeines-zu-canvas)
+2. [Grundstruktur](#grundstruktur)
+3. [Kontext holen](#kontext-holen)
+4. [Wichtige Methoden](#wichtige-methoden)
+5. [Bilder zeichnen](#bilder-zeichnen)
+6. [Animation mit requestAnimationFrame](#animation-mit-requestanimationframe)
+7. [Objektverwaltung](#objektverwaltung)
 
 ## Allgemeines zu Canvas
 

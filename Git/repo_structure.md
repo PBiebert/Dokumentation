@@ -1,15 +1,17 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Repository Structure: README, .gitignore and LICENSE
+# Git – Repository-Struktur: README, .gitignore und LICENSE
 
 ## .gitignore
 
-- **Purpose:** Exclude files or folders from Git tracking, e.g. sensitive data like `.env`.
-- **Location:** In the root folder of your project.
-- **How it works:**
-  - List the files or folders to ignore in the `.gitignore` file.
+- **Zweck:** Schließt Dateien oder Ordner von der Git-Verfolgung aus, z.B.
+  sensible Daten wie `.env`.
+- **Ort:** Im Hauptordner deines Projekts.
+- **Funktionsweise:**
+  - Liste die zu ignorierenden Dateien oder Ordner in der `.gitignore`-Datei
+    auf.
 
-**Example `.gitignore`:**
+**Beispiel `.gitignore`:**
 
 ```
 .env
@@ -17,26 +19,27 @@ node_modules/
 .DS_Store
 ```
 
-- **Result:** These files will no longer be committed, even if you run `git add .`.
+- **Ergebnis:** Diese Dateien werden nicht mehr committet, selbst wenn du
+  `git add .` ausführst.
 
 ## README.md
 
-- **Purpose:** Documentation for the project, explains how to use the code.
-- **Possible contents:**
-  - Notes and links
-  - Documentation
+- **Zweck:** Dokumentation für das Projekt, erklärt die Nutzung des Codes.
+- **Mögliche Inhalte:**
+  - Hinweise und Links
+  - Dokumentation
   - Changelog
-  - Installation instructions
-  - Examples
-- **Rules / Tips:**
-  1. Structure similar to HTML (headings, lists, paragraphs)
-  2. Write clearly, concisely, and in a readable way
+  - Installationsanleitung
+  - Beispiele
+- **Regeln / Tipps:**
+  1. Struktur ähnlich wie HTML (Überschriften, Listen, Absätze)
+  2. Klar, prägnant und lesbar schreiben
 
 ## LICENSE
 
-- **Purpose:** Defines rights and obligations regarding the use of your code.
-- **Examples:** MIT License, GPL, Apache License
-- **MIT License:**
-  - Very common and simple
-  - Usually includes disclaimer and usage rights
-  - Important so others know what they are allowed to do with your code
+- **Zweck:** Definiert Rechte und Pflichten bezüglich der Nutzung deines Codes.
+- **Beispiele:** MIT-Lizenz, GPL, Apache-Lizenz
+- **MIT-Lizenz:**
+  - Sehr verbreitet und einfach
+  - Enthält meist Haftungsausschluss und Nutzungsrechte
+  - Wichtig, damit andere wissen, was sie mit deinem Code machen dürfen

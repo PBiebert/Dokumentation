@@ -2,6 +2,12 @@
 
 # Firebase-Projekt anlegen und mit Angular verbinden
 
+## Inhaltsverzeichnis
+
+1. [Firebase-Projekt erstellen](#1-firebase-projekt-erstellen)
+2. [Firebase CLI installieren und einrichten](#2-firebase-cli-installieren-und-einrichten)
+3. [Firebase mit Angular verbinden](#3-firebase-mit-angular-verbinden)
+
 ## 1. Firebase-Projekt erstellen
 
 1. Gehe auf [firebase.google.com](https://firebase.google.com/).

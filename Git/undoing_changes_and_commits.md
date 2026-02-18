@@ -1,114 +1,137 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
-# Git – Undoing Changes and Commits
+# Git – Änderungen und Commits rückgängig machen
 
-In Git, there are several ways to undo changes or commits. The right command depends on whether your changes are local, staged, or already pushed to a remote repository.
+## Inhaltsverzeichnis
 
-## Overview: HEAD, Staging Area, Working Directory
+1. [Überblick: HEAD, Staging Area, Arbeitsverzeichnis](#überblick-head-staging-area-arbeitsverzeichnis)
+2. [git reset](#1-git-reset)
+3. [git revert](#2-git-revert)
+4. [git restore](#3-git-restore)
+5. [git checkout (Dateien/Commits)](#4-git-checkout-dateiencommits)
+6. [Letzten Commit ändern (amend)](#5-letzten-commit-ändern-amend)
+7. [Wichtige Hinweise](#wichtige-hinweise)
 
-| Command            | HEAD        | Staging Area | Working Directory | History                 |
-| ------------------ | ----------- | ------------ | ----------------- | ----------------------- |
-| reset --soft       | moves       | keeps        | keeps             | changes                 |
-| reset --mixed      | moves       | resets       | keeps             | changes                 |
-| reset --hard       | moves       | resets       | resets            | changes                 |
-| revert             | new commit  | keeps        | keeps             | stays intact            |
-| restore            | keeps       | optional     | optional          | stays intact            |
-| checkout -- <file> | keeps       | keeps        | file restored     | stays intact            |
-| commit --amend     | last commit | keeps        | keeps             | last commit overwritten |
+## Überblick: HEAD, Staging Area, Arbeitsverzeichnis
+
+| Befehl              | HEAD           | Staging Area  | Arbeitsverzeichnis      | Historie                     |
+| ------------------- | -------------- | ------------- | ----------------------- | ---------------------------- |
+| reset --soft        | bewegt         | bleibt        | bleibt                  | verändert                    |
+| reset --mixed       | bewegt         | zurückgesetzt | bleibt                  | verändert                    |
+| reset --hard        | bewegt         | zurückgesetzt | zurückgesetzt           | verändert                    |
+| revert              | neuer Commit   | bleibt        | bleibt                  | bleibt erhalten              |
+| restore             | bleibt         | optional      | optional                | bleibt erhalten              |
+| checkout -- <Datei> | bleibt         | bleibt        | Datei wiederhergestellt | bleibt erhalten              |
+| commit --amend      | letzter Commit | bleibt        | bleibt                  | letzter Commit überschrieben |
 
 ## 1. git reset
 
-`git reset` moves the HEAD pointer and can optionally change the staging area and working directory.
+`git reset` bewegt den HEAD-Zeiger und kann optional die Staging Area und das
+Arbeitsverzeichnis verändern.
 
 - **Soft Reset:**
   ```bash
   git reset --soft HEAD~1
   ```
-  - Removes the last commit, changes stay staged.
-- **Mixed Reset (default):**
+
+  - Entfernt den letzten Commit, Änderungen bleiben gestaged.
+- **Mixed Reset (Standard):**
   ```bash
   git reset --mixed HEAD~1
   ```
-  - Removes the last commit, changes go back to the working directory.
+
+  - Entfernt den letzten Commit, Änderungen gehen zurück ins Arbeitsverzeichnis.
 - **Hard Reset:**
   ```bash
   git reset --hard HEAD~1
   ```
-  - Removes the last commit and all changes in the working directory (cannot be undone!).
 
-> **Warning:** `reset` rewrites history. Use only for local commits!
+  - Entfernt den letzten Commit und alle Änderungen im Arbeitsverzeichnis (nicht
+    rückgängig zu machen!).
+
+> **Achtung:** `reset` verändert die Historie. Nur für lokale Commits verwenden!
 
 ## 2. git revert
 
-`git revert` creates a new commit that undoes an earlier commit. The history remains intact.
+`git revert` erstellt einen neuen Commit, der einen früheren Commit rückgängig
+macht. Die Historie bleibt erhalten.
 
 ```bash
 git revert <commitID>
 ```
 
-- Safe for public branches, as history is preserved.
-- Especially useful if a faulty commit has already been pushed.
+- Sicher für öffentliche Branches, da die Historie erhalten bleibt.
+- Besonders nützlich, wenn ein fehlerhafter Commit bereits gepusht wurde.
 
 ## 3. git restore
 
-`git restore` is used to restore files to a previous state.
+`git restore` wird verwendet, um Dateien auf einen früheren Stand
+zurückzusetzen.
 
-- Restore working directory:
+- Arbeitsverzeichnis wiederherstellen:
   ```bash
-  git restore <file>
+  git restore <Datei>
   ```
-- Remove changes from staging area:
+- Änderungen aus der Staging Area entfernen:
   ```bash
-  git restore --staged <file>
+  git restore --staged <Datei>
   ```
 
-## 4. git checkout (files/commits)
+## 4. git checkout (Dateien/Commits)
 
-- Restore a file:
+- Eine Datei wiederherstellen:
   ```bash
-  git checkout -- <file>
+  git checkout -- <Datei>
   ```
-  - Restores a file from the last commit.
-- Switch to a specific commit (detached HEAD):
+
+  - Stellt eine Datei aus dem letzten Commit wieder her.
+- Zu einem bestimmten Commit wechseln (detached HEAD):
   ```bash
   git checkout <commit-id>
   ```
-  - HEAD now points directly to a commit, not a branch.
 
-> **Tip:** For switching branches and restoring files, `git switch` and `git restore` are now recommended.
+  - HEAD zeigt nun direkt auf einen Commit, nicht auf einen Branch.
 
-## 5. Amend last commit
+> **Tipp:** Für das Wechseln von Branches und das Wiederherstellen von Dateien
+> werden inzwischen `git switch` und `git restore` empfohlen.
 
-- Change the last commit message:
+## 5. Letzten Commit ändern (amend)
+
+- Letzte Commit-Nachricht ändern:
   ```bash
   git commit --amend
   ```
-- Add files to the last commit:
+- Dateien zum letzten Commit hinzufügen:
   ```bash
   git add .
   git commit --amend
   ```
-- **Warning:** Only use amend for local commits! For already pushed commits, only overwrite with `git push --force` (dangerous for teamwork).
+- **Achtung:** Amend nur für lokale Commits verwenden! Bereits gepushte Commits
+  nur mit `git push --force` überschreiben (gefährlich für Teamarbeit).
 
-### Editing the commit message in Vim
+### Commit-Nachricht im Vim-Editor bearbeiten
 
-If you run `git commit --amend` and the Vim editor opens:
+Wenn du `git commit --amend` ausführst und sich der Vim-Editor öffnet:
 
-1. Press `i` to enter insert mode and edit the commit message.
-2. When finished, press `Esc` to return to normal mode.
-3. Type `:wq` and press `Enter` to save and exit Vim.
+1. Drücke `i`, um den Einfügemodus zu starten und die Commit-Nachricht zu
+   bearbeiten.
+2. Wenn du fertig bist, drücke `Esc`, um in den normalen Modus zurückzukehren.
+3. Gib `:wq` ein und drücke `Enter`, um zu speichern und Vim zu verlassen.
 
-**Quick Vim commands:**
+**Schnelle Vim-Befehle:**
 
-- `i` → Insert mode (edit text)
-- `Esc` → Normal mode
-- `:wq` → Save and exit
-- `:q!` → Exit without saving
+- `i` → Einfügemodus (Text bearbeiten)
+- `Esc` → Normalmodus
+- `:wq` → Speichern und beenden
+- `:q!` → Beenden ohne zu speichern
 
-After exiting Vim, your amended commit will be saved.
+Nach dem Verlassen von Vim wird dein geänderter Commit gespeichert.
 
-## Key points
+## Wichtige Hinweise
 
-- Use `reset` for local changes, `revert` for public commits, and `restore` for targeted file restoration.
-- `amend` is suitable for small corrections to the last commit, as long as it has not been pushed.
-- When in doubt: prefer to preserve history (revert/restore) rather than delete (reset/hard).
+- Verwende `reset` für lokale Änderungen, `revert` für öffentliche Commits und
+  `restore` für gezielte Dateiwiederherstellung.
+- `amend` eignet sich für kleine Korrekturen am letzten Commit, solange dieser
+  nicht gepusht wurde.
+- Im Zweifel: Historie lieber erhalten (revert/restore) als löschen
+  (reset/hard).

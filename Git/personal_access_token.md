@@ -1,32 +1,40 @@
-[Back to Table of Contents](../README.md)
+[Zurück zum Inhaltsverzeichnis](../README.md)
 
 # Git – Personal Access Token (PAT)
 
-A Personal Access Token (PAT) is used to authenticate with GitHub – for example, when pushing or pulling from private repositories – instead of a password.
+## Was ist ein Personal Access Token?
 
-## Creating a PAT
+Ein Personal Access Token (PAT) wird zur Authentifizierung bei GitHub verwendet
+– zum Beispiel beim Pushen oder Pullen von privaten Repositories – anstelle
+eines Passworts.
 
-1. Click on your profile → **Settings**
-2. Go to **Developer Settings**
-3. Select **Personal Access Tokens**
+## Erstellung eines PAT
 
-### Option 1: Fine-Grained Tokens
+1. Klicke auf dein Profil → **Einstellungen**
+2. Gehe zu **Entwicklereinstellungen**
+3. Wähle **Personal Access Tokens**
 
-- Step-by-step:
-  1. Set a token name
-  2. Description (optional)
-  3. Set expiration date
-  4. Set repository access (e.g. only specific repos)
-  5. Set restrictions for actions (e.g. read, write)
-  6. Click **Generate Token**
-  7. Save the token – Attention: You cannot see it again after leaving the page!
+### Option 1: Fein abgestimmte Tokens
 
-### Option 2: Classic Tokens
+- Schritt für Schritt:
+  1. Token-Namen festlegen
+  2. Beschreibung (optional)
+  3. Ablaufdatum festlegen
+  4. Repository-Zugriff einstellen (z.B. nur bestimmte Repos)
+  5. Einschränkungen für Aktionen festlegen (z.B. Lesen, Schreiben)
+  6. **Token generieren** klicken
+  7. Token speichern – Achtung: Nach Verlassen der Seite ist das Token nicht
+     mehr sichtbar!
 
-- Older, less granular tokens
-- Grant access to all repositories depending on permissions
-- Less flexible and less fine-grained
+### Option 2: Klassische Tokens
 
-## Key Point
+- Ältere, weniger granulare Tokens
+- Gewähren Zugriff auf alle Repositories je nach Berechtigungen
+- Weniger flexibel und weniger fein abgestimmt
 
-**Fine-grained tokens** are the secure choice for modern GitHub workflows, as they offer precise permissions and an expiration date. **Classic tokens** should only be used if fine-grained tokens are not compatible.
+## Wichtig
+
+**Fein abgestimmte Tokens** sind die sichere Wahl für moderne GitHub-Workflows,
+da sie präzise Berechtigungen und ein Ablaufdatum bieten. **Klassische Tokens**
+sollten nur verwendet werden, wenn fein abgestimmte Tokens nicht kompatibel
+sind.
