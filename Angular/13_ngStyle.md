@@ -4,6 +4,19 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist ngStyle?](#was-ist-ngstyle)
+2. [Syntax](#syntax)
+3. [Dynamische Werte](#dynamische-werte)
+4. [Ternary Operator (Kurz-If) mit ngStyle](#ternary-operator-kurz-if-mit-ngstyle)
+5. [Mehrere Styles dynamisch setzen](#mehrere-styles-dynamisch-setzen)
+6. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+7. [Unterschied zu [style.property]](#unterschied-zu-styleproperty)
+8. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Was ist ngStyle?
 
 Mit dem Angular-Directive `ngStyle` kannst du CSS-Styles direkt und dynamisch im

@@ -4,6 +4,22 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist @HostBinding?](#was-ist-hostbinding)
+2. [Vorteile von @HostBinding](#vorteile-von-hostbinding)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Beispiel: CSS-Klasse am Host-Element binden](#beispiel-css-klasse-am-host-element-binden)
+5. [Beispiel: Attribut am Host-Element binden](#beispiel-attribut-am-host-element-binden)
+6. [Beispiel: Style am Host-Element binden](#beispiel-style-am-host-element-binden)
+7. [Schritt-für-Schritt: @HostBinding verwenden](#schritt-für-schritt-hostbinding-verwenden)
+8. [Methodenübersicht](#methodenübersicht)
+9. [Hinweise](#hinweise)
+10. [Fazit](#fazit)
+11. [Beispiel: Mehrere Bindings in einer Directive](#beispiel-mehrere-bindings-in-einer-directive)
+
+---
+
 ## Was ist @HostBinding?
 
 `@HostBinding` ist ein Decorator in Angular, mit dem du Eigenschaften,

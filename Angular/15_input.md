@@ -4,6 +4,20 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist @Input?](#was-ist-input)
+2. [Wie funktioniert @Input?](#wie-funktioniert-input)
+3. [Begriffe und Datenfluss](#begriffe-und-datenfluss)
+4. [Syntax](#syntax)
+5. [Beispiel aus dem Projekt](#beispiel-aus-dem-projekt)
+6. [Was passiert im Hintergrund?](#was-passiert-im-hintergrund)
+7. [Kann ich andere Namen verwenden?](#kann-ich-andere-namen-verwenden)
+8. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+9. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Was ist @Input?
 
 Mit dem Angular Decorator `@Input` kannst du Daten von einer Eltern-Komponente

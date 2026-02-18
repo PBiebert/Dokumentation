@@ -4,6 +4,16 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Beispiel: Navbar-Komponente im Ordner landingPage](#beispiel-navbar-komponente-im-ordner-landingpage)
+2. [Hinweise](#hinweise)
+3. [Navbar-Komponente einbinden und verwenden](#navbar-komponente-einbinden-und-verwenden)
+4. [Komponente definieren](#komponente-definieren)
+5. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Beispiel: Navbar-Komponente im Ordner landingPage
 
 Um eine neue Komponente namens `navbar` im Ordner `landingPage` zu erstellen,

@@ -4,6 +4,23 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist ein Kontaktformular in Angular?](#was-ist-ein-kontaktformular-in-angular)
+2. [Vorteile eines Angular-Kontaktformulars](#vorteile-eines-angular-kontaktformulars)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Beispiel: Kontaktformular-Template](#beispiel-kontaktformular-template)
+5. [Beispiel: Component-Logik](#beispiel-component-logik)
+6. [Erklärung der wichtigsten Template-Bindings am Beispiel des Namensfeldes](#erklärung-der-wichtigsten-template-bindings-am-beispiel-des-namensfeldes)
+7. [Erklärung: Formular-Tag und Angular-Formularbindung](#erklärung-formular-tag-und-angular-formularbindung)
+8. [Schritt-für-Schritt: Kontaktformular in Angular](#schritt-für-schritt-kontaktformular-in-angular)
+9. [Methodenübersicht](#methodenübersicht)
+10. [Hinweise](#hinweise)
+11. [Beispiel: PHP-Backend für das Kontaktformular](#beispiel-php-backend-für-das-kontaktformular)
+12. [Fazit](#fazit)
+
+---
+
 ## Was ist ein Kontaktformular in Angular?
 
 Ein Kontaktformular ermöglicht es Nutzern, direkt über die Website Kontakt

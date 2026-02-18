@@ -1,6 +1,20 @@
 [Zurück zur Übersicht](../README.md)
 
-# Scrollen nach oben bei Routenwechsel in Angular (ab v20)
+# Scrollen nach oben bei Routenwechsel in Angular
+
+---
+
+## Inhaltsverzeichnis
+
+1. [Was ist Scrollen nach oben bei Routenwechsel?](#was-ist-scrollen-nach-oben-bei-routenwechsel)
+2. [Vorteile dieser Lösung](#vorteile-dieser-lösung)
+3. [Umsetzung in Angular](#umsetzung-in-angular-v20)
+4. [Beispiel: app.config.ts](#beispiel-appconfigts)
+5. [Schritt-für-Schritt: Scrollen nach oben aktivieren](#schritt-für-schritt-scrollen-nach-oben-aktivieren)
+6. [Zu bestimmten IDs scrollen: routerLink & fragment](#zu-bestimmten-ids-scrollen-routerlink--fragment)
+7. [Methodenübersicht](#methodenübersicht)
+8. [Hinweise](#hinweise)
+9. [Fazit](#fazit)
 
 ---
 
@@ -152,5 +166,3 @@ Mit der Option `scrollPositionRestoration: 'top'` und ggf.
 bei Routenwechseln in Angular ganz einfach steuern.  
 Das sorgt für ein konsistentes und angenehmes Nutzererlebnis – ohne zusätzlichen
 Aufwand!
-
----

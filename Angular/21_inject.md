@@ -4,10 +4,26 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist inject()?](#was-ist-inject)
+2. [Vorteile von inject()](#vorteile-von-inject)
+3. [Begriffe](#begriffe)
+4. [Schritt-für-Schritt: inject() verwenden](#schritt-für-schritt-inject-verwenden)
+   - [In einer Directive nutzen](#1-in-einer-directive-nutzen)
+   - [In einer Komponente einen Service injizieren](#2-in-einer-komponente-einen-service-injizieren)
+5. [Best Practices](#best-practices)
+6. [Fazit](#fazit)
+
+---
+
 ## Was ist inject()?
 
-`inject()` ist eine Funktion in Angular (ab Version 14), mit der du Abhängigkeiten (z.B. Services, ElementRef) direkt im Code beziehen kannst – ohne sie im Konstruktor zu deklarieren.  
-Sie wird vor allem in Standalone-Komponenten, -Directives und -Services verwendet.
+`inject()` ist eine Funktion in Angular (ab Version 14), mit der du
+Abhängigkeiten (z.B. Services, ElementRef) direkt im Code beziehen kannst – ohne
+sie im Konstruktor zu deklarieren.  
+Sie wird vor allem in Standalone-Komponenten, -Directives und -Services
+verwendet.
 
 ---
 
@@ -21,7 +37,8 @@ Sie wird vor allem in Standalone-Komponenten, -Directives und -Services verwende
 
 ## Begriffe
 
-- **Dependency Injection (DI):** Prinzip, bei dem Abhängigkeiten automatisch bereitgestellt werden.
+- **Dependency Injection (DI):** Prinzip, bei dem Abhängigkeiten automatisch
+  bereitgestellt werden.
 - **inject():** Holt die gewünschte Abhängigkeit aus dem Angular-Injektor.
 
 ---
@@ -31,17 +48,17 @@ Sie wird vor allem in Standalone-Komponenten, -Directives und -Services verwende
 ### 1. In einer Directive nutzen
 
 ```typescript
-import { Directive, ElementRef, OnInit, inject } from '@angular/core';
+import { Directive, ElementRef, OnInit, inject } from "@angular/core";
 
 @Directive({
-  selector: '[appHighlight]',
+  selector: "[appHighlight]",
   standalone: true,
 })
 export class HighlightDirective implements OnInit {
   private el = inject(ElementRef);
 
   ngOnInit() {
-    this.el.nativeElement.style.backgroundColor = 'yellow';
+    this.el.nativeElement.style.backgroundColor = "yellow";
   }
 }
 ```
@@ -56,11 +73,11 @@ export class HighlightDirective implements OnInit {
 ### 2. In einer Komponente einen Service injizieren
 
 ```typescript
-import { Component, inject } from '@angular/core';
-import { FruitlistdataService } from './fruitlistdata.service';
+import { Component, inject } from "@angular/core";
+import { FruitlistdataService } from "./fruitlistdata.service";
 
 @Component({
-  selector: 'app-fruitlist',
+  selector: "app-fruitlist",
   template: `...`,
   standalone: true,
 })
@@ -75,13 +92,18 @@ export class FruitlistComponent {
 
 ## Best Practices
 
-- **Verwende inject() für neue Standalone-Komponenten, -Directives und -Services.**
-- **Für klassische Komponenten mit Konstruktor bleibt auch die alte Syntax gültig.**
-- **inject() kann nicht im Konstruktor selbst verwendet werden, sondern nur auf Klassenebene oder in Methoden.**
+- **Verwende inject() für neue Standalone-Komponenten, -Directives und
+  -Services.**
+- **Für klassische Komponenten mit Konstruktor bleibt auch die alte Syntax
+  gültig.**
+- **inject() kann nicht im Konstruktor selbst verwendet werden, sondern nur auf
+  Klassenebene oder in Methoden.**
 
 ---
 
 ## Fazit
 
-Mit `inject()` kannst du Abhängigkeiten in Angular noch einfacher und übersichtlicher nutzen.  
-Gerade in modernen Projekten mit Standalone-APIs ist `inject()` der empfohlene Weg für Dependency Injection.
+Mit `inject()` kannst du Abhängigkeiten in Angular noch einfacher und
+übersichtlicher nutzen.  
+Gerade in modernen Projekten mit Standalone-APIs ist `inject()` der empfohlene
+Weg für Dependency Injection.

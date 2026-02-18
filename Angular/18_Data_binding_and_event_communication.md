@@ -4,6 +4,24 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist Datenbindung in Angular?](#was-ist-datenbindung-in-angular)
+2. [Was ist ngModel?](#was-ist-ngmodel)
+3. [Was ist @Output und EventEmitter?](#was-ist-output-und-eventemitter)
+4. [ToDo-Liste / Leitfaden für das Beispiel](#todo-liste--leitfaden-für-das-beispiel)
+5. [Schritt 1: Interface für Post](#schritt-1-interface-für-post)
+6. [Schritt 2: Eltern-Komponente (MainPage)](#schritt-2-eltern-komponente-mainpage)
+7. [Schritt 3: Kind-Komponente (Post)](#schritt-3-kind-komponente-post)
+8. [Schritt 4: Datenfluss & Event-Kommunikation](#schritt-4-datenfluss--event-kommunikation)
+9. [Was passiert im Hintergrund?](#was-passiert-im-hintergrund)
+10. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+11. [Typische Fehlerquellen](#typische-fehlerquellen)
+12. [Zusammenfassung](#zusammenfassung)
+13. [Fazit](#fazit)
+
+---
+
 ## Was ist Datenbindung in Angular?
 
 Datenbindung bedeutet, dass du Werte zwischen deiner Komponente (TypeScript) und
@@ -49,19 +67,16 @@ Die Eltern-Komponente kann das Event abfangen und darauf reagieren.
    Kommentaren.
 
 2. **Eltern-Komponente (MainPage) erstellen**
-
    - Enthält eine Liste von Posts.
    - Methode zum Hinzufügen eines Kommentars.
 
 3. **Kind-Komponente (Post) erstellen**
-
    - Zeigt einen einzelnen Post an.
    - Eingabefeld für Kommentare mit `ngModel`.
    - Button zum Absenden des Kommentars.
    - Like-Funktion.
 
 4. **Event-Kommunikation einrichten**
-
    - Kind-Komponente sendet Kommentar per `@Output` an Eltern-Komponente.
    - Eltern-Komponente fügt Kommentar zur richtigen Post-Liste hinzu.
 
@@ -209,18 +224,15 @@ export class Post {
 ## Was passiert im Hintergrund?
 
 - **ngModel:**
-
   - Synchronisiert das Eingabefeld und die Variable.
   - Änderungen im Feld oder in der Variable sind immer aktuell.
 
 - **@Output & EventEmitter:**
-
   - Die Kind-Komponente kann ein Event auslösen.
   - Die Eltern-Komponente kann darauf reagieren und z.B. einen Kommentar
     speichern.
 
 - **@Input:**
-
   - Übergibt Daten von der Eltern- zur Kind-Komponente.
 
 - **@for:**

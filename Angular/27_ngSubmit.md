@@ -4,6 +4,20 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist ngSubmit?](#1-was-ist-ngsubmit)
+2. [Vorteile von ngSubmit](#2-vorteile-von-ngsubmit)
+3. [Voraussetzungen](#3-voraussetzungen)
+4. [Schritt-für-Schritt-Anleitung](#4-schritt-für-schritt-anleitung)
+5. [Validierung vor dem Absenden](#5-validierung-vor-dem-absenden)
+6. [Hinweise](#6-hinweise)
+7. [Beispiel: Formular mit mehreren Feldern](#7-beispiel-formular-mit-mehreren-feldern)
+8. [Methodenübersicht](#8-methodenübersicht)
+9. [Fazit](#9-fazit)
+
+---
+
 ## 1. Was ist ngSubmit?
 
 `ngSubmit` ist ein Angular-Event für das sichere und komfortable Absenden von

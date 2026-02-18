@@ -2,7 +2,20 @@
 
 # Eine neue Komponente in Angular erstellen
 
-## Beispiel: LandingPage-Komponente
+---
+
+## Inhaltsverzeichnis
+
+1. [Beispiel: LandingPage-Komponente](#beispiel-landingpage-komponente)
+2. [Ordner und Datei anlegen](#1-ordner-und-datei-anlegen)
+3. [Komponente erstellen](#2-komponente-erstellen)
+4. [Komponente im Hauptmodul einbinden](#3-komponente-im-hauptmodul-einbinden)
+5. [Komponente im Template anzeigen](#4-komponente-im-template-anzeigen)
+6. [Zusammenfassung](#zusammenfassung)
+
+---
+
+## 1. Beispiel: LandingPage-Komponente
 
 Hier wird Schritt für Schritt erklärt, wie du eine neue Komponente namens
 `LandingPage` im Angular-Projekt anlegst, was dabei passiert und wofür die
@@ -10,7 +23,7 @@ einzelnen Teile da sind.
 
 ---
 
-## 1. Ordner und Datei anlegen
+## 2. Ordner und Datei anlegen
 
 Lege im `src/app`-Verzeichnis einen neuen Ordner für deine Komponente an. Das
 sorgt für Übersichtlichkeit, besonders bei größeren Projekten.
@@ -28,7 +41,7 @@ src/
 
 ---
 
-## 2. Komponente erstellen
+## 3. Komponente erstellen
 
 In der Datei `landingPage.ts` definierst du die Komponente. Das sieht so aus:
 
@@ -66,7 +79,7 @@ export class LandingPageComponent {}
 
 ---
 
-## 3. Komponente im Hauptmodul einbinden
+## 4. Komponente im Hauptmodul einbinden
 
 Damit Angular weiß, dass es die neue Komponente gibt, musst du sie in deiner
 Hauptdatei `app.ts` importieren und in die `imports`-Liste aufnehmen:
@@ -94,7 +107,7 @@ export class App {
 
 ---
 
-## 4. Komponente im Template anzeigen
+## 5. Komponente im Template anzeigen
 
 Jetzt kannst du die Komponente im Template (`app.html`) anzeigen, indem du ihren
 Selector verwendest:
@@ -111,7 +124,7 @@ Selector verwendest:
 
 ---
 
-## Zusammenfassung
+## 6. Zusammenfassung
 
 - **Ordnerstruktur**: Jede Komponente bekommt ihren eigenen Ordner für
   Übersichtlichkeit.

@@ -4,6 +4,16 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Font-Dateien ins Projekt kopieren](#1-font-dateien-ins-projekt-kopieren)
+2. [Fonts in styles.scss registrieren](#2-fonts-in-stylesscss-registrieren)
+3. [Schriftart in Komponenten verwenden](#3-schriftart-in-komponenten-verwenden)
+4. [Hinweise](#hinweise)
+5. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## 1. Font-Dateien ins Projekt kopieren
 
 Lege die Schriftarten im Ordner `src/assets/fonts/` ab, z.B.:

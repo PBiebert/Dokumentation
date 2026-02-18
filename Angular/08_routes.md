@@ -2,11 +2,26 @@
 
 # Routing in Angular
 
+---
+
 ## Was ist Routing?
 
 Routing ermöglicht es, verschiedene Komponenten (Seiten) in einer
 Angular-Anwendung über URLs anzuzeigen. Jede Route ist mit einem Pfad und einer
 Komponente verknüpft.
+
+---
+
+## Inhaltsverzeichnis
+
+1. [Was ist Routing?](#was-ist-routing)
+2. [!! WICHTIG !!](#-wichtig-)
+3. [Routen definieren](#routen-definieren)
+4. [RouterOutlet verwenden](#routeroutlet-verwenden)
+5. [Komponenten für Routen](#komponenten-für-routen)
+6. [Navigation zwischen Seiten](#navigation-zwischen-seiten)
+7. [Beispiel: Footer mit Navigation](#beispiel-footer-mit-navigation)
+8. [Zusammenfassung](#zusammenfassung)
 
 ---
 

@@ -4,6 +4,20 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist Renderer2?](#was-ist-renderer2)
+2. [Vorteile von Renderer2](#vorteile-von-renderer2)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Beispiel: Hintergrundfarbe setzen](#beispiel-hintergrundfarbe-setzen)
+5. [Beispiel: Textinhalt ändern](#beispiel-textinhalt-ändern)
+6. [Schritt-für-Schritt: Renderer2 verwenden](#schritt-für-schritt-renderer2-verwenden)
+7. [Methodenübersicht](#methodenübersicht)
+8. [Hinweise](#hinweise)
+9. [Fazit](#fazit)
+
+---
+
 ## Was ist Renderer2?
 
 `Renderer2` ist ein Service von Angular, der dir ermöglicht, DOM-Elemente sicher

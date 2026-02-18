@@ -11,6 +11,26 @@ im Lebenszyklus einer Komponente oder Directive automatisch aufruft.
 Sie ermöglichen dir, auf Ereignisse wie Initialisierung, Änderungen, Rendern
 oder Zerstörung zu reagieren und gezielt Code auszuführen.
 
+---
+
+## Inhaltsverzeichnis
+
+1. [Was sind Lifecycle-Hooks?](#was-sind-lifecycle-hooks)
+2. [Übersicht Lifecycle-Hooks](#übersicht-lifecycle-hooks)
+3. [Reihenfolge der Hooks](#reihenfolge-der-hooks)
+4. [Die zwei Phasen des Lifecycles](#die-zwei-phasen-des-lifecycles)
+5. [OnInit – Initialisierung von Komponenten und Directives](#oninit--initialisierung-von-komponenten-und-directives)
+6. [OnChanges – Auf Eingabeänderungen reagieren](#onchanges--auf-eingabeänderungen-reagieren)
+7. [DoCheck – Eigene Änderungserkennung](#docheck--eigene-änderungserkennung)
+8. [AfterContentInit – Nach dem Projizieren von Inhalten](#aftercontentinit--nach-dem-projizieren-von-inhalten)
+9. [AfterContentChecked – Nach jeder Content-Prüfung](#aftercontentchecked--nach-jeder-content-prüfung)
+10. [AfterViewInit – Zugriff auf das View-Template nach der Initialisierung](#afterviewinit--zugriff-auf-das-view-template-nach-der-initialisierung)
+11. [AfterViewChecked – Nach jeder View-Prüfung](#afterviewchecked--nach-jeder-view-prüfung)
+12. [OnDestroy – Aufräumen beim Zerstören](#ondestroy--aufräumen-beim-zerstören)
+13. [Fazit](#fazit)
+
+---
+
 ### Der Lebenszyklus einer Komponente
 
 Jede Angular-Komponente durchläuft einen klar definierten Lebenszyklus:
@@ -33,22 +53,6 @@ Angular verwaltet diesen Zyklus vollständig selbst. Du als Entwickler kannst
 
 > Beim Zerstören der Komponente ruft Angular `ngOnDestroy()` auf – hier solltest
 > du Subscriptions beenden, Timer löschen und Ressourcen freigeben.
-
----
-
-## Inhaltsverzeichnis
-
-1. [Was sind Lifecycle-Hooks?](#was-sind-lifecycle-hooks)
-2. [Übersicht Lifecycle-Hooks](#übersicht-lifecycle-hooks)
-3. [Reihenfolge der Hooks](#reihenfolge-der-hooks)
-4. [OnInit – Initialisierung von Komponenten und Directives](#oninit--initialisierung-von-komponenten-und-directives)
-5. [OnChanges – Auf Eingabeänderungen reagieren](#onchanges--auf-eingabeänderungen-reagieren)
-6. [DoCheck – Eigene Änderungserkennung](#docheck--eigene-änderungserkennung)
-7. [AfterContentInit – Nach dem Projizieren von Inhalten](#aftercontentinit--nach-dem-projizieren-von-inhalten)
-8. [AfterContentChecked – Nach jeder Content-Prüfung](#aftercontentchecked--nach-jeder-content-prüfung)
-9. [AfterViewInit – Zugriff auf das View-Template nach der Initialisierung](#afterviewinit--zugriff-auf-das-view-template-nach-der-initialisierung)
-10. [AfterViewChecked – Nach jeder View-Prüfung](#afterviewchecked--nach-jeder-view-prüfung)
-11. [OnDestroy – Aufräumen beim Zerstören](#ondestroy--aufräumen-beim-zerstören)
 
 ---
 

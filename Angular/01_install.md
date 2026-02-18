@@ -2,6 +2,16 @@
 
 # Angular CLI Installation und Nutzung
 
+---
+
+## Inhaltsverzeichnis
+
+1. [Angular CLI installieren](#angular-cli-installieren)
+2. [Angular CLI Version anzeigen](#angular-cli-version-anzeigen)
+3. [Alle Befehle anzeigen](#alle-befehle-anzeigen)
+
+---
+
 ## Angular CLI installieren
 
 Installiere die neueste Version der Angular CLI global:
@@ -35,5 +45,3 @@ Lasse dir alle verfügbaren Angular CLI Befehle anzeigen:
 ```bash
 ng --help
 ```
-
----

@@ -4,6 +4,18 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was sind Services?](#was-sind-services)
+2. [Vorteile von Services](#vorteile-von-services)
+3. [Begriffe und Datenfluss](#begriffe-und-datenfluss)
+4. [Schritt-für-Schritt: Service nutzen](#schritt-für-schritt-service-nutzen)
+   - [Service erstellen](#1-service-erstellen)
+   - [Service in einer Komponente verwenden](#2-service-in-einer-komponente-verwenden)
+5. [Fazit](#fazit)
+
+---
+
 ## Was sind Services?
 
 Mit Services kannst du in Angular gemeinsam genutzte Logik, Daten oder

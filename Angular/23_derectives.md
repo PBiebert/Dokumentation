@@ -13,6 +13,21 @@ dynamischer und flexibler.
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was sind Directives?](#was-sind-directives)
+2. [Vorteile von Directives](#vorteile-von-directives)
+3. [Wo gehören Directives hin?](#wo-gehören-directives-hin)
+4. [Typen von Directives](#typen-von-directives)
+5. [Beispiel A: Farbe oder Aussehen ändern](#beispiel-a-farbe-oder-aussehen-ändern)
+6. [Beispiel B: Text automatisch großschreiben](#beispiel-b-text-automatisch-großschreiben)
+7. [Schritt-für-Schritt: Eigene Directive erstellen](#schritt-für-schritt-eigene-directive-erstellen)
+8. [Weitere Beispiele](#weitere-beispiele)
+9. [Hinweise zu Angular 16+ / 20](#hinweise-zu-angular-16--20)
+10. [Fazit](#fazit)
+
+---
+
 ## Vorteile von Directives
 
 - **Wiederverwendbarkeit:** Schreibe Logik einmal und nutze sie überall.
@@ -73,13 +88,16 @@ import { Directive, ElementRef, Input, OnInit, Renderer2 } from "@angular/core";
 export class HighlightDirective implements OnInit {
   @Input({ required: false }) appHighlight: string = "yellow";
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngOnInit() {
     this.renderer.setStyle(
       this.el.nativeElement,
       "backgroundColor",
-      this.appHighlight
+      this.appHighlight,
     );
   }
 }
@@ -132,14 +150,17 @@ import { Directive, ElementRef, OnInit, Renderer2 } from "@angular/core";
   standalone: true,
 })
 export class UppercaseDirective implements OnInit {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngOnInit() {
     const native: HTMLElement = this.el.nativeElement;
     this.renderer.setProperty(
       native,
       "textContent",
-      native.textContent?.toUpperCase() ?? ""
+      native.textContent?.toUpperCase() ?? "",
     );
   }
 }

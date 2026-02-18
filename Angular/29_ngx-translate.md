@@ -4,6 +4,24 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist ngx-translate?](#was-ist-ngx-translate)
+2. [Vorteile von ngx-translate](#vorteile-von-ngx-translate)
+3. [Installation](#installation)
+4. [Grundkonfiguration (Angular v20)](#grundkonfiguration-angular-v20)
+5. [Übersetzungsdateien anlegen](#json-übersetzungsdateien-anlegen)
+6. [Übersetzungen im Template verwenden](#übersetzungen-im-template-verwenden)
+7. [Übersetzungen im TypeScript-Code verwenden](#übersetzungen-im-typescript-code-verwenden)
+8. [Sprache zur Laufzeit wechseln](#sprache-zur-laufzeit-wechseln)
+9. [Platzhalter und Parameter](#platzhalter-und-parameter)
+10. [Fallback-Sprache](#fallback-sprache)
+11. [Weitere Tipps](#weitere-tipps)
+12. [Offizielle Dokumentation](#offizielle-dokumentation)
+13. [Fazit](#fazit)
+
+---
+
 ## Was ist ngx-translate?
 
 [ngx-translate](https://github.com/ngx-translate/core) ist eine beliebte

@@ -4,6 +4,16 @@ In Angular kannst du Variablen aus deiner TypeScript-Komponente direkt im
 HTML-Template anzeigen. Dafür nutzt du die sogenannte **Interpolation** mit der
 `{{}}`-Notation.
 
+---
+
+## Inhaltsverzeichnis
+
+1. [Beispiel](#beispiel)
+2. [Hinweise](#hinweise)
+3. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Beispiel
 
 Angenommen, du hast in deiner Komponente folgende Variable definiert:

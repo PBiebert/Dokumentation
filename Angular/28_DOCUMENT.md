@@ -4,6 +4,24 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist `DOCUMENT`?](#was-ist-document)
+2. [Vorteile von `DOCUMENT`](#vorteile-von-document)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Beispiel: Klasse am `<body>` setzen](#beispiel-klasse-am-body-setzen)
+5. [Beispiel: Scrollposition auslesen](#beispiel-scrollposition-auslesen)
+6. [Schritt-für-Schritt: `DOCUMENT` verwenden](#schritt-für-schritt-document-verwenden)
+7. [Methodenübersicht](#methodenübersicht)
+8. [Hinweise](#hinweise)
+9. [Beispiel: Direkter Zugriff auf `window.document` (nicht empfohlen)](#beispiel-direkter-zugriff-auf-windowdocument-nicht-empfohlen)
+10. [Zugriff auf das `<body>`-Element mit `window.document`](#zugriff-auf-das-body-element-mit-windowdocument)
+11. [Fazit](#fazit)
+12. [Beispiel: Dynamisches Einfügen eines Skripts](#beispiel-dynamisches-einfügen-eines-skripts)
+13. [Weitere Infos & Links](#weitere-infos--links)
+
+---
+
 ## Was ist `DOCUMENT`?
 
 `DOCUMENT` ist ein Injection Token aus `@angular/common`, mit dem du in Angular

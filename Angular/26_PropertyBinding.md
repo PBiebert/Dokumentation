@@ -4,6 +4,22 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist Property Binding?](#was-ist-property-binding)
+2. [Vorteile von Property Binding](#vorteile-von-property-binding)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Beispiel: Einfache Property-Bindings](#beispiel-einfache-property-bindings)
+5. [Property Binding vs. Attribut-Binding](#property-binding-vs-attribut-binding)
+6. [Beispiel: Binding an eine Kind-Komponente](#beispiel-binding-an-eine-kind-komponente)
+7. [Schritt-für-Schritt: Property Binding verwenden](#schritt-für-schritt-property-binding-verwenden)
+8. [Methodenübersicht](#methodenübersicht)
+9. [Hinweise](#hinweise)
+10. [Fazit](#fazit)
+11. [Beispiel: Dynamische CSS-Klassen und Styles](#beispiel-dynamische-css-klassen-und-styles)
+
+---
+
 ## Was ist Property Binding?
 
 Property Binding ist eine zentrale Technik in Angular, mit der du Werte aus

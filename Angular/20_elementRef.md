@@ -4,6 +4,19 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist ElementRef?](#was-ist-elementref)
+2. [Vorteile und Hinweise](#vorteile-und-hinweise)
+3. [Begriffe](#begriffe)
+4. [Schritt-für-Schritt: ElementRef verwenden](#schritt-für-schritt-elementref-verwenden)
+   - [In einer Directive nutzen](#1-in-einer-directive-nutzen)
+   - [In einer Komponente nutzen](#2-in-einer-komponente-nutzen)
+5. [Best Practices](#best-practices)
+6. [Fazit](#fazit)
+
+---
+
 ## Was ist ElementRef?
 
 `ElementRef` ist eine Angular-Klasse, mit der du direkten Zugriff auf ein

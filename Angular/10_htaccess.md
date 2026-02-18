@@ -1,6 +1,14 @@
 [Back to Table of Contents](../README.md)
 
-# Warum bekommst du „Not Found“ nach ng build?
+## Inhaltsverzeichnis
+
+1. [Angular ist eine Single Page Application (SPA)](#angular-ist-eine-single-page-application-spa)
+2. [Wozu die .htaccess?](#-wozu-die-htaccess)
+3. [Brauche ich die .htaccess immer?](#brauche-ich-die-htaccess-immer)
+4. [Warum generiert Angular keine .htaccess?](#warum-generiert-angular-keine-htaccess)
+5. [Merksatz](#merksatz)
+
+---
 
 ## Angular ist eine Single Page Application (SPA)
 
@@ -15,7 +23,7 @@ Die gibt es nicht → **404 Not Found**.
 
 ---
 
-## 🧩 Wozu die .htaccess?
+## Wozu die .htaccess?
 
 Die `.htaccess` sorgt dafür, dass alle Anfragen auf deine Angular-App immer zur
 `index.html` umgeleitet werden.  

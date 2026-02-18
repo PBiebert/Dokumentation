@@ -2,6 +2,18 @@
 
 # Angular-Projekt bauen (Build)
 
+---
+
+## Inhaltsverzeichnis
+
+1. [Projekt bauen](#projekt-bauen)
+2. [Build-Optionen](#build-optionen)
+3. [Hinweis zu Routing und Source Maps](#hinweis-zu-routing-und-source-maps)
+4. [Ergebnis](#ergebnis)
+5. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Projekt bauen
 
 1. **Terminal öffnen**  

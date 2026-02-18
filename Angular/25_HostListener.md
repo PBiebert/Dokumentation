@@ -4,6 +4,22 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist @HostListener?](#was-ist-hostlistener)
+2. [Vorteile von @HostListener](#vorteile-von-hostlistener)
+3. [Typische Anwendungsfälle](#typische-anwendungsfälle)
+4. [Beispiel: Klick auf das Host-Element](#beispiel-klick-auf-das-host-element)
+5. [Beispiel: Tastendruck am Host-Element](#beispiel-tastendruck-am-host-element)
+6. [Beispiel: Globales Event (Window Resize)](#beispiel-globales-event-window-resize)
+7. [Schritt-für-Schritt: @HostListener verwenden](#schritt-für-schritt-hostlistener-verwenden)
+8. [Methodenübersicht](#methodenübersicht)
+9. [Hinweise](#hinweise)
+10. [Fazit](#fazit)
+11. [Beispiel: Mehrere Events in einer Directive](#beispiel-mehrere-events-in-einer-directive)
+
+---
+
 ## Was ist @HostListener?
 
 `@HostListener` ist ein Decorator in Angular, mit dem du Events direkt am
@@ -97,7 +113,7 @@ export class ResizeDirective {
     console.log(
       "Fenstergröße geändert:",
       window.innerWidth,
-      window.innerHeight
+      window.innerHeight,
     );
   }
 }

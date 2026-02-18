@@ -4,6 +4,18 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Syntax](#syntax)
+2. [Häufige Events](#häufige-events)
+3. [Beispiel: Klick-Event](#beispiel-klick-event)
+4. [Beispiel: Übergabe von Werten](#beispiel-übergabe-von-werten)
+5. [Beispiel aus dem Projekt](#beispiel-aus-dem-projekt)
+6. [Event-Objekt verwenden](#event-objekt-verwenden)
+7. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Syntax
 
 ```html

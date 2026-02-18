@@ -6,6 +6,18 @@
 Angular-Anwendung. Sie steuern, wie ein bestimmter Teil der Benutzeroberfläche
 aussieht und sich verhält.
 
+---
+
+## Inhaltsverzeichnis
+
+1. [Aufbau einer Komponente](#aufbau-einer-komponente)
+2. [Wie funktionieren Komponenten?](#wie-funktionieren-komponenten)
+3. [Deklaration einer Komponente](#deklaration-einer-komponente)
+4. [Vorteile von Komponenten](#vorteile-von-komponenten)
+5. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Aufbau einer Komponente
 
 Eine Komponente besteht immer aus drei Hauptbestandteilen:

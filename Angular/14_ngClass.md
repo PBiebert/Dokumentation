@@ -4,6 +4,19 @@
 
 ---
 
+## Inhaltsverzeichnis
+
+1. [Was ist ngClass?](#was-ist-ngclass)
+2. [Syntax](#syntax)
+3. [Beispiel: Dynamische Klassen mit Bedingungen](#beispiel-dynamische-klassen-mit-bedingungen)
+4. [Dynamische Klassen mit Variablen](#dynamische-klassen-mit-variablen)
+5. [Mehrere Klassen als Array](#mehrere-klassen-als-array)
+6. [Klassen als String](#klassen-als-string)
+7. [Unterschied zu [class.className]](#unterschied-zu-classclassname)
+8. [Zusammenfassung](#zusammenfassung)
+
+---
+
 ## Was ist ngClass?
 
 Mit dem Angular-Directive `ngClass` kannst du CSS-Klassen dynamisch im Template

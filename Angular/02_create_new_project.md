@@ -2,6 +2,20 @@
 
 # Neues Angular-Projekt erstellen
 
+---
+
+## Inhaltsverzeichnis
+
+1. [Projekt erstellen](#1-projekt-erstellen)
+2. [Entwicklungsserver starten](#2-entwicklungsserver-starten)
+3. [Ordnerstruktur und wichtige Dateien](#ordnerstruktur-und-wichtige-dateien)
+4. [Hinweise](#hinweise)
+5. [Sinnvolle Struktur im app-Ordner (nach Angular Styleguide)](#sinnvolle-struktur-im-app-ordner-nach-angular-styleguide)
+
+---
+
+# Neues Angular-Projekt erstellen
+
 ## 1. Projekt erstellen
 
 Öffne das Terminal und führe folgenden Befehl aus:
