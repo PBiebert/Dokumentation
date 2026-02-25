@@ -170,6 +170,7 @@ zu Fehlern führen.
 ## Siehe auch
 
 - [Firebase Doku zu updateDoc](https://firebase.google.com/docs/reference/js/firestore_.updatedoc)
+- [Firebase Authentication in Angular: Registrieren, Anmelden, Profil aktualisieren und aktuellen Nutzer abrufen](./auth.md)
 - Eigene Methoden:
   - `getSingleDocRef`: Erzeugt Dokument-Referenz
   - `getColIdFromNote`: Bestimmt Collection

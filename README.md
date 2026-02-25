@@ -137,6 +137,7 @@
 <summary><strong>Firestone in Angular</strong></summary>
 
 - [Firebase-Projekt erstellen und mit Angular verbinden](./Firebase/create_new_project.md)
+- [Firebase Authentication in Angular: Registrieren, Anmelden, Profil aktualisieren und aktuellen Nutzer abrufen](./Firebase/auth.md)
 - [Datenbankzugriff mit Angular und Firebase](./Firebase/show_data.md)
 - [Dokumente mit `addDoc` zu Firestore hinzufügen in Angular](./Firebase/addDoc.md)
 - [Einzelne Felder eines Dokuments mit `updateDoc` in Firebase aktualisieren](./Firebase/updateDoc.md)
