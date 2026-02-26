@@ -121,6 +121,7 @@
 ##### Formulare
 
 - [`ngSubmit` - Formulare mit ngSubmit in Angular](./Angular/27_ngSubmit.md)
+- -[`NgForm` – Template Formulare & Validierung](./Angular/27a_ngForms.md)
 - [Kontaktformular in Angular – Schritt für Schritt](./Angular/99_Kontaktformular.md)
 
 ##### Internationalisierung
