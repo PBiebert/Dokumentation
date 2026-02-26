@@ -132,6 +132,41 @@ export class LoginComponent {
 }
 ```
 
+**Werte direkt an ein Objekt binden:**  
+Du kannst auch beide Felder direkt an ein Objekt binden, z.B. für
+übersichtlicheren Code:
+
+```html
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <input
+    name="username"
+    [(ngModel)]="user.username"
+    required
+    minlength="3"
+    #usernameCtrl="ngModel"
+  />
+  <input
+    type="password"
+    name="password"
+    [(ngModel)]="user.password"
+    required
+    #passwordCtrl="ngModel"
+  />
+  <button [disabled]="loginForm.invalid">Login</button>
+</form>
+```
+
+```typescript
+export class LoginComponent {
+  user = { username: "", password: "" };
+
+  onSubmit(form: NgForm) {
+    // Zugriff auf this.user.username und this.user.password
+    console.log(this.user);
+  }
+}
+```
+
 #### Wann welches Muster?
 
 | Muster                        | Vorteil                                                                  | Wann verwenden?                              |
