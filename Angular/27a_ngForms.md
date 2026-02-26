@@ -12,6 +12,11 @@ im Template sowie Zugriff auf Validierungen im TypeScript-Code.
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Import \& Setup](#import--setup)
   - [Verwendung – NgForm im Template](#verwendung--ngform-im-template)
+    - [Erklärung: ngModel, Template-Referenz und Two-Way-Binding](#erklärung-ngmodel-template-referenz-und-two-way-binding)
+      - [Warum `ngModel` und `#username="ngModel"`?](#warum-ngmodel-und-usernamengmodel)
+      - [Warum wird hier kein Two-Way-Binding (`[(ngModel)]`) verwendet?](#warum-wird-hier-kein-two-way-binding-ngmodel-verwendet)
+      - [Beispiel mit Two-Way-Binding](#beispiel-mit-two-way-binding)
+      - [Wann welches Muster?](#wann-welches-muster)
   - [Eigenschaften der Validierung](#eigenschaften-der-validierung)
   - [Validierung im Template](#validierung-im-template)
   - [Validierung in TypeScript nutzen](#validierung-in-typescript-nutzen)
@@ -20,11 +25,6 @@ im Template sowie Zugriff auf Validierungen im TypeScript-Code.
   - [Beispiel: Ein einfaches Login-Formular](#beispiel-ein-einfaches-login-formular)
   - [Weitere Hinweise](#weitere-hinweise)
   - [Quellen](#quellen)
-  - [Beispiel-Snippet \& Erklärung: ngModel, Template-Referenz und Two-Way-Binding](#beispiel-snippet--erklärung-ngmodel-template-referenz-und-two-way-binding)
-    - [Warum `ngModel` und `#username="ngModel"`?](#warum-ngmodel-und-usernamengmodel)
-    - [Warum wird hier kein Two-Way-Binding (`[(ngModel)]`) verwendet?](#warum-wird-hier-kein-two-way-binding-ngmodel-verwendet)
-    - [Beispiel mit Two-Way-Binding](#beispiel-mit-two-way-binding)
-    - [Wann welches Muster?](#wann-welches-muster)
 
 ---
 
@@ -72,6 +72,80 @@ werden mit `ngModel` gebunden:
   <button [disabled]="loginForm.invalid">Login</button>
 </form>
 ```
+
+### Erklärung: ngModel, Template-Referenz und Two-Way-Binding
+
+#### Warum `ngModel` und `#username="ngModel"`?
+
+- **`ngModel`**: Bindet das Eingabefeld an das Formularmodell von Angular. Es
+  sorgt dafür, dass Angular den Wert und Status des Feldes verwaltet und
+  validiert.
+- **`#username="ngModel"`**: Erstellt eine Template-Referenzvariable namens
+  `username`, die auf die Instanz des `NgModel`-Direktivs verweist. Damit kann
+  man im Template auf Status und Fehler des Feldes zugreifen, z.B.
+  `username.errors`, `username.valid`, `username.touched` usw.
+
+**Ohne `#username="ngModel"`** könntest du im Template nicht direkt auf den
+Status des Feldes zugreifen, sondern nur auf das gesamte Formular.
+
+#### Warum wird hier kein Two-Way-Binding (`[(ngModel)]`) verwendet?
+
+- In diesem Beispiel wird kein explizites Datenmodell im TypeScript benötigt.
+  Die Werte werden erst beim Absenden (`onSubmit`) gesammelt und verarbeitet.
+- Das einfache `ngModel` reicht aus, wenn du nur Validierung und Formularstatus
+  im Template brauchst.
+
+#### Beispiel mit Two-Way-Binding
+
+Wenn du die Werte der Felder direkt an Variablen im TypeScript binden möchtest
+(z.B. für Live-Feedback oder sofortige Verarbeitung), verwendest du das
+Two-Way-Binding:
+
+```html
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <input
+    name="username"
+    [(ngModel)]="username"
+    required
+    minlength="3"
+    #usernameCtrl="ngModel"
+  />
+  <input
+    type="password"
+    name="password"
+    [(ngModel)]="password"
+    required
+    #passwordCtrl="ngModel"
+  />
+  <button [disabled]="loginForm.invalid">Login</button>
+</form>
+```
+
+```typescript
+export class LoginComponent {
+  username: string = "";
+  password: string = "";
+
+  onSubmit(form: NgForm) {
+    // Zugriff auf this.username und this.password direkt möglich
+  }
+}
+```
+
+#### Wann welches Muster?
+
+| Muster                        | Vorteil                                                                  | Wann verwenden?                              |
+| ----------------------------- | ------------------------------------------------------------------------ | -------------------------------------------- |
+| `ngModel` + Template-Referenz | Einfach, wenn nur Validierung/Status im Template benötigt werden         | Wenn du kein explizites Datenmodell brauchst |
+| `[(ngModel)]` (Two-Way)       | Direkter Sync zwischen Feld und Komponenten-Property (Live-Updates etc.) | Wenn du Werte sofort im TypeScript benötigst |
+
+**Fazit:**
+
+- Nutze `ngModel` und Template-Referenzen, wenn du nur Validierung und Status im
+  Template brauchst.
+- Nutze `[(ngModel)]`, wenn du die Werte der Felder direkt im TypeScript-Code
+  weiterverarbeiten oder beobachten möchtest (z.B. für Live-Feedback, dynamische
+  UI, etc.).
 
 ---
 
@@ -272,89 +346,3 @@ export class LoginComponent {
 - [Angular Dokumentation: Template-driven forms](https://angular.io/guide/forms)
 - [API Docs: NgForm](https://angular.io/api/forms/NgForm)
 - [Angular Form Validation](https://angular.io/guide/form-validation)
-
----
-
-## Beispiel-Snippet & Erklärung: ngModel, Template-Referenz und Two-Way-Binding
-
-Hier ein typisches Snippet:
-
-```html
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-  <input name="username" ngModel required minlength="3" #username="ngModel" />
-  <input type="password" name="password" ngModel required #password="ngModel" />
-  <button [disabled]="loginForm.invalid">Login</button>
-</form>
-```
-
-### Warum `ngModel` und `#username="ngModel"`?
-
-- **`ngModel`**: Bindet das Eingabefeld an das Formularmodell von Angular. Es
-  sorgt dafür, dass Angular den Wert und Status des Feldes verwaltet und
-  validiert.
-- **`#username="ngModel"`**: Erstellt eine Template-Referenzvariable namens
-  `username`, die auf die Instanz des `NgModel`-Direktivs verweist. Damit kann
-  man im Template auf Status und Fehler des Feldes zugreifen, z.B.
-  `username.errors`, `username.valid`, `username.touched` usw.
-
-**Ohne `#username="ngModel"`** könntest du im Template nicht direkt auf den
-Status des Feldes zugreifen, sondern nur auf das gesamte Formular.
-
-### Warum wird hier kein Two-Way-Binding (`[(ngModel)]`) verwendet?
-
-- In diesem Beispiel wird kein explizites Datenmodell im TypeScript benötigt.
-  Die Werte werden erst beim Absenden (`onSubmit`) gesammelt und verarbeitet.
-- Das einfache `ngModel` reicht aus, wenn du nur Validierung und Formularstatus
-  im Template brauchst.
-
-### Beispiel mit Two-Way-Binding
-
-Wenn du die Werte der Felder direkt an Variablen im TypeScript binden möchtest
-(z.B. für Live-Feedback oder sofortige Verarbeitung), verwendest du das
-Two-Way-Binding:
-
-```html
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-  <input
-    name="username"
-    [(ngModel)]="username"
-    required
-    minlength="3"
-    #usernameCtrl="ngModel"
-  />
-  <input
-    type="password"
-    name="password"
-    [(ngModel)]="password"
-    required
-    #passwordCtrl="ngModel"
-  />
-  <button [disabled]="loginForm.invalid">Login</button>
-</form>
-```
-
-```typescript
-export class LoginComponent {
-  username: string = "";
-  password: string = "";
-
-  onSubmit(form: NgForm) {
-    // Zugriff auf this.username und this.password direkt möglich
-  }
-}
-```
-
-### Wann welches Muster?
-
-| Muster                        | Vorteil                                                                  | Wann verwenden?                              |
-| ----------------------------- | ------------------------------------------------------------------------ | -------------------------------------------- |
-| `ngModel` + Template-Referenz | Einfach, wenn nur Validierung/Status im Template benötigt werden         | Wenn du kein explizites Datenmodell brauchst |
-| `[(ngModel)]` (Two-Way)       | Direkter Sync zwischen Feld und Komponenten-Property (Live-Updates etc.) | Wenn du Werte sofort im TypeScript benötigst |
-
-**Fazit:**
-
-- Nutze `ngModel` und Template-Referenzen, wenn du nur Validierung und Status im
-  Template brauchst.
-- Nutze `[(ngModel)]`, wenn du die Werte der Felder direkt im TypeScript-Code
-  weiterverarbeiten oder beobachten möchtest (z.B. für Live-Feedback, dynamische
-  UI, etc.).
