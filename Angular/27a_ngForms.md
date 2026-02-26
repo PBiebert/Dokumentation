@@ -12,7 +12,7 @@ im Template sowie Zugriff auf Validierungen im TypeScript-Code.
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Import \& Setup](#import--setup)
   - [Verwendung – NgForm im Template](#verwendung--ngform-im-template)
-    - [Erklärung: ngModel, Template-Referenz und Two-Way-Binding](#erklärung-ngmodel-template-referenz-und-two-way-binding)
+    - [Erklärung: ngModel, Template-Referenz und Datenübernahme ins Objekt](#erklärung-ngmodel-template-referenz-und-datenübernahme-ins-objekt)
       - [Warum `ngModel` und `#username="ngModel"`?](#warum-ngmodel-und-usernamengmodel)
       - [Warum wird hier kein Two-Way-Binding (`[(ngModel)]`) verwendet?](#warum-wird-hier-kein-two-way-binding-ngmodel-verwendet)
       - [Beispiel mit Two-Way-Binding](#beispiel-mit-two-way-binding)
@@ -66,14 +66,77 @@ Das Template Driven Form wird mit `<form>` und `ngForm` gebaut. Einzelne Felder
 werden mit `ngModel` gebunden:
 
 ```html
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-  <input name="username" ngModel required minlength="3" #username="ngModel" />
-  <input type="password" name="password" ngModel required #password="ngModel" />
-  <button [disabled]="loginForm.invalid">Login</button>
+<form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+  <input
+    name="name"
+    id="name"
+    type="text"
+    placeholder="Name"
+    required
+    ngModel
+    #name="ngModel"
+  />
+  <input
+    name="email"
+    id="email"
+    type="email"
+    placeholder="E-mail"
+    required
+    ngModel
+    #eMail="ngModel"
+  />
+  <input
+    name="passwort"
+    id="passwort"
+    type="password"
+    placeholder="Passwort"
+    required
+    ngModel
+    #passwort="ngModel"
+  />
+  <button type="submit" [disabled]="signUpForm.invalid">Sign up</button>
 </form>
 ```
 
-### Erklärung: ngModel, Template-Referenz und Two-Way-Binding
+### Erklärung: ngModel, Template-Referenz und Datenübernahme ins Objekt
+
+- **`ngModel`**: Bindet das Eingabefeld an das Angular-Formularmodell und sorgt für Validierung und Statusverwaltung.
+- **`#name="ngModel"`**: Erstellt eine Template-Referenz auf das jeweilige Feld, um z.B. Fehler oder Status im Template abzufragen.
+- Die Werte werden beim Absenden über das `NgForm`-Objekt (`signUpForm`) gesammelt und können dann in einer separaten Funktion dem gewünschten Objekt zugewiesen werden.
+
+**Beispiel TypeScript:**
+
+```typescript
+export class SignUp {
+  newUser = {
+    name: "",
+    email: "",
+    passwort: "",
+  };
+
+  onSubmit(form: NgForm) {
+    this.setData(form);
+    console.log(this.newUser);
+  }
+
+  setData(form: NgForm) {
+    this.newUser = {
+      name: form.value.name,
+      email: form.value.email,
+      passwort: form.value.passwort,
+    };
+  }
+}
+```
+
+**Vorteile dieser Methode:**
+- Die Formularwerte werden zentral über das `NgForm`-Objekt gesammelt.
+- Die Zuweisung zu einem Objekt erfolgt explizit und nachvollziehbar in einer eigenen Funktion.
+- Du kannst Validierungen, Transformationen oder weitere Logik in `setData` unterbringen.
+
+**Hinweis:**  
+Alternativ kannst du auch Two-Way-Binding (`[(ngModel)]`) direkt auf die Objekt-Properties nutzen, wenn du sofortigen Zugriff auf die Werte brauchst.  
+Das hier gezeigte Muster ist besonders übersichtlich, wenn du die Werte erst beim Absenden benötigst und z.B. noch weiterverarbeiten möchtest.
 
 #### Warum `ngModel` und `#username="ngModel"`?
 
