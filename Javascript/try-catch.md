@@ -112,16 +112,21 @@ try {
 
 ## Was macht man mit Fehlern im echten Projekt?
 
-Im echten Projekt solltest du Fehler nicht einfach nur in der Konsole anzeigen – das sieht der Nutzer nicht und ist oft nicht hilfreich. Typische Strategien:
+Im echten Projekt solltest du Fehler nicht einfach nur in der Konsole anzeigen –
+das sieht der Nutzer nicht und ist oft nicht hilfreich. Typische Strategien:
 
 - **Nutzerfreundliche Fehlermeldung anzeigen:**  
-  Zeige dem Nutzer eine verständliche Info, z.B. "Etwas ist schiefgelaufen, bitte versuche es später erneut."
+  Zeige dem Nutzer eine verständliche Info, z.B. "Etwas ist schiefgelaufen,
+  bitte versuche es später erneut."
 - **Fehler protokollieren (Logging):**  
-  Schreibe Fehler in ein zentrales Log (z.B. für Entwickler, Monitoring oder Support).
+  Schreibe Fehler in ein zentrales Log (z.B. für Entwickler, Monitoring oder
+  Support).
 - **Fehler an einen Server senden:**  
-  Sende Fehlerdaten an einen Backend-Service (z.B. für Fehleranalyse mit Sentry, LogRocket, eigene API).
+  Sende Fehlerdaten an einen Backend-Service (z.B. für Fehleranalyse mit Sentry,
+  LogRocket, eigene API).
 - **Fallback-Logik:**  
-  Führe eine alternative Aktion aus, z.B. Standardwerte verwenden oder einen anderen Service probieren.
+  Führe eine alternative Aktion aus, z.B. Standardwerte verwenden oder einen
+  anderen Service probieren.
 - **Keine sensiblen Daten anzeigen:**  
   Zeige dem Nutzer niemals technische Details oder Stacktraces.
 
@@ -131,14 +136,17 @@ Im echten Projekt solltest du Fehler nicht einfach nur in der Konsole anzeigen �
 try {
   // riskanter Code
 } catch (error) {
-  showErrorMessage("Leider ist ein Fehler aufgetreten. Bitte versuche es erneut.");
+  showErrorMessage(
+    "Leider ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+  );
   // Optional: Fehler an Server senden
   // sendErrorToServer(error);
 }
 ```
 
 **Merke:**  
-Fehler sollten immer so behandelt werden, dass der Nutzer nicht verwirrt wird und Entwickler trotzdem genug Infos zur Analyse bekommen.
+Fehler sollten immer so behandelt werden, dass der Nutzer nicht verwirrt wird
+und Entwickler trotzdem genug Infos zur Analyse bekommen.
 
 ---
 
