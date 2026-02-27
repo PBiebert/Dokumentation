@@ -15,16 +15,21 @@ dynamischer und flexibler.
 
 ## Inhaltsverzeichnis
 
-1. [Was sind Directives?](#was-sind-directives)
-2. [Vorteile von Directives](#vorteile-von-directives)
-3. [Wo gehören Directives hin?](#wo-gehören-directives-hin)
-4. [Typen von Directives](#typen-von-directives)
-5. [Beispiel A: Farbe oder Aussehen ändern](#beispiel-a-farbe-oder-aussehen-ändern)
-6. [Beispiel B: Text automatisch großschreiben](#beispiel-b-text-automatisch-großschreiben)
-7. [Schritt-für-Schritt: Eigene Directive erstellen](#schritt-für-schritt-eigene-directive-erstellen)
-8. [Weitere Beispiele](#weitere-beispiele)
-9. [Hinweise zu Angular 16+ / 20](#hinweise-zu-angular-16--20)
-10. [Fazit](#fazit)
+- [Directives – Verhalten und Darstellung von Komponenten steuern](#directives--verhalten-und-darstellung-von-komponenten-steuern)
+  - [Was sind Directives?](#was-sind-directives)
+  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  - [Vorteile von Directives](#vorteile-von-directives)
+  - [Wo gehören Directives hin?](#wo-gehören-directives-hin)
+  - [Typen von Directives](#typen-von-directives)
+  - [Beispiel A: Farbe oder Aussehen ändern](#beispiel-a-farbe-oder-aussehen-ändern)
+  - [Beispiel B: Text automatisch großschreiben](#beispiel-b-text-automatisch-großschreiben)
+  - [Schritt-für-Schritt: Eigene Directive erstellen](#schritt-für-schritt-eigene-directive-erstellen)
+  - [Weitere Beispiele](#weitere-beispiele)
+    - [Structural Directive: \*ngIf](#structural-directive-ngif)
+    - [Attribute Directive: ngClass](#attribute-directive-ngclass)
+  - [Hinweise zu Angular 16+ / 20](#hinweise-zu-angular-16--20)
+  - [Fazit](#fazit)
+  - [Zugriff auf Funktionen einer Directive nach der Anwendung (am Beispiel von app-add-task)](#zugriff-auf-funktionen-einer-directive-nach-der-anwendung-am-beispiel-von-app-add-task)
 
 ---
 
@@ -247,3 +252,50 @@ Darstellung von Komponenten flexibel zu steuern.
 Mit eigenen Directives kannst du z.B. Farben, Schriftgrößen oder andere
 Eigenschaften zentral und wiederverwendbar steuern – und sogar Text automatisch
 umwandeln.
+
+## Zugriff auf Funktionen einer Directive nach der Anwendung (am Beispiel von app-add-task)
+
+Angenommen, du hast eine Directive (z.B. `SetDialogAnimation`), die auf das
+`<dialog>`-Element angewendet wird, und möchtest aus deiner Komponente Methoden
+dieser Directive aufrufen (z.B. um eine Animation zu starten oder zu stoppen).
+
+**Beispiel:**
+
+```html
+<!-- add-task-dialog.html -->
+<dialog appSetDialogAnimation>
+  <app-add-task></app-add-task>
+</dialog>
+```
+
+```typescript
+// add-task-dialog.ts
+import { Component, ViewChild } from "@angular/core";
+import { SetDialogAnimation } from "...";
+
+@Component({
+  // ...existing code...
+})
+export class AddTaskDialog {
+  @ViewChild(SetDialogAnimation) dialogAnimationDirective!: SetDialogAnimation;
+
+  openDialog() {
+    this.dialogAnimationDirective.openDialogWithAnimation();
+  }
+
+  closeDialog() {
+    this.dialogAnimationDirective.closeDialogWithAnimation();
+  }
+}
+```
+
+**Erklärung:**
+
+- Mit `@ViewChild(SetDialogAnimation)` erhältst du die Instanz der Directive,
+  die auf das `<dialog>` angewendet wurde.
+- Du kannst dann in deiner Komponente Methoden der Directive aufrufen, z.B.
+  `openDialogWithAnimation()` oder `closeDialogWithAnimation()`.
+
+**Wichtig:**  
+`@ViewChild` sucht nach der ersten Instanz der Directive im Template.  
+Falls du mehrere Instanzen hast, kannst du auch `@ViewChildren` verwenden.

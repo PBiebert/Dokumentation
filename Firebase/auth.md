@@ -75,6 +75,9 @@ async function signUp(email: string, password: string) {
     );
     const user = userCredential.user;
     console.log("Nutzer registriert:", user.uid);
+
+    // UID speichern, z.B. im localStorage:
+    localStorage.setItem("uid", user.uid);
   } catch (error) {
     console.error("Fehler bei Registrierung:", error);
   }
@@ -107,6 +110,9 @@ async function signIn(email: string, password: string) {
       password,
     );
     console.log("Erfolgreich angemeldet:", userCredential.user.uid);
+
+    // UID speichern, z.B. im localStorage:
+    localStorage.setItem("uid", userCredential.user.uid);
   } catch (error) {
     console.error("Fehler bei Anmeldung:", error);
   }
@@ -273,6 +279,6 @@ Start eines neuen Kontos.
 
 - [Firebase: Neue Nutzer registrieren (Web)](https://firebase.google.com/docs/auth/web/start?hl=de#sign_up_new_users)
 - [Firebase: Vorhandene Nutzer anmelden (Web)](https://firebase.google.com/docs/auth/web/start?hl=de#sign_in_existing_users)
-- [Firebase: Derzeit angemeldeten Nutzer abrufen](https://firebase.google.com/docs/auth/web/manage-users?hl=de#get_the_currently_signed-in_user)
+- [Firebase: Derzeit angemeldeten Nutzer abrufen](https://firebase.google.com/docs/auth/web/manage-users?hl=de#get_the_currently-signed-in_user)
 - [Firebase: Profil eines Nutzers aktualisieren](https://firebase.google.com/docs/auth/web/manage-users?hl=de#update_a_users_profile)
 - [Firebase: Password Auth – Next Steps](https://firebase.google.com/docs/auth/web/password-auth?hl=de#next_steps)
