@@ -17,6 +17,7 @@
 - [Klassen](./Javascript/class.md)
 - [canvas](./Javascript/canvas.md)
 - [canvas-Spielmechaniken](./Javascript/canvas-game-mechanics.md)
+- [Fehlerbehandlung mit try...catch in JavaScript](./Javascript/try-catch.md)
 
 </details>
 
